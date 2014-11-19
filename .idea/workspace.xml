@@ -4,54 +4,7 @@
     <option name="ANALYZE_TEST_SOURCES" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="72dfaf43-3c51-42e6-badb-5858d6a291b6" name="Default" comment="Added PieceLIbrary, added more GUI elements to PieceBuilderSlate">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/chess/master/PieceLibrary.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/BitInputStream.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/BitOutputStream.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/BitReader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/BitWriter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/Huff.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/JSONzip.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/Keep.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/None.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/PostMortem.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/README" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/Unzipper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/Zipper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/json/CDL.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/json/Cookie.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/json/CookieList.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/json/HTTP.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/json/HTTPTokener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/json/JSONML.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/json/JSONStringer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/json/Kim.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/json/Property.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/json/XML.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/json/XMLTokener.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chess/general/MyUtils.java" afterPath="$PROJECT_DIR$/src/chess/general/Common.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/objects/AbstractSlate.java" afterPath="$PROJECT_DIR$/src/chess/gui/objects/AbstractSlate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/baseObjects/Board.java" afterPath="$PROJECT_DIR$/src/chess/baseObjects/Board.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gamemodes/ClassicChess.java" afterPath="$PROJECT_DIR$/src/chess/gamemodes/ClassicChess.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/master/ConfigHandler.java" afterPath="$PROJECT_DIR$/src/chess/master/ConfigHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/objects/DrawableBoard.java" afterPath="$PROJECT_DIR$/src/chess/gui/objects/DrawableBoard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/baseObjects/Event.java" afterPath="$PROJECT_DIR$/src/chess/baseObjects/Event.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/master/GUIMaster.java" afterPath="$PROJECT_DIR$/src/chess/master/GUIMaster.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/baseObjects/Game.java" afterPath="$PROJECT_DIR$/src/chess/baseObjects/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/baseObjects/GameMode.java" afterPath="$PROJECT_DIR$/src/chess/baseObjects/GameMode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/general/Loggable.java" afterPath="$PROJECT_DIR$/src/chess/general/Loggable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/slates/MainMenuSlate.java" afterPath="$PROJECT_DIR$/src/chess/gui/slates/MainMenuSlate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/baseObjects/MoveStyle.java" afterPath="$PROJECT_DIR$/src/chess/baseObjects/MoveStyle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/PathTest.java" afterPath="$PROJECT_DIR$/src/chess/PathTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/baseObjects/Piece.java" afterPath="$PROJECT_DIR$/src/chess/baseObjects/Piece.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java" afterPath="$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/slates/PlayGameSlate.java" afterPath="$PROJECT_DIR$/src/chess/gui/slates/PlayGameSlate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/baseObjects/Player.java" afterPath="$PROJECT_DIR$/src/chess/baseObjects/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/master/Runner.java" afterPath="$PROJECT_DIR$/src/chess/master/Runner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/slates/SettingsSlate.java" afterPath="$PROJECT_DIR$/src/chess/gui/slates/SettingsSlate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/baseObjects/Square.java" afterPath="$PROJECT_DIR$/src/chess/baseObjects/Square.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/pieces/whiteKnight.json" afterPath="$PROJECT_DIR$/src/chess/pieces/whiteKnight.json" />
+    <list default="true" id="72dfaf43-3c51-42e6-badb-5858d6a291b6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ChessProject.iws" />
@@ -921,6 +874,11 @@
       <created>1410292991092</created>
       <updated>1410292991092</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added PieceLIbrary, added more GUI elements to PieceBuilderSlate">
+      <created>1416415456864</created>
+      <updated>1416415456864</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">

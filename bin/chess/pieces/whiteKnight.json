@@ -52,7 +52,7 @@
          },
          {
             "dx":1,
-            "dy":3,
+            "dy":5,
             "collidesDuring":false,
             "collidesAtEnd":true,
             "moveObjective":"BOTH",
