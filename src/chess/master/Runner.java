@@ -4,15 +4,18 @@ import chess.general.Loggable;
 import chess.gui.slates.MainMenuSlate;
 
 import javax.swing.*;
+import java.io.File;
 
 public class Runner extends Loggable {
     MainMenuSlate menu;
     GUIMaster guiMaster;
+    PieceLibrary pieceLibrary;
 
     public Runner() {
         super("Runner");
         menu = new MainMenuSlate();
         guiMaster = new GUIMaster(menu);
+        pieceLibrary = new PieceLibrary(new File(ConfigHandler.piecesLocation));
     }
 
     private void run() {

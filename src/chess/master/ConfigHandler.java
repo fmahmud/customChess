@@ -7,8 +7,10 @@ import java.awt.*;
  */
 public class ConfigHandler {
     public static String piecesLocation = "/Users/Fez/Documents/workspace/ChessProject/src/chess/pieces";
-    public static Font defaultFont = new Font("FacitWeb-Regular", Font.PLAIN, 14);
-    public static Font headerFont = new Font("FacitWeb-Regular", Font.BOLD, 80);
+
+    public static Font defaultFont = new Font("Calibri", Font.PLAIN, 13);
+    public static Font textFieldFont = new Font("Calibri", Font.PLAIN, 16);
+    public static Font headerFont = new Font("Calibri", Font.BOLD, 80);
 
     public static Color selectedItem    = new Color( 95, 192, 144     );
     public static Color offendLocation  = new Color(134,   6,   0, 200);

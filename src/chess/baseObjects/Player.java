@@ -2,9 +2,6 @@ package chess.baseObjects;
 
 import chess.custom.Faction;
 
-import java.text.SimpleDateFormat;
-import java.util.Vector;
-
 public class Player {
 
     private Faction faction;

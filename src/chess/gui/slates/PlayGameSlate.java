@@ -2,12 +2,9 @@ package chess.gui.slates;
 
 import chess.baseObjects.Game;
 import chess.gamemodes.ClassicChess;
-import chess.general.MyUtils;
 import chess.gui.objects.AbstractSlate;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 import java.io.File;
 
 

@@ -1,6 +1,6 @@
 package chess.gui.slates;
 
-import chess.general.MyUtils;
+import chess.general.Common;
 import chess.gui.objects.AbstractSlate;
 import chess.master.ConfigHandler;
 import chess.master.GUIMaster;
@@ -35,7 +35,7 @@ public class SettingsSlate extends AbstractSlate { //abstract a menu class.
     }
 
     private JButton makeButton(String name, String action) {
-        JButton toRet = MyUtils.buttonFactory(name, action, buttonFont);
+        JButton toRet = Common.buttonFactory(name, action, buttonFont);
         ActionListener a = null;
         if(action.equals("accept")) {
             a = new AcceptChangesBtnListener();

@@ -1,8 +1,6 @@
 package chess.baseObjects;
 
 import chess.general.Loggable;
-import chess.gui.objects.AbstractSlate;
-import chess.master.Runner;
 
 import javax.swing.*;
 import java.awt.*;

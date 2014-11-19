@@ -14,7 +14,7 @@ public abstract class Loggable {
 
     protected void logLine(String s, int level) {
         if(level <= DEBUG_LEVEL)
-            System.out.println(debug_prefix+s);
+            System.out.println("["+System.currentTimeMillis()+"]"+debug_prefix+s);
     }
 
     protected void log(String s, int level) {

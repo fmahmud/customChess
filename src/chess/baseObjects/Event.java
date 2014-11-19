@@ -1,6 +1,6 @@
 package chess.baseObjects;
 
-import chess.general.MyUtils;
+import chess.general.Common;
 import chess.master.ConfigHandler;
 
 import java.awt.*;
@@ -74,7 +74,7 @@ public class Event extends DrawableObject {
     @Override
     public void render(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-        g2.setFont(MyUtils.buttonFont);
+        g2.setFont(Common.buttonFont);
         g2.drawString(this.toString(), 5, 20);
     }
 

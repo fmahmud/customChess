@@ -16,9 +16,35 @@ import java.util.Vector;
 public class MoveStyle extends Loggable{
 
     public enum MoveObjective {
+        KILL_ONLY ("KILL_ONLY"),
+        MOVE_ONLY ("MOVE_ONLY"),
+        BOTH ("BOTH");
 
-        KILL_ONLY, MOVE_ONLY, BOTH;
+        private final String name;
+
+        private MoveObjective(String s) {
+            name = s;
+        }
+
+        public boolean equalsName(String other) {
+            return name.equals(other);
+        }
+
+        public static MoveObjective getFromName(String s) {
+            if(s.equals("MOVE_ONLY"))
+                return MOVE_ONLY;
+            if(s.equals("KILL_ONLY"))
+                return KILL_ONLY;
+            if(s.equals("BOTH"))
+                return BOTH;
+            return BOTH;
+        }
+
+        public String toString() {
+            return name;
+        }
     }
+
     private int dx, dy;
     private boolean collidesDuring;
     private boolean collidesAtEnd;

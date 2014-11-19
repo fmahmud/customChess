@@ -1,7 +1,5 @@
 package chess.baseObjects;
 
-import chess.master.Runner;
-
 import java.awt.*;
 
 public class Square extends DrawableObject {

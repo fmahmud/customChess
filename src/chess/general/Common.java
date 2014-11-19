@@ -1,7 +1,6 @@
 package chess.general;
 
 import chess.master.ConfigHandler;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.swing.*;
@@ -19,7 +18,7 @@ import java.util.Vector;
  * Created by Fez on 9/14/14.
  *
  */
-public class MyUtils {
+public class Common {
     public static Font buttonFont = new Font("FacitWeb-Regular", Font.PLAIN, 14);
 
 
@@ -64,6 +63,18 @@ public class MyUtils {
         b.addActionListener(al);
         b.setFont(ConfigHandler.defaultFont);
         return b;
+    }
+
+    public static JLabel labelFactory(String title) {
+        JLabel l = new JLabel(title);
+        l.setFont(ConfigHandler.defaultFont);
+        return l;
+    }
+
+    public static JTextField textFieldFactory(int numCols) {
+        JTextField toRet = new JTextField(numCols);
+        toRet.setFont(ConfigHandler.textFieldFont);
+        return toRet;
     }
 
     public static <T> Vector<T> removeDuplicates(Vector<T> a) {

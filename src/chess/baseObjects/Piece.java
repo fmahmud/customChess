@@ -1,7 +1,7 @@
 package chess.baseObjects;
 
 import chess.custom.Faction;
-import chess.general.MyUtils;
+import chess.general.Common;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -54,6 +54,15 @@ public class Piece extends DrawableObject {
         beenAttacked = b;
     }
 
+    public void addMoveStyle(MoveStyle ms) {
+        if(!moveStyles.contains(ms))
+            moveStyles.add(ms);
+    }
+
+    public void addMoveStyle(JSONObject jso) {
+        addMoveStyle(new MoveStyle(jso));
+    }
+
     private void define(String d, String _path, JSONArray _ms) {
         pieceName = d;
         currentRow = 0;
@@ -64,7 +73,7 @@ public class Piece extends DrawableObject {
         moveStyles = new Vector<MoveStyle>();
         imagePath = _path;
         for(int i = 0; i < _ms.length(); ++i) {
-            moveStyles.add(new MoveStyle(_ms.getJSONObject(i)));
+            this.addMoveStyle(_ms.getJSONObject(i));
         }
 
         try {
@@ -72,7 +81,7 @@ public class Piece extends DrawableObject {
         } catch (IOException e) {
             logLine("IOException...", 0);
         } catch (Exception npe) {
-            logLine("Something went wrong " + Faction.getStrRepresentation(getFaction())+"_"+getPieceName(), 0);
+            logLine("Something went wrong with" + getPieceName(), 0);
         }
     }
 
@@ -181,8 +190,8 @@ public class Piece extends DrawableObject {
 
         // Removing duplicates because something else is
         // going wrong somewhere else and I don't know where.
-        MyUtils.removeDuplicates(validDestinations[0]);
-        MyUtils.removeDuplicates(validDestinations[1]);
+        Common.removeDuplicates(validDestinations[0]);
+        Common.removeDuplicates(validDestinations[1]);
 
         String _s = "";
         for(Square s : (Vector<Square>)validDestinations[0]) {

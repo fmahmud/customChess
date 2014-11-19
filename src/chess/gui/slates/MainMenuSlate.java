@@ -1,6 +1,6 @@
 package chess.gui.slates;
 
-import chess.general.MyUtils;
+import chess.general.Common;
 import chess.gui.objects.AbstractSlate;
 import chess.master.GUIMaster;
 
@@ -86,7 +86,7 @@ public class MainMenuSlate extends AbstractSlate {
     }
 
     private JButton makeButton(String name, String action) {
-        JButton b = MyUtils.buttonFactory(name, action, MyUtils.buttonFont);
+        JButton b = Common.buttonFactory(name, action, Common.buttonFont);
         ActionListener a = null;
         if(action.equals("newGame")) {
             a = new NewGameListener();

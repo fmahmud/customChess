@@ -5,7 +5,6 @@ import chess.custom.Faction;
 import chess.general.Loggable;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Class that keeps track of the various teams, the board and the turn order.

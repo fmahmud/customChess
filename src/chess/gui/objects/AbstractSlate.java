@@ -16,7 +16,7 @@ public abstract class AbstractSlate extends Loggable {
     protected final JPanel rightPanel = new JPanel();
     protected final JPanel footerPanel = new JPanel();
     protected final JPanel mainPanel = new JPanel();
-    public final static int centerWidth = 672;
+    public final static int centerWidth = GUIMaster.SQUARE_WIDTH * 8;
     public final static int headFootHeight = (GUIMaster.WINDOW_HEIGHT - centerWidth) / 2;
     public final static int sideWidth = (GUIMaster.WINDOW_WIDTH - centerWidth) / 2 ;
 
@@ -44,14 +44,13 @@ public abstract class AbstractSlate extends Loggable {
         return mainPanel;
     }
 
-    private void setPrefSize(Component c, Dimension d) {
+    public void setPrefSize(Component c, Dimension d) {
         c.setMinimumSize(d);
-//        c.setMaximumSize(d);
+        c.setMaximumSize(d);
         c.setPreferredSize(d);
-//        setDebugColor(c);
     }
 
-    private void setDebugColor(Component c) {
+    public void setDebugColor(Component c) {
         int r = (int)(Math.random()*256);
         int b = (int)(Math.random()*256);
         int g = (int)(Math.random()*256);

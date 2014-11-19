@@ -16,6 +16,7 @@ public class GUIMaster extends Loggable {
 
     public static final int WINDOW_WIDTH = 1440;
     public static final int WINDOW_HEIGHT = 1024;
+    public static final int SQUARE_WIDTH = 84;
 
     public GUIMaster(AbstractSlate as) {
         super("GUIMaster");

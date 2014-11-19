@@ -3,14 +3,15 @@ package chess.gamemodes;
 import chess.baseObjects.*;
 import chess.baseObjects.Event;
 import chess.custom.Faction;
-import chess.general.MyUtils;
+import chess.general.Common;
 import chess.gui.objects.DrawableBoard;
 import chess.master.ConfigHandler;
 import org.json.JSONObject;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.Vector;
 
@@ -72,10 +73,10 @@ public class ClassicChess extends GameMode {
         whiteTime = blackTime = 0l;
         directory = _dir;
         pieceDefinitions = new Vector<JSONObject>();
-        Vector<File> filesInDirectory = MyUtils.getFilesInDir(_dir);
+        Vector<File> filesInDirectory = Common.getFilesInDir(_dir);
         logLine("Num Files in Directory: "+filesInDirectory.size(), 4);
         for(File f : filesInDirectory) {
-            JSONObject temp = MyUtils.getJSONObjFromFile(f);
+            JSONObject temp = Common.getJSONObjFromFile(f);
             logLine(temp.getString("name"),4);
             pieceDefinitions.add(temp);
         }

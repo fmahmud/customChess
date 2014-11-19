@@ -1,7 +1,6 @@
 package chess.baseObjects;
 
 import chess.general.Loggable;
-import chess.master.Runner;
 
 public class Board extends Loggable{
 
@@ -51,12 +50,13 @@ public class Board extends Loggable{
      *           valid kill destinations. If none is found then null.
      */
     public Piece checkForOffend(Piece target) {
+        Square victimLoc = getSquareAt(target.getCurrentColumn(), target.getCurrentRow());
         for(int i = 0; i < height; ++i) {
             for(int j = 0; j < width; ++j) {
                 Square s = getSquareAt(j, i);
                 Piece p = s.getPiece();
                 if(p == null) continue;
-                if(p.getValidKillDestinations().contains(s))
+                if(p.getValidKillDestinations().contains(victimLoc))
                     return p;
             }
         }

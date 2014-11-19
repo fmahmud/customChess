@@ -1,8 +1,11 @@
 package chess.gui.objects;
 
-import chess.baseObjects.*;
+import chess.baseObjects.Board;
+import chess.baseObjects.Piece;
+import chess.baseObjects.Square;
 import chess.general.Loggable;
 import chess.master.ConfigHandler;
+import chess.master.GUIMaster;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -37,7 +40,7 @@ public class DrawableBoard extends Loggable {
 
     private void initializeBoard() {
         logLine("Initializing Board", 2);
-        int squareWidth = 84; //todo: push this into ClassicChess
+        int squareWidth = GUIMaster.SQUARE_WIDTH;
         Square.setWidth(squareWidth);
         canvas = new JPanel();
         canvas.setLayout(new BoxLayout(canvas, BoxLayout.Y_AXIS));
