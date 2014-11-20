@@ -6,6 +6,7 @@ import chess.general.Common;
 import chess.gui.objects.AbstractSlate;
 import chess.master.ConfigHandler;
 import chess.master.GUIMaster;
+import chess.master.Runner;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -13,7 +14,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.util.Vector;
 
 /**
@@ -62,18 +62,11 @@ public class PieceBuilderSlate extends AbstractSlate {
         scrollPanePieces = new JScrollPane(pieceList);
         scrollPanePieces.setPreferredSize(new Dimension(AbstractSlate.sideWidth, AbstractSlate.centerWidth-100));
 
-        thePieces = new Vector<Piece>();
-        jsonPieces = new Vector<JSONObject>();
-        Vector<File> filesInDirectory = Common.getFilesInDir(new File(ConfigHandler.piecesLocation));
-        logLine("Num Files in directory = "+filesInDirectory.size(), 0);
-        for(File f : filesInDirectory) {
-            JSONObject temp = Common.getJSONObjFromFile(f);
-            logLine(temp.toString(), 4);
-            Piece p = new Piece(temp);
-            thePieces.add(p);
-            jsonPieces.add(temp);
-            pieces.addElement(p.getPieceName());
+        jsonPieces = Runner.pieceLibrary.getAllPiecesAsVector();
+        for(JSONObject o : jsonPieces) {
+            pieces.addElement(o.getString("name"));
         }
+
         if(pieces.size()!=0)
             pieceList.setSelectedIndex(0);
 

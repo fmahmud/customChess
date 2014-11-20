@@ -21,7 +21,6 @@ import java.util.Vector;
  */
 public class ClassicChess extends GameMode {
     protected History history;
-    private Piece whiteKing, blackKing;
     private Player inCheck = null;
     private Player currentPlayer = null;
     private Player whitePlayer, blackPlayer;
@@ -247,15 +246,15 @@ public class ClassicChess extends GameMode {
      * todo: figure this out.
      */
     private void dealWithCheck() {
-        if(board.checkForOffend(whiteKing) != null) {
-            whiteKing.setBeenAttacked(true);
-            inCheck = whitePlayer;
-        } else if(board.checkForOffend(blackKing) != null) {
-            blackKing.setBeenAttacked(true);
-            inCheck = blackPlayer;
-        } else {
-            inCheck = null;
-        }
+//        if(board.checkForOffend(whiteKing) != null) {
+//            whiteKing.setBeenAttacked(true);
+//            inCheck = whitePlayer;
+//        } else if(board.checkForOffend(blackKing) != null) {
+//            blackKing.setBeenAttacked(true);
+//            inCheck = blackPlayer;
+//        } else {
+//            inCheck = null;
+//        }
     }
 
     /**
@@ -382,11 +381,11 @@ public class ClassicChess extends GameMode {
      * @return
      */
     private Player whosInCheck(Board b) {
-        Piece whiteInCheck = b.checkForOffend(whiteKing);
-        Piece blackInCheck = b.checkForOffend(blackKing);
+//        Piece whiteInCheck = b.checkForOffend(whiteKing);
+//        Piece blackInCheck = b.checkForOffend(blackKing);
 
-        if(whiteInCheck != null) return whitePlayer;
-        else if(blackInCheck != null) return blackPlayer;
+//        if(whiteInCheck != null) return whitePlayer;
+//        else if(blackInCheck != null) return blackPlayer;
         return null;
     }
 }
