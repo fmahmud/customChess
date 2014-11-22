@@ -13,6 +13,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Vector;
 
 /**
@@ -30,15 +32,21 @@ public class PieceBuilderSlate extends AbstractSlate {
     private JComboBox cbDX, cbDY, cbInfMoveX, cbInfMoveY, cbFirstMove, cbColDur, cbColEnd, cbMoveObjective;
     private JLabel lblDX, lblDY, lblInfMoveX, lblInfMoveY, lblFirstMove, lblColDur, lblColEnd, lblMoveObjective;
     private JTextField tfPieceName, tfImagePath;
-
+    private HashMap<JSONObject, String> objToKey;
 
     private int indexSelectedPiece = -1, indexSelectedMovestyle = -1;
     //starting off at -1 because if zero no difference will be noticed and nothing will be rendered
 
     public PieceBuilderSlate(AbstractSlate _returnTo) {
         super("PieceBuilderSlate");
-        panelSetup();
 
+        jsonPieces = Runner.pieceLibrary.getAllPiecesAsVector();
+        objToKey = new HashMap<JSONObject, String>();
+        for(JSONObject p : jsonPieces) {
+            objToKey.put(p, p.getString("name"));
+        }
+
+        panelSetup();
         returnTo = _returnTo;
         addComboBoxListeners();
     }
@@ -58,7 +66,6 @@ public class PieceBuilderSlate extends AbstractSlate {
         scrollPanePieces = new JScrollPane(pieceList);
         scrollPanePieces.setPreferredSize(new Dimension(AbstractSlate.sideWidth, AbstractSlate.centerWidth-100));
 
-        jsonPieces = Runner.pieceLibrary.getAllPiecesAsVector();
         for(JSONObject o : jsonPieces) {
             pieces.addElement(o.getString("name"));
         }
@@ -339,7 +346,7 @@ public class PieceBuilderSlate extends AbstractSlate {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             for(JSONObject o : jsonPieces) {
-                Runner.pieceLibrary.updatePiece(o, o.getString("name"));
+                Runner.pieceLibrary.updatePiece(o, objToKey.get(o));
             }
             Runner.guiMaster.setCurrentSlate(returnTo);
         }
@@ -453,8 +460,10 @@ public class PieceBuilderSlate extends AbstractSlate {
             for(JSONObject ms : jsonMoveStyles) {
                 p.addMoveStyle(ms);
             }
-            jsonPieces.remove(indexSelectedPiece);
-            jsonPieces.add(indexSelectedPiece, p.getPieceAsJSON());
+            String key = objToKey.remove(jsonPieces.remove(indexSelectedPiece));
+            JSONObject temp = p.getPieceAsJSON();
+            jsonPieces.add(indexSelectedPiece, temp);
+            objToKey.put(temp, key);
             JOptionPane.showMessageDialog(null, "Saved piece "+p.getPieceName()+"!");
         }
 

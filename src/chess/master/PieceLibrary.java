@@ -41,18 +41,29 @@ public class PieceLibrary extends Loggable {
         return true;
     }
 
+    private boolean renameFile(File oldFile, File newFile) throws IOException{
+        return oldFile.delete() && newFile.createNewFile();
+    }
+
     public void updatePiece(JSONObject newValue, String currentKey) {
         String newName = newValue.getString("name");
+        logLine("New name = "+newName+", old name = "+currentKey, 0);
         if (!newName.equals(currentKey)) {
-            File newFile = new File(newName+".png");
+            File newFile = new File(ConfigHandler.piecesLocation.getAbsolutePath()+"/"+newName+".json");
             File oldFile = nameFileMap.remove(currentKey);
-            if (!oldFile.renameTo(newFile)) { //renamed file
-                //handle?
-            } else {
-                nameFileMap.put(newName, newFile);
+            logLine("New Filename = "+newFile.getName()+", old filename = "+oldFile.getName(), 0);
+            try {
+                if(!renameFile(oldFile, newFile)) {
+                    logLine("Couldn't rename file...", 0);
+                } else {
+                    logLine("Renamed file: "+oldFile.getName(), 0);
+                    nameFileMap.put(newName, newFile);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
-        pieceNameMap.put(newValue.getString("name"), newValue);
+        pieceNameMap.put(newName, newValue);
     }
 
     public void saveAllPieces() {
@@ -62,7 +73,10 @@ public class PieceLibrary extends Loggable {
         for(String name : keys) {
             logLine(name+": "+pieceNameMap.get(name), 4);
             try {
-                Common.overWriteFile(nameFileMap.get(name), pieceNameMap.get(name).toString());
+                File f = nameFileMap.get(name);
+                if(f == null) continue;
+                logLine("Writing to file: "+f.getName(), 0);
+                Common.overWriteFile(f, pieceNameMap.get(name).toString());
             } catch (IOException e) {
                 e.printStackTrace();
             }
