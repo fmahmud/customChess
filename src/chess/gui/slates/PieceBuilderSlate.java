@@ -5,8 +5,6 @@ import chess.baseObjects.Piece;
 import chess.general.Common;
 import chess.gui.objects.AbstractSlate;
 import chess.master.ConfigHandler;
-import chess.master.GUIMaster;
-import chess.master.PieceLibrary;
 import chess.master.Runner;
 import org.json.JSONArray;
 import org.json.JSONObject;
