@@ -24,15 +24,12 @@ public class PieceBuilderSlate extends AbstractSlate {
     private DefaultListModel pieces, moveStyles;
     private JScrollPane scrollPanePieces, scrollPaneMoveStyles;
     private AbstractSlate returnTo;
-    private Vector<Piece>  thePieces;
     private Vector<JSONObject> jsonPieces, jsonMoveStyles;
     private JButton btnAccept, btnSavePieceChanges, btnResetPieceChanges;
     private JButton addPiece, removePiece, btnAddMS, btnRemoveMS, btnSaveMSChanges, btnResetMS;
     private JComboBox cbDX, cbDY, cbInfMoveX, cbInfMoveY, cbFirstMove, cbColDur, cbColEnd, cbMoveObjective;
     private JLabel lblDX, lblDY, lblInfMoveX, lblInfMoveY, lblFirstMove, lblColDur, lblColEnd, lblMoveObjective;
-//    private JTextArea taShowJSON;
     private JTextField tfPieceName, tfImagePath;
-//    private JScrollPane taTemp;
 
 
     private int indexSelectedPiece = -1, indexSelectedMovestyle = -1;
@@ -131,6 +128,7 @@ public class PieceBuilderSlate extends AbstractSlate {
 
         JPanel pnlSecond = new JPanel();
         tfImagePath = Common.textFieldFactory(37);
+        tfImagePath.setEnabled(false);
         JLabel lblImagePath = Common.labelFactory("Image Path:");
         JButton btnImgPathBrowse = Common.buttonFactory("Browse", "browse", new BrowseButtonListener());
         btnImgPathBrowse.setFont(ConfigHandler.textFieldFont);
@@ -451,7 +449,6 @@ public class PieceBuilderSlate extends AbstractSlate {
     private class AcceptPieceBtnListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-//            indexSelectedPiece
             Piece p = new Piece(tfPieceName.getText(), tfImagePath.getText(), new JSONArray());
             for(JSONObject ms : jsonMoveStyles) {
                 p.addMoveStyle(ms);

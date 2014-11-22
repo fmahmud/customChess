@@ -18,16 +18,16 @@ public class PieceLibrary extends Loggable {
 
     public PieceLibrary(File directory) {
         super("PieceLibrary");
-        logLine("Enumerating Library from directory: "+directory.getAbsolutePath(), 0);
+        logLine("Enumerating Library from directory: "+directory.getAbsolutePath(), 1);
         Vector<File> files = Common.getFilesInDir(directory);
-        logLine("Found "+files.size()+" files in directory.", 0);
+        logLine("Found "+files.size()+" files in directory.", 4);
         for(File f : files) {
             if(!f.getName().endsWith(".json")) continue;
             JSONObject piece = Common.getJSONObjFromFile(f);
             pieceNameMap.put(piece.getString("name"), piece);
             nameFileMap.put(piece.getString("name"), f);
         }
-        logLine("Done loading pieces.", 0);
+        logLine("Done loading pieces.", 1);
     }
 
     public JSONObject getPieceJSON(String name) {
@@ -57,15 +57,16 @@ public class PieceLibrary extends Loggable {
 
     public void saveAllPieces() {
         Vector<String> keys = new Vector<String>(pieceNameMap.keySet());
-        logLine("Num keys = "+keys.size(), 0);
-        /*
+        logLine("Num keys = "+keys.size(), 4);
+
         for(String name : keys) {
+            logLine(name+": "+pieceNameMap.get(name), 4);
             try {
                 Common.overWriteFile(nameFileMap.get(name), pieceNameMap.get(name).toString());
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }*/
+        }
     }
 
     public Vector<JSONObject> getAllPiecesAsVector() {

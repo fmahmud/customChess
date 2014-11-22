@@ -5,22 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72dfaf43-3c51-42e6-badb-5858d6a291b6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/objects/AbstractSlate.java" afterPath="$PROJECT_DIR$/src/chess/gui/objects/AbstractSlate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gamemodes/ClassicChess.java" afterPath="$PROJECT_DIR$/src/chess/gamemodes/ClassicChess.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/general/Common.java" afterPath="$PROJECT_DIR$/src/chess/general/Common.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/master/ConfigHandler.java" afterPath="$PROJECT_DIR$/src/chess/master/ConfigHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/master/GUIMaster.java" afterPath="$PROJECT_DIR$/src/chess/master/GUIMaster.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/baseObjects/Game.java" afterPath="$PROJECT_DIR$/src/chess/baseObjects/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/baseObjects/GameMode.java" afterPath="$PROJECT_DIR$/src/chess/baseObjects/GameMode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/general/Loggable.java" afterPath="$PROJECT_DIR$/src/chess/general/Loggable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/slates/MainMenuSlate.java" afterPath="$PROJECT_DIR$/src/chess/gui/slates/MainMenuSlate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/baseObjects/MoveStyle.java" afterPath="$PROJECT_DIR$/src/chess/baseObjects/MoveStyle.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java" afterPath="$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/master/PieceLibrary.java" afterPath="$PROJECT_DIR$/src/chess/master/PieceLibrary.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/slates/PlayGameSlate.java" afterPath="$PROJECT_DIR$/src/chess/gui/slates/PlayGameSlate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/master/Runner.java" afterPath="$PROJECT_DIR$/src/chess/master/Runner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/slates/SettingsSlate.java" afterPath="$PROJECT_DIR$/src/chess/gui/slates/SettingsSlate.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/pieces/blackBishop.json" afterPath="$PROJECT_DIR$/src/chess/pieces/blackBishop.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/pieces/blackKing.json" afterPath="$PROJECT_DIR$/src/chess/pieces/blackKing.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/pieces/blackKnight.json" afterPath="$PROJECT_DIR$/src/chess/pieces/blackKnight.json" />
@@ -60,7 +47,7 @@
     <favorites_list name="ChessProject" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.52396166">
+    <splitter split-orientation="horizontal" split-proportion="0.5131579">
       <split-first>
         <leaf>
           <file leaf-file-name="ClassicChess.java" pinned="false" current="false" current-in-tab="false">
@@ -93,14 +80,14 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="PieceLibrary.java" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="PieceLibrary.java" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/chess/master/PieceLibrary.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="1080">
-                  <caret line="57" column="33" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="33" />
+                <state vertical-scroll-proportion="0.25357607" vertical-offset="0" max-vertical-offset="1095">
+                  <caret line="20" column="85" selection-start-line="20" selection-start-column="85" selection-end-line="20" selection-end-column="85" />
                   <folding>
-                    <element signature="e#2390#2391#0" expanded="true" />
-                    <element signature="e#2458#2459#0" expanded="true" />
+                    <element signature="e#2436#2437#0" expanded="true" />
+                    <element signature="e#2504#2505#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -119,11 +106,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="MainMenuSlate.java" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="MainMenuSlate.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/MainMenuSlate.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.7468944" vertical-offset="1139" max-vertical-offset="2130">
-                  <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="1139" max-vertical-offset="2130">
+                  <caret line="120" column="5" selection-start-line="120" selection-start-column="5" selection-end-line="120" selection-end-column="5" />
                   <folding />
                 </state>
               </provider>
@@ -175,51 +162,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="Common.java" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="Common.java" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/chess/general/Common.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="1227" max-vertical-offset="2475">
-                  <caret line="123" column="44" selection-start-line="123" selection-start-column="44" selection-end-line="123" selection-end-column="44" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="blackQueen.json" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chess/pieces/blackQueen.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1605">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="blackPawn.json" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chess/pieces/blackPawn.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="885">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="blackKnight.json" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chess/pieces/blackKnight.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1605">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="blackKing.json" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chess/pieces/blackKing.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-4.8" vertical-offset="0" max-vertical-offset="1605">
-                  <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+                <state vertical-scroll-proportion="0.11938383" vertical-offset="1362" max-vertical-offset="2520">
+                  <caret line="111" column="41" selection-start-line="111" selection-start-column="41" selection-end-line="111" selection-end-column="41" />
                   <folding />
                 </state>
               </provider>
@@ -228,48 +175,20 @@
           <file leaf-file-name="PieceBuilderSlate.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="3120" max-vertical-offset="6855">
-                  <caret line="347" column="28" selection-start-line="347" selection-start-column="28" selection-end-line="347" selection-end-column="28" />
-                  <folding />
+                <state vertical-scroll-proportion="-8.769231" vertical-offset="1722" max-vertical-offset="7005">
+                  <caret line="130" column="36" selection-start-line="130" selection-start-column="36" selection-end-line="130" selection-end-column="36" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="SettingsSlate.java" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="SettingsSlate.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/SettingsSlate.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.33695653" vertical-offset="1958" max-vertical-offset="3135">
+                <state vertical-scroll-proportion="0.0" vertical-offset="1958" max-vertical-offset="3135">
                   <caret line="156" column="28" selection-start-line="156" selection-start-column="28" selection-end-line="156" selection-end-column="28" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="blackBishop.json" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chess/pieces/blackBishop.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="885">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="whiteRook.json" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chess/pieces/whiteRook.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="885">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="whiteQueen.json" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chess/pieces/whiteQueen.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1605">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -307,7 +226,6 @@
         <option value="$PROJECT_DIR$/src/chess/pieces/blackBishop.json" />
         <option value="$PROJECT_DIR$/src/chess/pieces/blackKing.json" />
         <option value="$PROJECT_DIR$/src/chess/pieces/blackKnight.json" />
-        <option value="$PROJECT_DIR$/src/chess/pieces/blackQueen.json" />
         <option value="$PROJECT_DIR$/src/chess/pieces/blackRook.json" />
         <option value="$PROJECT_DIR$/src/chess/pieces/whiteBishop.json" />
         <option value="$PROJECT_DIR$/src/chess/pieces/whiteKing.json" />
@@ -330,17 +248,18 @@
         <option value="$PROJECT_DIR$/src/chess/pieces/whiteQueen.json" />
         <option value="$PROJECT_DIR$/src/chess/baseObjects/MoveStyle.java" />
         <option value="$PROJECT_DIR$/src/chess/baseObjects/Timer.java" />
-        <option value="$PROJECT_DIR$/src/chess/general/Common.java" />
         <option value="$PROJECT_DIR$/src/chess/gui/slates/PlayGameSlate.java" />
         <option value="$PROJECT_DIR$/src/chess/baseObjects/Game.java" />
         <option value="$PROJECT_DIR$/src/chess/baseObjects/GameMode.java" />
         <option value="$PROJECT_DIR$/src/chess/gamemodes/ClassicChess.java" />
-        <option value="$PROJECT_DIR$/src/chess/master/PieceLibrary.java" />
         <option value="$PROJECT_DIR$/src/chess/master/GUIMaster.java" />
         <option value="$PROJECT_DIR$/src/chess/gui/objects/AbstractSlate.java" />
         <option value="$PROJECT_DIR$/src/chess/gui/slates/MainMenuSlate.java" />
-        <option value="$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java" />
         <option value="$PROJECT_DIR$/src/chess/gui/slates/SettingsSlate.java" />
+        <option value="$PROJECT_DIR$/src/chess/pieces/blackQueen.json" />
+        <option value="$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java" />
+        <option value="$PROJECT_DIR$/src/chess/general/Common.java" />
+        <option value="$PROJECT_DIR$/src/chess/master/PieceLibrary.java" />
       </list>
     </option>
   </component>
@@ -988,7 +907,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1173" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985783" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13631523" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" x="28" y="162" width="1638" height="315" />
@@ -999,9 +918,9 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22274882" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22274882" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32890996" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890996" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15015975" sideWeight="0.49822485" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24969475" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1330,22 +1249,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/pieces/blackQueen.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1605">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/pieces/blackPawn.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="885">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/chess/pieces/blackKnight.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1605">
@@ -1386,18 +1289,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/general/Common.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1227" max-vertical-offset="2475">
-          <caret line="123" column="44" selection-start-line="123" selection-start-column="44" selection-end-line="123" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/chess/pieces/blackKing.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.8" vertical-offset="0" max-vertical-offset="1605">
-          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="90">
+          <caret line="0" column="19" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1407,17 +1302,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="840" max-vertical-offset="5475">
           <caret line="109" column="46" selection-start-line="109" selection-start-column="46" selection-end-line="109" selection-end-column="46" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/master/PieceLibrary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="1080">
-          <caret line="57" column="33" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="33" />
-          <folding>
-            <element signature="e#2390#2391#0" expanded="true" />
-            <element signature="e#2458#2459#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1442,27 +1326,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java">
+    <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/SettingsSlate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3120" max-vertical-offset="6855">
-          <caret line="347" column="28" selection-start-line="347" selection-start-column="28" selection-end-line="347" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1958" max-vertical-offset="3135">
+          <caret line="156" column="28" selection-start-line="156" selection-start-column="28" selection-end-line="156" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/SettingsSlate.java">
+    <entry file="file://$PROJECT_DIR$/src/chess/pieces/blackPawn.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33695653" vertical-offset="1958" max-vertical-offset="3135">
-          <caret line="156" column="28" selection-start-line="156" selection-start-column="28" selection-end-line="156" selection-end-column="28" />
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="90">
+          <caret line="0" column="28" selection-start-line="0" selection-start-column="28" selection-end-line="0" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/MainMenuSlate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7468944" vertical-offset="1139" max-vertical-offset="2130">
-          <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1139" max-vertical-offset="2130">
+          <caret line="120" column="5" selection-start-line="120" selection-start-column="5" selection-end-line="120" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.769231" vertical-offset="1722" max-vertical-offset="7005">
+          <caret line="130" column="36" selection-start-line="130" selection-start-column="36" selection-end-line="130" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/pieces/blackQueen.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="731">
+          <caret line="0" column="28" selection-start-line="0" selection-start-column="28" selection-end-line="0" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/general/Common.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11938383" vertical-offset="1362" max-vertical-offset="2520">
+          <caret line="111" column="41" selection-start-line="111" selection-start-column="41" selection-end-line="111" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/master/PieceLibrary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25357607" vertical-offset="0" max-vertical-offset="1095">
+          <caret line="20" column="85" selection-start-line="20" selection-start-column="85" selection-end-line="20" selection-end-column="85" />
+          <folding>
+            <element signature="e#2436#2437#0" expanded="true" />
+            <element signature="e#2504#2505#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

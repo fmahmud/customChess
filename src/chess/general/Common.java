@@ -112,6 +112,7 @@ public class Common extends Loggable {
                 stringBuilder.append(line);
                 stringBuilder.append(ls);
             }
+            reader.close();
             return stringBuilder.toString();
         } catch(Exception e) {
 
@@ -121,9 +122,11 @@ public class Common extends Loggable {
 
 
     public static void overWriteFile(File file, String s) throws IOException {
-        System.out.println("String s = "+s);
         PrintWriter pw = new PrintWriter(file);
         pw.write(s);
+        pw.flush();
+        pw.close();
+
     }
 
     public static int countLines(File f) throws IOException {
