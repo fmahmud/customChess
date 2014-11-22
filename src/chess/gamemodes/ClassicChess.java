@@ -2,10 +2,12 @@ package chess.gamemodes;
 
 import chess.baseObjects.*;
 import chess.baseObjects.Event;
+import chess.baseObjects.Timer;
 import chess.custom.Faction;
 import chess.general.Common;
 import chess.gui.objects.DrawableBoard;
 import chess.master.ConfigHandler;
+import chess.master.Runner;
 import org.json.JSONObject;
 
 import javax.swing.*;
@@ -21,7 +23,6 @@ import java.util.Vector;
  */
 public class ClassicChess extends GameMode {
     protected History history;
-    private Piece whiteKing, blackKing;
     private Player inCheck = null;
     private Player currentPlayer = null;
     private Player whitePlayer, blackPlayer;
@@ -29,7 +30,6 @@ public class ClassicChess extends GameMode {
     private Vector<Piece> killedWhitePieces, killedBlackPieces;
     private DrawableBoard drawBoard;
     private Board board;
-    private Vector<JSONObject> pieceDefinitions;
     private File directory;
     private JButton btnUndo;
 
@@ -59,7 +59,7 @@ public class ClassicChess extends GameMode {
      * Instantiates the two factions: black and white, the <code>Pathfinder</code>,
      * the <code>Board</code> object, and passes that to the instance of <code>DrawableBoard</code>.
      */
-    public ClassicChess(File _dir) {
+    public ClassicChess() {
         super("Classic Chess", 2, new int[] {1, 1},
                 new Faction[][] {
                     new Faction[] { Faction.WHITE },
@@ -71,17 +71,6 @@ public class ClassicChess extends GameMode {
         playerOrder[0] = whitePlayer;
         playerOrder[1] = blackPlayer;
         whiteTime = blackTime = 0l;
-        directory = _dir;
-        pieceDefinitions = new Vector<JSONObject>();
-        Vector<File> filesInDirectory = Common.getFilesInDir(_dir);
-        logLine("Num Files in Directory: "+filesInDirectory.size(), 4);
-        for(File f : filesInDirectory) {
-            JSONObject temp = Common.getJSONObjFromFile(f);
-            logLine(temp.getString("name"),4);
-            pieceDefinitions.add(temp);
-        }
-        logLine("Size of pieceDefinitions: "+pieceDefinitions.size(), 4);
-
 
         //why is this here? push up to GameMode?
         board = new Board(8, 8, this);
@@ -92,6 +81,7 @@ public class ClassicChess extends GameMode {
                 setPieceAt(boardLayout[i][j], j, i);
             }
         }
+
         board.updateAllValidDestinations();
         board.setCurrentPlayer(playerOrder[0]);
         killedBlackPieces = new Vector<Piece>();
@@ -132,7 +122,12 @@ public class ClassicChess extends GameMode {
     }
 
     private void setupHeaderPanel() {
-
+        JLabel lblGameTime = new JLabel("00:00");
+        lblGameTime.setFont(ConfigHandler.headerFont);
+        Timer t = new Timer("Game Time", lblGameTime);
+        headerPanel.add(lblGameTime);
+        t.start();
+        logLine("timer initiated?", 0);
     }
 
     private void setupLeftPanel() {
@@ -184,13 +179,7 @@ public class ClassicChess extends GameMode {
     }
 
     private JSONObject getPieceDefFromName(String pName) {
-        for(JSONObject j : pieceDefinitions) {
-            String name = j.getString("name");
-//            logLine("Curr name = "+name, 4);
-            if(j.getString("name").equals(pName))
-                return j;
-        }
-        return null;
+        return Runner.pieceLibrary.getPieceJSON(pName);
     }
 
     /**
@@ -247,15 +236,15 @@ public class ClassicChess extends GameMode {
      * todo: figure this out.
      */
     private void dealWithCheck() {
-        if(board.checkForOffend(whiteKing) != null) {
-            whiteKing.setBeenAttacked(true);
-            inCheck = whitePlayer;
-        } else if(board.checkForOffend(blackKing) != null) {
-            blackKing.setBeenAttacked(true);
-            inCheck = blackPlayer;
-        } else {
-            inCheck = null;
-        }
+//        if(board.checkForOffend(whiteKing) != null) {
+//            whiteKing.setBeenAttacked(true);
+//            inCheck = whitePlayer;
+//        } else if(board.checkForOffend(blackKing) != null) {
+//            blackKing.setBeenAttacked(true);
+//            inCheck = blackPlayer;
+//        } else {
+//            inCheck = null;
+//        }
     }
 
     /**
@@ -374,6 +363,11 @@ public class ClassicChess extends GameMode {
         drawBoard.tryRepaint();
     }
 
+    @Override
+    public void onEndGame() {
+
+    }
+
 
     /**
      * Don't even know.
@@ -382,11 +376,11 @@ public class ClassicChess extends GameMode {
      * @return
      */
     private Player whosInCheck(Board b) {
-        Piece whiteInCheck = b.checkForOffend(whiteKing);
-        Piece blackInCheck = b.checkForOffend(blackKing);
+//        Piece whiteInCheck = b.checkForOffend(whiteKing);
+//        Piece blackInCheck = b.checkForOffend(blackKing);
 
-        if(whiteInCheck != null) return whitePlayer;
-        else if(blackInCheck != null) return blackPlayer;
+//        if(whiteInCheck != null) return whitePlayer;
+//        else if(blackInCheck != null) return blackPlayer;
         return null;
     }
 }

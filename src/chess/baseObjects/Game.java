@@ -34,6 +34,10 @@ public class Game extends Loggable {
         }
     }
 
+    public void endGame() {
+        mode.onEndGame();
+    }
+
     public JPanel getRightPanel() {
         return mode.getRightPanel();
     }

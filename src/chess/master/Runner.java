@@ -4,18 +4,18 @@ import chess.general.Loggable;
 import chess.gui.slates.MainMenuSlate;
 
 import javax.swing.*;
-import java.io.File;
 
 public class Runner extends Loggable {
-    MainMenuSlate menu;
-    GUIMaster guiMaster;
-    PieceLibrary pieceLibrary;
+    public static MainMenuSlate menu;
+    public static GUIMaster guiMaster;
+    public static PieceLibrary pieceLibrary;
 
     public Runner() {
         super("Runner");
         menu = new MainMenuSlate();
         guiMaster = new GUIMaster(menu);
-        pieceLibrary = new PieceLibrary(new File(ConfigHandler.piecesLocation));
+        pieceLibrary = new PieceLibrary(ConfigHandler.piecesLocation);
+
     }
 
     private void run() {
@@ -23,14 +23,17 @@ public class Runner extends Loggable {
     }
     
     public static void main(String[] args) {
-        try
-        {
+        try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException e) {
+
+        } catch (InstantiationException e) {
+
+        } catch (IllegalAccessException e) {
+
+        } catch (UnsupportedLookAndFeelException e) {
+
         }
-        catch (ClassNotFoundException e) {}
-        catch (InstantiationException e) {}
-        catch (IllegalAccessException e) {}
-        catch (UnsupportedLookAndFeelException e) {}
 
         Runner r = new Runner();
         r.run();

@@ -3,6 +3,7 @@ package chess.gui.slates;
 import chess.general.Common;
 import chess.gui.objects.AbstractSlate;
 import chess.master.GUIMaster;
+import chess.master.Runner;
 
 import javax.swing.*;
 import java.awt.*;
@@ -107,7 +108,7 @@ public class MainMenuSlate extends AbstractSlate {
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            GUIMaster.setCurrentSlate(new PlayGameSlate());
+            Runner.guiMaster.setCurrentSlate(new PlayGameSlate());
         }
     }
 
@@ -123,7 +124,7 @@ public class MainMenuSlate extends AbstractSlate {
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            GUIMaster.setCurrentSlate(new SettingsSlate(MainMenuSlate.this));
+            Runner.guiMaster.setCurrentSlate(new SettingsSlate(MainMenuSlate.this));
         }
     }
 
@@ -132,14 +133,14 @@ public class MainMenuSlate extends AbstractSlate {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             //maybe something else?
-            System.exit(0);
+            closeFrame();
         }
     }
 
     private class BuilderListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            GUIMaster.setCurrentSlate(new PieceBuilderSlate(MainMenuSlate.this));
+            Runner.guiMaster.setCurrentSlate(new PieceBuilderSlate(MainMenuSlate.this));
         }
     }
 }

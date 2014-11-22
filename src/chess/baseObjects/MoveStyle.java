@@ -13,7 +13,7 @@ import java.util.Vector;
  * destinations. These can be calculated by it's various
  * <code>MoveStyles</code>
  */
-public class MoveStyle extends Loggable{
+public class MoveStyle extends Loggable {
 
     public enum MoveObjective {
         KILL_ONLY ("KILL_ONLY"),
@@ -208,7 +208,7 @@ public class MoveStyle extends Loggable{
      * @return
      */
     public Vector[] getPossibleMoveDestinations(Board board, int _col, int _row) {
-        logLine("Board.pathfinder == null = "+(Board.pathfinder == null), 0);
+        logLine("Board.pathfinder == null = "+(Board.pathfinder == null), 4);
         return Board.pathfinder.generatePath(_row, _col, board, this);
     }
 }

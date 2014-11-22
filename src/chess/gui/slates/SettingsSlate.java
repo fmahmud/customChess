@@ -4,6 +4,7 @@ import chess.general.Common;
 import chess.gui.objects.AbstractSlate;
 import chess.master.ConfigHandler;
 import chess.master.GUIMaster;
+import chess.master.Runner;
 
 import javax.swing.*;
 import java.awt.*;
@@ -153,7 +154,7 @@ public class SettingsSlate extends AbstractSlate { //abstract a menu class.
             ConfigHandler.moveLocation = colorMoveDestination.getBackground();
             ConfigHandler.whiteSquare = colorWhiteSquare.getBackground();
             ConfigHandler.blackSquare = colorBlackSquare.getBackground();
-            GUIMaster.setCurrentSlate(slateToReturn);
+            Runner.guiMaster.setCurrentSlate(slateToReturn);
         }
     }
 

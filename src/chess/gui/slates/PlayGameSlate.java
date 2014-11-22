@@ -29,8 +29,13 @@ public class PlayGameSlate extends AbstractSlate {
         //then with the game style create a new game
         //and then the game would create a new board.
         //todo new game menu fixing.
-        game = new Game(new ClassicChess(new File("/Users/Fez/Documents/workspace/ChessProject/src/chess/pieces")));
+        game = new Game(new ClassicChess());
         panelSetup();
+    }
+
+    @Override
+    public void onClose() {
+
     }
 
     @Override

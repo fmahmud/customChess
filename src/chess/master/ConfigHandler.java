@@ -1,12 +1,14 @@
 package chess.master;
 
 import java.awt.*;
+import java.io.File;
 
 /**
  * Created by Fez on 11/13/14.
  */
 public class ConfigHandler {
-    public static String piecesLocation = "/Users/Fez/Documents/workspace/ChessProject/src/chess/pieces";
+    public static File piecesLocation = new File("/Users/Fez/Documents/workspace/ChessProject/src/chess/pieces");
+    public static File namesFileLocation = new File("/Users/Fez/Documents/workspace/ChessProject/src/chess/custom/names.txt");
 
     public static Font defaultFont = new Font("Calibri", Font.PLAIN, 13);
     public static Font textFieldFont = new Font("Calibri", Font.PLAIN, 16);

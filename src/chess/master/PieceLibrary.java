@@ -5,6 +5,7 @@ import chess.general.Loggable;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Vector;
 
@@ -21,6 +22,7 @@ public class PieceLibrary extends Loggable {
         Vector<File> files = Common.getFilesInDir(directory);
         logLine("Found "+files.size()+" files in directory.", 0);
         for(File f : files) {
+            if(!f.getName().endsWith(".json")) continue;
             JSONObject piece = Common.getJSONObjFromFile(f);
             pieceNameMap.put(piece.getString("name"), piece);
             nameFileMap.put(piece.getString("name"), f);
@@ -55,9 +57,15 @@ public class PieceLibrary extends Loggable {
 
     public void saveAllPieces() {
         Vector<String> keys = new Vector<String>(pieceNameMap.keySet());
+        logLine("Num keys = "+keys.size(), 0);
+        /*
         for(String name : keys) {
-            Common.overWriteFile(nameFileMap.get(name), pieceNameMap.get(name).toString());
-        }
+            try {
+                Common.overWriteFile(nameFileMap.get(name), pieceNameMap.get(name).toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }*/
     }
 
     public Vector<JSONObject> getAllPiecesAsVector() {

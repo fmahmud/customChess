@@ -6,9 +6,7 @@ import org.json.JSONObject;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,8 +16,12 @@ import java.util.Vector;
  * Created by Fez on 9/14/14.
  *
  */
-public class Common {
+public class Common extends Loggable {
     public static Font buttonFont = new Font("FacitWeb-Regular", Font.PLAIN, 14);
+
+    public Common(String s) {
+        super(s);
+    }
 
 
     public static <T> Vector<T> intersect(Vector<T> a, Vector<T> b) {
@@ -117,8 +119,55 @@ public class Common {
         return "";
     }
 
-    public static void overWriteFile(File file, String s) {
 
+    public static void overWriteFile(File file, String s) throws IOException {
+        System.out.println("String s = "+s);
+        PrintWriter pw = new PrintWriter(file);
+        pw.write(s);
+    }
+
+    public static int countLines(File f) throws IOException {
+        InputStream is = new BufferedInputStream(new FileInputStream(f));
+        try {
+            byte[] c = new byte[1024];
+            int count = 0;
+            int readChars = 0;
+            boolean empty = true;
+            while ((readChars = is.read(c)) != -1) {
+                empty = false;
+                for (int i = 0; i < readChars; ++i) {
+                    if (c[i] == '\n') {
+                        ++count;
+                    }
+                }
+            }
+            return (count == 0 && !empty) ? 1 : count;
+        } finally {
+            is.close();
+        }
+    }
+
+
+    /**
+     * Returns k samples from the file f. Assuming each sample is on a
+     * separate line.
+     * if k > n then null strings will be at the end of the array
+     * @param f
+     * @param k
+     * @return
+     */
+    public static String getRandomLineInFile(File f) throws IOException {
+        int numLinesInFile = countLines(f);
+        int randomLineNum = (int)(Math.random() * numLinesInFile);
+        FileInputStream fs = new FileInputStream(f);
+        BufferedReader br = new BufferedReader(new InputStreamReader(fs));
+        for(int i = 0; i != randomLineNum; ++i) {
+            br.readLine();
+        }
+        String toRet =  br.readLine();
+        fs.close();
+        br.close();
+        return toRet;
     }
 
 }

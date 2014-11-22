@@ -77,4 +77,7 @@ public abstract class GameMode extends Loggable {
 
     public abstract void undo();
 
+    public void onEndGame() {
+        //do something later?
+    }
 }

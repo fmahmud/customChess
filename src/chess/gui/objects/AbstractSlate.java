@@ -2,6 +2,7 @@ package chess.gui.objects;
 
 import chess.general.Loggable;
 import chess.master.GUIMaster;
+import chess.master.Runner;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,6 +56,15 @@ public abstract class AbstractSlate extends Loggable {
         int b = (int)(Math.random()*256);
         int g = (int)(Math.random()*256);
         c.setBackground(new Color(r, b, g));
+    }
+
+    public void onClose() {
+        //by default do nothing.
+    }
+
+    protected void closeFrame() {
+        onClose();
+        Runner.guiMaster.close();
     }
 
     protected abstract void setupHeaderPanel();
