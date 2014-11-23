@@ -1,6 +1,6 @@
 package chess.general;
 
-import chess.master.ConfigHandler;
+import chess.master.ConfigMaster;
 import org.json.JSONObject;
 
 import javax.swing.*;
@@ -63,19 +63,19 @@ public class Common extends Loggable {
         JButton b = new JButton(name);
         b.setActionCommand(action);
         b.addActionListener(al);
-        b.setFont(ConfigHandler.defaultFont);
+        b.setFont(ConfigMaster.defaultFont);
         return b;
     }
 
     public static JLabel labelFactory(String title) {
         JLabel l = new JLabel(title);
-        l.setFont(ConfigHandler.defaultFont);
+        l.setFont(ConfigMaster.defaultFont);
         return l;
     }
 
     public static JTextField textFieldFactory(int numCols) {
         JTextField toRet = new JTextField(numCols);
-        toRet.setFont(ConfigHandler.textFieldFont);
+        toRet.setFont(ConfigMaster.textFieldFont);
         return toRet;
     }
 

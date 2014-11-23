@@ -1,9 +1,8 @@
 package chess.general;
 
-import chess.master.ConfigHandler;
+import chess.master.ConfigMaster;
 
 import java.io.IOException;
-import java.util.Set;
 import java.util.Vector;
 
 /**
@@ -20,7 +19,7 @@ public abstract class Loggable {
         debugPrefix = "["+s+"]: ";
         try {
             while(namesInUse.contains(
-                    name = Common.getRandomLineInFile(ConfigHandler.namesFileLocation)))
+                    name = Common.getRandomLineInFile(ConfigMaster.namesFileLocation)))
             { /*spin till new name found.*/ }
             namesInUse.add(name);
         } catch (IOException e) {

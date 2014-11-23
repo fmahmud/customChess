@@ -1,7 +1,9 @@
 package chess.gui.slates;
 
 import chess.baseObjects.Game;
-import chess.gamemodes.ClassicChess;
+import chess.baseObjects.GameMode;
+import chess.custom.Faction;
+//import chess.gamemodes.ClassicChess;
 import chess.gui.objects.AbstractSlate;
 
 import javax.swing.*;
@@ -29,7 +31,16 @@ public class PlayGameSlate extends AbstractSlate {
         //then with the game style create a new game
         //and then the game would create a new board.
         //todo new game menu fixing.
-        game = new Game(new ClassicChess());
+        game = new Game(new GameMode("Classic Chess", 2,
+                new int[] {1, 1},
+                new Faction[][] {
+                        new Faction[] { Faction.WHITE },
+                        new Faction[] { Faction.BLACK }
+                }, new JPanel[]{
+                    headerPanel, centerPanel, rightPanel, leftPanel, footerPanel
+
+        }
+        ));
         panelSetup();
     }
 
@@ -41,30 +52,30 @@ public class PlayGameSlate extends AbstractSlate {
     @Override
     protected void setupHeaderPanel() {
         headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
-        headerPanel.add(game.getHeaderPanel());
+        game.setHeaderPanel(headerPanel);
     }
 
     @Override
     protected void setupLeftPanel() {
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-        leftPanel.add(game.getLeftPanel());
+        game.setLeftPanel(leftPanel);
     }
 
     @Override
     protected void setupCenterPanel() {
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
-        centerPanel.add(game.getCenterPanel());
+        game.setCenterPanel(centerPanel);
     }
 
     @Override
     protected void setupRightPanel() {
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
-        rightPanel.add(game.getRightPanel());
+        game.setRightPanel(rightPanel);
     }
 
     @Override
     protected void setupFooterPanel() {
         footerPanel.setLayout(new BoxLayout(footerPanel, BoxLayout.Y_AXIS));
-        footerPanel.add(game.getFooterPanel());
+        game.setFooterPanel(footerPanel);
     }
 }

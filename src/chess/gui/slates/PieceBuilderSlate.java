@@ -4,7 +4,7 @@ import chess.baseObjects.MoveStyle;
 import chess.baseObjects.Piece;
 import chess.general.Common;
 import chess.gui.objects.AbstractSlate;
-import chess.master.ConfigHandler;
+import chess.master.ConfigMaster;
 import chess.master.Runner;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -14,7 +14,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Vector;
 
 /**
@@ -61,7 +60,7 @@ public class PieceBuilderSlate extends AbstractSlate {
         pieces = new DefaultListModel();
         pieceList = new JList(pieces);
         pieceList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        pieceList.setFont(ConfigHandler.defaultFont);
+        pieceList.setFont(ConfigMaster.defaultFont);
         pieceList.setCellRenderer(new PiecesListCellRenderer());
         scrollPanePieces = new JScrollPane(pieceList);
         scrollPanePieces.setPreferredSize(new Dimension(AbstractSlate.sideWidth, AbstractSlate.centerWidth-100));
@@ -138,7 +137,7 @@ public class PieceBuilderSlate extends AbstractSlate {
         tfImagePath.setEnabled(false);
         JLabel lblImagePath = Common.labelFactory("Image Path:");
         JButton btnImgPathBrowse = Common.buttonFactory("Browse", "browse", new BrowseButtonListener());
-        btnImgPathBrowse.setFont(ConfigHandler.textFieldFont);
+        btnImgPathBrowse.setFont(ConfigMaster.textFieldFont);
         pnlSecond.add(lblImagePath);
         pnlSecond.add(tfImagePath);
         pnlSecond.add(btnImgPathBrowse);
@@ -326,7 +325,7 @@ public class PieceBuilderSlate extends AbstractSlate {
 
     @Override
     protected void setupFooterPanel() {
-        btnAccept = Common.buttonFactory("Accept", "accept", ConfigHandler.defaultFont, new AcceptBtnListener());
+        btnAccept = Common.buttonFactory("Accept", "accept", ConfigMaster.defaultFont, new AcceptBtnListener());
         footerPanel.add(btnAccept);
 
 

@@ -1,22 +1,38 @@
 package chess.baseObjects;
 
 import chess.custom.Faction;
+import chess.general.Loggable;
 
-public class Player {
+import java.util.Vector;
+
+public class Player extends Loggable {
 
     private Faction faction;
     private String name;
-    private boolean hasBeenChecked;
     private Team team;
-    private long timeTaken;
+    private Vector<Piece> killedPieces, pieces;
 
 
-    //todo: add name to player constructor
     public Player(Team _t, Faction _f, String _n) {
+        super(_n);
         faction = _f;
         team = _t;
         name = _n;
-        timeTaken = 0l;
+        killedPieces = new Vector<Piece>();
+        pieces = new Vector<Piece>();
+    }
+
+    public void ownPiece(Piece p) {
+        pieces.add(p);
+    }
+
+    public void addKilledPiece(Piece p) {
+        if(pieces.contains(p))
+            killedPieces.add(p);
+    }
+
+    public Vector<Piece> getKilledPieces() {
+        return killedPieces;
     }
 
     public Faction getFaction() {
@@ -25,14 +41,6 @@ public class Player {
 
     public Team getTeam() {
         return team;
-    }
-
-    public long getTimeTaken() {
-        return timeTaken;
-    }
-
-    public String getFormattedTimeTaken() {
-        return "TIME1";
     }
 
     public String getName() {

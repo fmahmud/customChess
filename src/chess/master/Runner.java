@@ -8,13 +8,13 @@ import javax.swing.*;
 public class Runner extends Loggable {
     public static MainMenuSlate menu;
     public static GUIMaster guiMaster;
-    public static PieceLibrary pieceLibrary;
+    public static PieceMaster pieceLibrary;
 
     public Runner() {
         super("Runner");
         menu = new MainMenuSlate();
         guiMaster = new GUIMaster(menu);
-        pieceLibrary = new PieceLibrary(ConfigHandler.piecesLocation);
+        pieceLibrary = new PieceMaster(ConfigMaster.piecesLocation);
 
     }
 

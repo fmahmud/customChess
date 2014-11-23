@@ -12,11 +12,11 @@ import java.util.Vector;
 /**
  * Created by Fez on 11/18/14.
  */
-public class PieceLibrary extends Loggable {
+public class PieceMaster extends Loggable {
     private HashMap<String, JSONObject> pieceNameMap = new HashMap<String, JSONObject>();
     private HashMap<String, File> nameFileMap = new HashMap<String, File>();
 
-    public PieceLibrary(File directory) {
+    public PieceMaster(File directory) {
         super("PieceLibrary");
         logLine("Enumerating Library from directory: "+directory.getAbsolutePath(), 1);
         Vector<File> files = Common.getFilesInDir(directory);
@@ -49,7 +49,7 @@ public class PieceLibrary extends Loggable {
         String newName = newValue.getString("name");
         logLine("New name = "+newName+", old name = "+currentKey, 0);
         if (!newName.equals(currentKey)) {
-            File newFile = new File(ConfigHandler.piecesLocation.getAbsolutePath()+"/"+newName+".json");
+            File newFile = new File(ConfigMaster.piecesLocation.getAbsolutePath()+"/"+newName+".json");
             File oldFile = nameFileMap.remove(currentKey);
             logLine("New Filename = "+newFile.getName()+", old filename = "+oldFile.getName(), 0);
             try {

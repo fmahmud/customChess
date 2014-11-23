@@ -4,7 +4,7 @@ import chess.baseObjects.Board;
 import chess.baseObjects.Piece;
 import chess.baseObjects.Square;
 import chess.general.Loggable;
-import chess.master.ConfigHandler;
+import chess.master.ConfigMaster;
 import chess.master.GUIMaster;
 
 import javax.swing.*;
@@ -175,16 +175,16 @@ public class DrawableBoard extends Loggable {
             }
 
             if(currentSquare == selectedSquare) {
-                currentSquare.setOverlayColor(ConfigHandler.selectedItem);
+                currentSquare.setOverlayColor(ConfigMaster.selectedItem);
                 return currentSquare.getCanvas();
             }
 
             if(validKillDestinations.contains(currentSquare))
-                currentSquare.setOverlayColor(ConfigHandler.offendLocation);
+                currentSquare.setOverlayColor(ConfigMaster.offendLocation);
             else if(validMoveDestinations.contains(currentSquare))
-                currentSquare.setOverlayColor(ConfigHandler.moveLocation);
+                currentSquare.setOverlayColor(ConfigMaster.moveLocation);
             else
-                currentSquare.setOverlayColor(ConfigHandler.defaultSquare);
+                currentSquare.setOverlayColor(ConfigMaster.defaultSquare);
 
             if(repaint)
                 table.repaint();

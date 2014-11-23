@@ -1,7 +1,7 @@
 package chess.baseObjects;
 
 import chess.general.Common;
-import chess.master.ConfigHandler;
+import chess.master.ConfigMaster;
 
 import java.awt.*;
 
@@ -38,17 +38,17 @@ public class Event extends DrawableObject {
     }
 
     public void setSelectedColors() {
-        canvas.setBackground(ConfigHandler.selectedItem);
+        canvas.setBackground(ConfigMaster.selectedItem);
         canvas.setForeground(new Color(0, 0, 0));
     }
 
     public void setUnselectedColors() {
         if(tCount % 2 == 1) {
-            canvas.setBackground(ConfigHandler.whiteItem);
-            canvas.setForeground(ConfigHandler.blackItem);
+            canvas.setBackground(ConfigMaster.whiteItem);
+            canvas.setForeground(ConfigMaster.blackItem);
         } else {
-            canvas.setBackground(ConfigHandler.blackItem);
-            canvas.setForeground(ConfigHandler.whiteItem);
+            canvas.setBackground(ConfigMaster.blackItem);
+            canvas.setForeground(ConfigMaster.whiteItem);
         }
     }
 

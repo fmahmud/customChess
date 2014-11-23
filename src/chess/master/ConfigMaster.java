@@ -6,7 +6,7 @@ import java.io.File;
 /**
  * Created by Fez on 11/13/14.
  */
-public class ConfigHandler {
+public class ConfigMaster {
     public static File piecesLocation = new File("/Users/Fez/Documents/workspace/ChessProject/src/chess/pieces");
     public static File namesFileLocation = new File("/Users/Fez/Documents/workspace/ChessProject/src/chess/custom/names.txt");
 

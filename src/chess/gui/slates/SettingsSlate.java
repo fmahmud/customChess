@@ -2,8 +2,7 @@ package chess.gui.slates;
 
 import chess.general.Common;
 import chess.gui.objects.AbstractSlate;
-import chess.master.ConfigHandler;
-import chess.master.GUIMaster;
+import chess.master.ConfigMaster;
 import chess.master.Runner;
 
 import javax.swing.*;
@@ -60,20 +59,20 @@ public class SettingsSlate extends AbstractSlate { //abstract a menu class.
     @Override
     protected void setupCenterPanel() {
         colorSelectedSquare = new JPanel(null);
-        colorSelectedSquare.setBackground(ConfigHandler.selectedItem);
+        colorSelectedSquare.setBackground(ConfigMaster.selectedItem);
         colorKillDestination = new JPanel(null);
-        colorKillDestination.setBackground(ConfigHandler.offendLocation);
+        colorKillDestination.setBackground(ConfigMaster.offendLocation);
         colorMoveDestination = new JPanel(null);
-        colorMoveDestination.setBackground(ConfigHandler.moveLocation);
+        colorMoveDestination.setBackground(ConfigMaster.moveLocation);
         colorWhiteSquare = new JPanel(null);
-        colorWhiteSquare.setBackground(ConfigHandler.whiteSquare);
+        colorWhiteSquare.setBackground(ConfigMaster.whiteSquare);
         colorBlackSquare = new JPanel(null);
-        colorBlackSquare.setBackground(ConfigHandler.blackSquare);
-        colorSelectedSquare.addMouseListener(new ColorSquareListener(colorSelectedSquare, ConfigHandler.selectedItem));
-        colorKillDestination.addMouseListener(new ColorSquareListener(colorKillDestination, ConfigHandler.offendLocation));
-        colorMoveDestination.addMouseListener(new ColorSquareListener(colorMoveDestination, ConfigHandler.moveLocation));
-        colorWhiteSquare.addMouseListener(new ColorSquareListener(colorWhiteSquare, ConfigHandler.whiteSquare));
-        colorBlackSquare.addMouseListener(new ColorSquareListener(colorBlackSquare, ConfigHandler.blackSquare));
+        colorBlackSquare.setBackground(ConfigMaster.blackSquare);
+        colorSelectedSquare.addMouseListener(new ColorSquareListener(colorSelectedSquare, ConfigMaster.selectedItem));
+        colorKillDestination.addMouseListener(new ColorSquareListener(colorKillDestination, ConfigMaster.offendLocation));
+        colorMoveDestination.addMouseListener(new ColorSquareListener(colorMoveDestination, ConfigMaster.moveLocation));
+        colorWhiteSquare.addMouseListener(new ColorSquareListener(colorWhiteSquare, ConfigMaster.whiteSquare));
+        colorBlackSquare.addMouseListener(new ColorSquareListener(colorBlackSquare, ConfigMaster.blackSquare));
 
         lblColorBlackSquare = new JLabel("Black Square");
         lblColorWhiteSquare = new JLabel("White Square");
@@ -149,11 +148,11 @@ public class SettingsSlate extends AbstractSlate { //abstract a menu class.
     public class AcceptChangesBtnListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            ConfigHandler.selectedItem = colorSelectedSquare.getBackground();
-            ConfigHandler.offendLocation = colorKillDestination.getBackground();
-            ConfigHandler.moveLocation = colorMoveDestination.getBackground();
-            ConfigHandler.whiteSquare = colorWhiteSquare.getBackground();
-            ConfigHandler.blackSquare = colorBlackSquare.getBackground();
+            ConfigMaster.selectedItem = colorSelectedSquare.getBackground();
+            ConfigMaster.offendLocation = colorKillDestination.getBackground();
+            ConfigMaster.moveLocation = colorMoveDestination.getBackground();
+            ConfigMaster.whiteSquare = colorWhiteSquare.getBackground();
+            ConfigMaster.blackSquare = colorBlackSquare.getBackground();
             Runner.guiMaster.setCurrentSlate(slateToReturn);
         }
     }

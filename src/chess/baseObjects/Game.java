@@ -38,24 +38,24 @@ public class Game extends Loggable {
         mode.onEndGame();
     }
 
-    public JPanel getRightPanel() {
-        return mode.getRightPanel();
+    public void setRightPanel(JPanel pnl) {
+        mode.setRightPanel(pnl);
     }
 
-    public JPanel getLeftPanel() {
-        return mode.getLeftPanel();
+    public void setLeftPanel(JPanel pnl) {
+        mode.setLeftPanel(pnl);
     }
 
-    public JPanel getHeaderPanel() {
-        return mode.getHeaderPanel();
+    public void setHeaderPanel(JPanel pnl) {
+        mode.setHeaderPanel(pnl);
     }
 
-    public JPanel getFooterPanel() {
-        return mode.getFooterPanel();
+    public void setFooterPanel(JPanel pnl) {
+        mode.setFooterPanel(pnl);
     }
 
-    public JPanel getCenterPanel() {
-        return mode.getCenterPanel();
+    public void setCenterPanel(JPanel pnl) {
+        mode.setCenterPanel(pnl);
     }
 
     private void initializeScore() {
