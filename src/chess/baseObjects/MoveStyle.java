@@ -1,10 +1,7 @@
 package chess.baseObjects;
 
-import chess.general.Loggable;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.util.Vector;
 
 /**
  * Each piece of the same type has the same (static) set of
@@ -13,7 +10,7 @@ import java.util.Vector;
  * destinations. These can be calculated by it's various
  * <code>MoveStyles</code>
  */
-public class MoveStyle extends Loggable {
+public class MoveStyle {
 
     public enum MoveObjective {
         KILL_ONLY ("KILL_ONLY"),
@@ -24,10 +21,6 @@ public class MoveStyle extends Loggable {
 
         private MoveObjective(String s) {
             name = s;
-        }
-
-        public boolean equalsName(String other) {
-            return name.equals(other);
         }
 
         public static MoveObjective getFromName(String s) {
@@ -56,13 +49,10 @@ public class MoveStyle extends Loggable {
     public MoveStyle(int _dx, int _dy,
                      boolean _collidesDuring, boolean _collidesAtEnd, MoveObjective _mvObj,
                      boolean[] _infiniteMove, boolean _fOnly) {
-        super("MoveStyle");
         define(_dx, _dy, _collidesDuring, _collidesAtEnd, _mvObj, _infiniteMove, _fOnly);
     }
 
     public MoveStyle(JSONObject _ms) {
-        super("MoveStyle");
-
         define(
                 _ms.getInt("dx"),
                 _ms.getInt("dy"),
@@ -195,6 +185,6 @@ public class MoveStyle extends Loggable {
 
     @Override
     public String toString() {
-        return "";
+        return getAsJSONObject().toString();
     }
 }
