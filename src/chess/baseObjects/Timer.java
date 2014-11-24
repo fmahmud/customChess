@@ -50,20 +50,19 @@ public class Timer extends Loggable {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                startTime = System.currentTimeMillis();
-                long now = startTime;
                 while(!ended) {
-                    logLine("Now = "+now, 4);
                     if(!paused) {
-                        if(System.currentTimeMillis() - now >= 1000) {
-                            now = System.currentTimeMillis();
-                            ++seconds;
-                            if(seconds >= 60) {
-                                seconds = 0;
-                                minutes++;
-                            }
-                            updateLabel();
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
+                        ++seconds;
+                        if(seconds >= 60) {
+                            seconds = 0;
+                            minutes++;
+                        }
+                        updateLabel();
                     }
                 }
             }
