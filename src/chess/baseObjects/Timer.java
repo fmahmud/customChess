@@ -12,7 +12,6 @@ public class Timer extends Loggable {
     private JLabel lblTimeFrame;
     private boolean paused = true;
     private boolean ended = true;
-    private long startTime = 0l;
     private int seconds, minutes;
 
     public Timer(String _name, JLabel _theLabel) {
@@ -22,23 +21,23 @@ public class Timer extends Loggable {
         seconds = minutes = 0;
     }
 
+    public int getTotalSeconds() {
+        return minutes * 60 + seconds;
+    }
+
     private void updateLabel() {
         String strMins = String.format("%02d", minutes);
         String strSeconds = String.format("%02d", seconds);
         lblTimeFrame.setText(strMins+":"+strSeconds);
     }
 
-    public void pause() {
-        paused = true;
-    }
-
-    public void resume() {
-        paused = false;
+    public void click() {
+        logLine("Switching paused", 0);
+        this.paused = !this.paused;
     }
 
     public void start() {
         ended = false;
-        paused = false;
         tick();
     }
 
@@ -50,19 +49,23 @@ public class Timer extends Loggable {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
+                int i = 0;
                 while(!ended) {
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     if(!paused) {
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                        if(i % 10 == 0) {
+                            ++seconds;
+                            if (seconds >= 60) {
+                                seconds = 0;
+                                minutes++;
+                            }
+                            updateLabel();
                         }
-                        ++seconds;
-                        if(seconds >= 60) {
-                            seconds = 0;
-                            minutes++;
-                        }
-                        updateLabel();
+                        ++i;
                     }
                 }
             }

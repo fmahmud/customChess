@@ -13,7 +13,7 @@ public class Event extends DrawableObject {
     private int moveType = 0; //1 = move, 2 = kill.
     private int effectType = 0; //1 = check, 2 = stale, 3 = checkmate
     //4 = castle, 5 = enpassant?
-    private long whiteTime, blackTime;
+    private int whiteTime, blackTime;
     private Square origin, destination;
     private Piece victim, offender;
     private int tCount = -1; //the turn count
@@ -22,7 +22,7 @@ public class Event extends DrawableObject {
                  Piece _v, Piece _of,
                  int _mt, int _et,
                  int _tc,
-                 long _wt, long _bt) {
+                 int _wt, int _bt) {
         super("Event("+_tc+")");
         origin = _or;
         destination = _d;

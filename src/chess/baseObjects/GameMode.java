@@ -10,6 +10,7 @@ import chess.master.Runner;
 import org.json.JSONObject;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -29,9 +30,8 @@ public class GameMode extends Loggable {
     protected DrawableBoard drawBoard;
     protected JButton btnUndo;
     private Timer gameTimer;
-
-
     String[][] boardLayout;
+    private Timer whiteTimer, blackTimer;
 
     /**
      * Gets the next active player while incrementing the turn count.
@@ -131,11 +131,28 @@ public class GameMode extends Loggable {
     }
 
     private void setupHeaderPanel() {
+        JPanel temp = new JPanel(new FlowLayout(FlowLayout.CENTER, 80, 20));
+
         JLabel lblGameTime = new JLabel("00:00");
-        lblGameTime.setFont(ConfigMaster.headerFont);
+        JLabel lblWhiteTime = new JLabel("00:00");
+        JLabel lblBlackTime = new JLabel("00:00");
+        lblGameTime.setFont(ConfigMaster.titleFont);
+        lblWhiteTime.setFont(ConfigMaster.headerOneFont);
+        lblBlackTime.setFont(ConfigMaster.headerOneFont);
+
         gameTimer = new Timer("Game Time", lblGameTime);
-        headerPanel.add(lblGameTime);
+        whiteTimer = new Timer("White Time", lblWhiteTime);
+        blackTimer = new Timer("Black Time", lblBlackTime);
+        temp.add(lblWhiteTime);
+        temp.add(lblGameTime);
+        temp.add(lblBlackTime);
+        headerPanel.add(temp);
+
         gameTimer.start();
+        gameTimer.click();
+        whiteTimer.start();
+        blackTimer.start();
+        whiteTimer.click();
         logLine("timer initiated?", 0);
     }
 
@@ -204,6 +221,8 @@ public class GameMode extends Loggable {
      */
     private void incrememntTurnOrder() {
         board.setCurrentPlayer(getNextActivePlayer());
+        whiteTimer.click();
+        blackTimer.click();
 //        dealWithCheck();
     }
 
@@ -250,8 +269,8 @@ public class GameMode extends Loggable {
                 null, to.getPiece(),
                 1, 0,//todo: temp (check for check, mate and stale)
                 turnCount,
-                0l,
-                0l
+                whiteTimer.getTotalSeconds(),
+                blackTimer.getTotalSeconds()
         );
         history.push(e);
         btnUndo.setEnabled(true);
@@ -286,8 +305,8 @@ public class GameMode extends Loggable {
                 killedPiece, to.getPiece(),
                 2, 0, //todo: temp (check for check and mate or stale)
                 turnCount,
-                0l,
-                0l
+                whiteTimer.getTotalSeconds(),
+                blackTimer.getTotalSeconds()
         );
         history.push(e);
         btnUndo.setEnabled(true);
@@ -327,6 +346,8 @@ public class GameMode extends Loggable {
     public void onEndGame() {
         //do something later?
         gameTimer.stop();
+        whiteTimer.stop();
+        blackTimer.stop();
     }
 
 

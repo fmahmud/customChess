@@ -11,8 +11,12 @@ public class ConfigMaster {
     public static File namesFileLocation = new File("/Users/Fez/Documents/workspace/ChessProject/src/chess/custom/names.txt");
 
     public static Font defaultFont = new Font("Calibri", Font.PLAIN, 13);
-    public static Font textFieldFont = new Font("Calibri", Font.PLAIN, 16);
-    public static Font headerFont = new Font("Calibri", Font.BOLD, 80);
+    public static Font textFieldFont = new Font("Calibri", Font.PLAIN, 18);
+    public static Font headerFourFont = new Font("Calibri", Font.PLAIN, 27);
+    public static Font headerThreeFont = new Font("Calibri", Font.PLAIN, 36);
+    public static Font headerTwoFont = new Font("Calibri", Font.PLAIN, 45);
+    public static Font headerOneFont = new Font("Calibri", Font.PLAIN, 54);
+    public static Font titleFont = new Font("Calibri", Font.BOLD, 81);
 
     public static Color selectedItem    = new Color( 95, 192, 144     );
     public static Color offendLocation  = new Color(134,   6,   0, 200);

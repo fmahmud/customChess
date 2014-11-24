@@ -19,6 +19,10 @@ public abstract class Loggable {
 
     public Loggable(String s) {
         debugPrefix = "["+s+"]: ";
+        define();
+    }
+
+    private void define(){
         if(availableNames == null) {
             try {
                 availableNames = Common.getNRandomUniqueLinesInFile(500, ConfigMaster.namesFileLocation);
@@ -29,7 +33,6 @@ public abstract class Loggable {
         name = availableNames.iterator().next();
         availableNames.remove(name);
         numLoggers++;
-        System.out.println(debugPrefix+" is logger number "+numLoggers);
     }
 
 //    protected void logAction(String actionName, String parameters, )
