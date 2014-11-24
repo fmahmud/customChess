@@ -12,40 +12,13 @@ import org.json.JSONObject;
  */
 public class MoveStyle {
 
-    public enum MoveObjective {
-        KILL_ONLY ("KILL_ONLY"),
-        MOVE_ONLY ("MOVE_ONLY"),
-        BOTH ("BOTH");
-
-        private final String name;
-
-        private MoveObjective(String s) {
-            name = s;
-        }
-
-        public static MoveObjective getFromName(String s) {
-            if(s.equals("MOVE_ONLY"))
-                return MOVE_ONLY;
-            if(s.equals("KILL_ONLY"))
-                return KILL_ONLY;
-            if(s.equals("BOTH"))
-                return BOTH;
-            return BOTH;
-        }
-
-        public String toString() {
-            return name;
-        }
-    }
-
     private int dx, dy;
     private boolean collidesDuring;
     private boolean collidesAtEnd;
     private MoveObjective mvObj;
-    private boolean[] infiniteMove = { false, false }; //{ x, y }
+    private boolean[] infiniteMove = {false, false}; //{ x, y }
     private String specialMove; //castling
     private boolean firstMoveOnly = false;
-
     public MoveStyle(int _dx, int _dy,
                      boolean _collidesDuring, boolean _collidesAtEnd, MoveObjective _mvObj,
                      boolean[] _infiniteMove, boolean _fOnly) {
@@ -64,8 +37,6 @@ public class MoveStyle {
         );
     }
 
-
-
     private void define(int _dx, int _dy,
                         boolean _collidesDuring, boolean _collidesAtEnd, MoveObjective _mvObj,
                         boolean[] _infiniteMove, boolean _fOnly) {
@@ -81,7 +52,7 @@ public class MoveStyle {
 
     private boolean[] getInfiniteMoveFromJSON(JSONArray vals) {
         boolean[] toRet = new boolean[vals.length()];
-        for(int i = 0; i < toRet.length; ++i) {
+        for (int i = 0; i < toRet.length; ++i) {
             toRet[i] = vals.getBoolean(i);
         }
         return toRet;
@@ -89,25 +60,29 @@ public class MoveStyle {
 
     private JSONArray getJSONFromInfiniteMove() {
         JSONArray toRet = new JSONArray();
-        for(boolean b : infiniteMove) {
+        for (boolean b : infiniteMove) {
             toRet.put(b);
         }
         return toRet;
     }
 
     private MoveObjective getMoveObjFromString(String s) {
-        if(s.equals("KILL_ONLY")) return MoveObjective.KILL_ONLY;
-        if(s.equals("MOVE_ONLY")) return MoveObjective.MOVE_ONLY;
-        if(s.equals("BOTH")) return MoveObjective.BOTH;
+        if (s.equals("KILL_ONLY")) return MoveObjective.KILL_ONLY;
+        if (s.equals("MOVE_ONLY")) return MoveObjective.MOVE_ONLY;
+        if (s.equals("BOTH")) return MoveObjective.BOTH;
         else return MoveObjective.BOTH;
     }
 
     private String getStringFromMoveObj(MoveObjective mo) {
-        switch(mo) {
-            case MOVE_ONLY: return "MOVE_ONLY";
-            case KILL_ONLY: return "KILL_ONLY";
-            case BOTH     : return "BOTH";
-            default : return "BOTH";
+        switch (mo) {
+            case MOVE_ONLY:
+                return "MOVE_ONLY";
+            case KILL_ONLY:
+                return "KILL_ONLY";
+            case BOTH:
+                return "BOTH";
+            default:
+                return "BOTH";
         }
     }
 
@@ -186,5 +161,31 @@ public class MoveStyle {
     @Override
     public String toString() {
         return getAsJSONObject().toString();
+    }
+
+    public enum MoveObjective {
+        KILL_ONLY("KILL_ONLY"),
+        MOVE_ONLY("MOVE_ONLY"),
+        BOTH("BOTH");
+
+        private final String name;
+
+        private MoveObjective(String s) {
+            name = s;
+        }
+
+        public static MoveObjective getFromName(String s) {
+            if (s.equals("MOVE_ONLY"))
+                return MOVE_ONLY;
+            if (s.equals("KILL_ONLY"))
+                return KILL_ONLY;
+            if (s.equals("BOTH"))
+                return BOTH;
+            return BOTH;
+        }
+
+        public String toString() {
+            return name;
+        }
     }
 }

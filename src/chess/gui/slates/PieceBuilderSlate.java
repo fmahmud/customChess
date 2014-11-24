@@ -35,13 +35,14 @@ public class PieceBuilderSlate extends AbstractSlate {
 
     private int indexSelectedPiece = -1, indexSelectedMovestyle = -1;
     //starting off at -1 because if zero no difference will be noticed and nothing will be rendered
+    private JPanel moveStylePanel;
 
     public PieceBuilderSlate(AbstractSlate _returnTo) {
         super("PieceBuilderSlate");
 
         jsonPieces = Runner.pieceLibrary.getAllJSONObjects();
         objToKey = new HashMap<JSONObject, String>();
-        for(JSONObject p : jsonPieces) {
+        for (JSONObject p : jsonPieces) {
             objToKey.put(p, p.getString("name"));
         }
 
@@ -63,20 +64,20 @@ public class PieceBuilderSlate extends AbstractSlate {
         pieceList.setFont(ConfigMaster.defaultFont);
         pieceList.setCellRenderer(new PiecesListCellRenderer());
         scrollPanePieces = new JScrollPane(pieceList);
-        scrollPanePieces.setPreferredSize(new Dimension(AbstractSlate.sideWidth, AbstractSlate.centerWidth-100));
+        scrollPanePieces.setPreferredSize(new Dimension(AbstractSlate.sideWidth, AbstractSlate.centerWidth - 100));
 
-        for(JSONObject o : jsonPieces) {
+        for (JSONObject o : jsonPieces) {
             pieces.addElement(o.getString("name"));
         }
 
-        if(pieces.size()!=0)
+        if (pieces.size() != 0)
             pieceList.setSelectedIndex(0);
 
         addPiece = Common.buttonFactory("Add Piece", "addPiece", new AddPieceButtonListener());
-        addPiece.setPreferredSize(new Dimension((AbstractSlate.sideWidth)-20, 40));
+        addPiece.setPreferredSize(new Dimension((AbstractSlate.sideWidth) - 20, 40));
         removePiece = Common.buttonFactory("Remove Piece", "removePiece", new RemovePieceButtonListener());
         removePiece.setEnabled(false);
-        removePiece.setPreferredSize(new Dimension((AbstractSlate.sideWidth)-20, 40));
+        removePiece.setPreferredSize(new Dimension((AbstractSlate.sideWidth) - 20, 40));
 
         leftPanel.add(scrollPanePieces);
         leftPanel.add(addPiece);
@@ -85,9 +86,9 @@ public class PieceBuilderSlate extends AbstractSlate {
     }
 
     private JSONObject getJSONFromList(String name) {
-        for(JSONObject j : jsonPieces) {
-            if(j.has("name")) {
-                if(j.getString("name").equals(name)) return j;
+        for (JSONObject j : jsonPieces) {
+            if (j.has("name")) {
+                if (j.getString("name").equals(name)) return j;
             }
         }
         return null;
@@ -95,10 +96,10 @@ public class PieceBuilderSlate extends AbstractSlate {
 
     private String makePretty(String s) {
         String toRet = s.replace("{", "{\n")
-                        .replace("[", "[\n")
-                        .replace(",\"", ",\n\"")
-                        .replace("]", "\n]")
-                        .replace("}", "\n}");
+                .replace("[", "[\n")
+                .replace(",\"", ",\n\"")
+                .replace("]", "\n]")
+                .replace("}", "\n}");
         return toRet;
     }
 
@@ -109,9 +110,9 @@ public class PieceBuilderSlate extends AbstractSlate {
         tfImagePath.setText(piece.getString("imagePath"));
         moveStyles.clear();
         JSONArray _ms = piece.getJSONArray("moveStyles");
-        for(int i = 0; i < _ms.length(); ++i) {
-            jsonMoveStyles.add((JSONObject)_ms.get(i));
-            moveStyles.addElement("Movestyle "+(i+1));
+        for (int i = 0; i < _ms.length(); ++i) {
+            jsonMoveStyles.add((JSONObject) _ms.get(i));
+            moveStyles.addElement("Movestyle " + (i + 1));
         }
     }
 
@@ -152,7 +153,7 @@ public class PieceBuilderSlate extends AbstractSlate {
                 AbstractSlate.centerWidth - 160));
 
         JPanel pnlLower = new JPanel();
-        pnlLower.add(btnSavePieceChanges = Common.buttonFactory("Accept Piece","acceptPiece", new AcceptPieceBtnListener()));
+        pnlLower.add(btnSavePieceChanges = Common.buttonFactory("Accept Piece", "acceptPiece", new AcceptPieceBtnListener()));
         pnlLower.add(btnResetPieceChanges = Common.buttonFactory("Reset Piece", "resetPiece", new ResetPieceBtnListener()));
         setPrefSize(pnlLower, new Dimension(AbstractSlate.centerWidth, 40));
 
@@ -160,8 +161,6 @@ public class PieceBuilderSlate extends AbstractSlate {
         centerPanel.add(pnlMiddle);
         centerPanel.add(pnlLower);
     }
-
-    private JPanel moveStylePanel;
 
     private void addComboBoxListeners() {
         ActionListener cbListener = new ComboBoxesChangeListener();
@@ -178,51 +177,51 @@ public class PieceBuilderSlate extends AbstractSlate {
     }
 
     private String getMoveStyleAsStringUgly(String s) {
-        if(s.equals("Move Only"))
+        if (s.equals("Move Only"))
             return "MOVE_ONLY";
-        if(s.equals("Kill Only"))
+        if (s.equals("Kill Only"))
             return "KILL_ONLY";
-        if(s.equals("Both"))
+        if (s.equals("Both"))
             return "BOTH";
         return "BOTH";
     }
 
     private String getMoveStyleAsStringPretty(String s) {
-        if(s.equals("MOVE_ONLY"))
+        if (s.equals("MOVE_ONLY"))
             return "Move Only";
-        if(s.equals("KILL_ONLY"))
+        if (s.equals("KILL_ONLY"))
             return "Kill Only";
-        if(s.equals("BOTH"))
+        if (s.equals("BOTH"))
             return "Both";
         return "Both";
     }
 
     private void setSelectedMoveStyle(JSONObject ms) {
-        if(ms == null) return;
-        cbDX.setSelectedItem(""+ms.getInt("dx"));
+        if (ms == null) return;
+        cbDX.setSelectedItem("" + ms.getInt("dx"));
         cbDY.setSelectedItem("" + ms.getInt("dy"));
         cbColDur.setSelectedItem("" + ms.getBoolean("collidesDuring"));
-        cbColEnd.setSelectedItem(""+ms.getBoolean("collidesAtEnd"));
-        cbInfMoveX.setSelectedItem(""+ms.getJSONArray("infiniteMove").getBoolean(0));
-        cbInfMoveY.setSelectedItem(""+ms.getJSONArray("infiniteMove").getBoolean(1));
-        cbFirstMove.setSelectedItem(""+ms.getBoolean("firstMoveOnly"));
+        cbColEnd.setSelectedItem("" + ms.getBoolean("collidesAtEnd"));
+        cbInfMoveX.setSelectedItem("" + ms.getJSONArray("infiniteMove").getBoolean(0));
+        cbInfMoveY.setSelectedItem("" + ms.getJSONArray("infiniteMove").getBoolean(1));
+        cbFirstMove.setSelectedItem("" + ms.getBoolean("firstMoveOnly"));
         cbMoveObjective.setSelectedItem(getMoveStyleAsStringPretty(ms.getString("moveObjective")));
     }
 
     private JSONObject getMoveStyleAsJSON() {
-        int dx = Integer.parseInt((String)cbDX.getSelectedItem());
-        int dy = Integer.parseInt((String)cbDY.getSelectedItem());
-        boolean collidesDuring = Boolean.parseBoolean((String)cbColDur.getSelectedItem());
-        boolean collidesAtEnd = Boolean.parseBoolean((String)cbColEnd.getSelectedItem());
-        boolean infMoveX = Boolean.parseBoolean((String)cbInfMoveX.getSelectedItem());
-        boolean infMoveY = Boolean.parseBoolean((String)cbInfMoveY.getSelectedItem());
-        boolean firstMove = Boolean.parseBoolean((String)cbFirstMove.getSelectedItem());
+        int dx = Integer.parseInt((String) cbDX.getSelectedItem());
+        int dy = Integer.parseInt((String) cbDY.getSelectedItem());
+        boolean collidesDuring = Boolean.parseBoolean((String) cbColDur.getSelectedItem());
+        boolean collidesAtEnd = Boolean.parseBoolean((String) cbColEnd.getSelectedItem());
+        boolean infMoveX = Boolean.parseBoolean((String) cbInfMoveX.getSelectedItem());
+        boolean infMoveY = Boolean.parseBoolean((String) cbInfMoveY.getSelectedItem());
+        boolean firstMove = Boolean.parseBoolean((String) cbFirstMove.getSelectedItem());
         MoveStyle.MoveObjective moveObjective = MoveStyle.MoveObjective.getFromName(
                 getMoveStyleAsStringUgly((String) cbMoveObjective.getSelectedItem())
         );
         MoveStyle msTemp = new MoveStyle(
                 dx, dy, collidesDuring, collidesAtEnd,
-                moveObjective, new boolean[] {infMoveX, infMoveY},
+                moveObjective, new boolean[]{infMoveX, infMoveY},
                 firstMove
         );
         return msTemp.getAsJSONObject();
@@ -233,7 +232,7 @@ public class PieceBuilderSlate extends AbstractSlate {
     }
 
     private JSONObject getMSJSONFromList(int i) {
-        if(i >= jsonMoveStyles.size()) return null;
+        if (i >= jsonMoveStyles.size()) return null;
         return jsonMoveStyles.get(i);
     }
 
@@ -243,7 +242,7 @@ public class PieceBuilderSlate extends AbstractSlate {
         movesList = new JList(moveStyles);
         movesList.setCellRenderer(new MoveStylesListCellRenderer());
         scrollPaneMoveStyles = new JScrollPane(movesList);
-        scrollPaneMoveStyles.setPreferredSize(new Dimension(AbstractSlate.sideWidth, AbstractSlate.centerWidth/6));
+        scrollPaneMoveStyles.setPreferredSize(new Dimension(AbstractSlate.sideWidth, AbstractSlate.centerWidth / 6));
         rightPanel.add(scrollPaneMoveStyles);
 
         btnAddMS = Common.buttonFactory("Add Movestyle", "addMS", new AddMSButtonListener());
@@ -252,8 +251,8 @@ public class PieceBuilderSlate extends AbstractSlate {
         rightPanel.add(btnRemoveMS);
 
         String[] nums = new String[15];
-        for(int i = -7; i < 8; ++i) {
-            nums[i+7] = ""+i;
+        for (int i = -7; i < 8; ++i) {
+            nums[i + 7] = "" + i;
         }
 
         String[] bools = {"true", "false"};
@@ -344,7 +343,7 @@ public class PieceBuilderSlate extends AbstractSlate {
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            for(JSONObject o : jsonPieces) {
+            for (JSONObject o : jsonPieces) {
                 Runner.pieceLibrary.updateJSONObject(objToKey.get(o), o);
             }
             Runner.guiMaster.setCurrentSlate(returnTo);
@@ -355,10 +354,10 @@ public class PieceBuilderSlate extends AbstractSlate {
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            pieces.addElement("NewPiece"+jsonPieces.size());
-            jsonPieces.add(new Piece("NewPiece"+jsonPieces.size(), "../images/NewPiece"+jsonPieces.size()+".png",
+            pieces.addElement("NewPiece" + jsonPieces.size());
+            jsonPieces.add(new Piece("NewPiece" + jsonPieces.size(), "../images/NewPiece" + jsonPieces.size() + ".png",
                     new JSONArray()).getPieceAsJSON());
-            pieceList.setSelectedIndex(jsonPieces.size()-1);
+            pieceList.setSelectedIndex(jsonPieces.size() - 1);
         }
     }
 
@@ -374,10 +373,10 @@ public class PieceBuilderSlate extends AbstractSlate {
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            moveStyles.addElement("Movestyle "+(moveStyles.size()+1));
+            moveStyles.addElement("Movestyle " + (moveStyles.size() + 1));
             jsonMoveStyles.add(new MoveStyle(0, 0, false, true, MoveStyle.MoveObjective.BOTH,
                     new boolean[]{false, false}, false).getAsJSONObject());
-            movesList.setSelectedIndex(jsonMoveStyles.size()-1);
+            movesList.setSelectedIndex(jsonMoveStyles.size() - 1);
         }
     }
 
@@ -418,8 +417,8 @@ public class PieceBuilderSlate extends AbstractSlate {
                                                       int index, boolean isSelected,
                                                       boolean cellHasFocus) {
             super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-            if(isSelected) {
-                if(indexSelectedPiece != index) {
+            if (isSelected) {
+                if (indexSelectedPiece != index) {
                     indexSelectedPiece = index;
                     setSelectedPieceIndex(index);
                 }
@@ -434,10 +433,10 @@ public class PieceBuilderSlate extends AbstractSlate {
                                                       int index, boolean isSelected,
                                                       boolean cellHasFocus) {
             super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-            if(isSelected) {
-                if(indexSelectedMovestyle != index) {
+            if (isSelected) {
+                if (indexSelectedMovestyle != index) {
                     indexSelectedMovestyle = index; //todo might need to not always change the last sel index.
-                    logLine("Selected index = "+index, 0);
+                    logLine("Selected index = " + index, 0);
                     setSelectedMoveStyleFromIndex(index);
                 }
             }
@@ -456,14 +455,14 @@ public class PieceBuilderSlate extends AbstractSlate {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             Piece p = new Piece(tfPieceName.getText(), tfImagePath.getText(), new JSONArray());
-            for(JSONObject ms : jsonMoveStyles) {
+            for (JSONObject ms : jsonMoveStyles) {
                 p.addMoveStyle(ms);
             }
             String key = objToKey.remove(jsonPieces.remove(indexSelectedPiece));
             JSONObject temp = p.getPieceAsJSON();
             jsonPieces.add(indexSelectedPiece, temp);
             objToKey.put(temp, key);
-            JOptionPane.showMessageDialog(null, "Saved piece "+p.getPieceName()+"!");
+            JOptionPane.showMessageDialog(null, "Saved piece " + p.getPieceName() + "!");
         }
 
     }

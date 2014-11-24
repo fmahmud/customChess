@@ -6,11 +6,14 @@ public enum Faction {
     //idea: faction stats?
 
     public static String getStrRepresentation(Faction f) {
-        if(f == null) return "";
-        switch(f) {
-            case BLACK: return "black";
-            case WHITE: return "white";
-            default: return "";
+        if (f == null) return "";
+        switch (f) {
+            case BLACK:
+                return "black";
+            case WHITE:
+                return "white";
+            default:
+                return "";
         }
     }
 }

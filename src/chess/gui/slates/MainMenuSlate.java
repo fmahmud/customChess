@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 
 /**
  * Created by Fez on 9/15/14.
- *
  */
 
 
@@ -41,11 +40,11 @@ public class MainMenuSlate extends AbstractSlate {
 
     @Override
     protected void setupCenterPanel() {
-        JButton btnNewGame  = makeButton("New Game" , "newGame" );
+        JButton btnNewGame = makeButton("New Game", "newGame");
         JButton btnLoadGame = makeButton("Load Game", "loadGame");
-        JButton btnQuit     = makeButton("Quit"     , "quit"    );
-        JButton btnSettings = makeButton("Settings" , "settings");
-        JButton btnBuilder  = makeButton("Builder"  , "builder" );
+        JButton btnQuit = makeButton("Quit", "quit");
+        JButton btnSettings = makeButton("Settings", "settings");
+        JButton btnBuilder = makeButton("Builder", "builder");
         centerPanel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
@@ -88,15 +87,15 @@ public class MainMenuSlate extends AbstractSlate {
     private JButton makeButton(String name, String action) {
         JButton b = Common.buttonFactory(name, action, Common.buttonFont);
         ActionListener a = null;
-        if(action.equals("newGame")) {
+        if (action.equals("newGame")) {
             a = new NewGameListener();
-        } else if(action.equals("quit")) {
+        } else if (action.equals("quit")) {
             a = new QuitListener();
-        } else if(action.equals("loadGame")) {
+        } else if (action.equals("loadGame")) {
             a = new LoadGameListener();
-        } else if(action.equals("settings")) {
+        } else if (action.equals("settings")) {
             a = new SettingsListener();
-        } else if(action.equals("builder")) {
+        } else if (action.equals("builder")) {
             a = new BuilderListener();
         }
         b.addActionListener(a);

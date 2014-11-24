@@ -14,22 +14,20 @@ import java.util.Vector;
  * Created by Fez on 11/13/14.
  */
 public class History {
-//    Vector<Event> past;
-    private Vector<Event> future;
-    private JList listHistory;
-    private DefaultListModel listData;
-    private JScrollPane scrPaneHistory;
-
     MouseListener listMouseListener = new MouseAdapter() {
         public void mouseClicked(MouseEvent e) {
-            if(e.getClickCount() == 2)
-            {
+            if (e.getClickCount() == 2) {
                 //todo: doublie click logic goes here.
             } else {
                 //?
             }
         }
     };
+    //    Vector<Event> past;
+    private Vector<Event> future;
+    private JList listHistory;
+    private DefaultListModel listData;
+    private JScrollPane scrPaneHistory;
 
     public History() {
 //        past = new Stack<Event>();
@@ -64,23 +62,20 @@ public class History {
 
     public Event pop() {
         //todo: fix get some meaningful way to deal with reverting board.
-        if(listData.size() == 0) return null;
+        if (listData.size() == 0) return null;
         Event toRet = (Event) listData.remove(0);
         future.add(0, toRet);
         listHistory.updateUI();
         return toRet;
     }
 
-    public
-
-
-    class HistoryListCellRenderer extends DefaultListCellRenderer {
+    public class HistoryListCellRenderer extends DefaultListCellRenderer {
 
         public Component getListCellRendererComponent(JList list, Object value,
                                                       int index, boolean isSelected,
                                                       boolean cellHasFocus) {
-            Event e = (Event)listData.elementAt(index);
-            if(isSelected && cellHasFocus) {
+            Event e = (Event) listData.elementAt(index);
+            if (isSelected && cellHasFocus) {
                 e.setSelectedColors();
             } else {
                 e.setUnselectedColors();

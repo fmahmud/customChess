@@ -6,10 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Game extends Loggable {
-    private GameMode mode;
-    protected Player currentPlayer;
-    private JPanel scorePanel, eventPanel, menuPanel;
     private static JLabel[] labels;
+    protected Player currentPlayer;
+    private GameMode mode;
+    private JPanel scorePanel, eventPanel, menuPanel;
 
     public Game(GameMode _mode) {
         super("Game");
@@ -26,10 +26,10 @@ public class Game extends Loggable {
     public void updateCurrentPlayer(Player p) {
         currentPlayer = p;
         labels[0].setText("Player 1 time: T");
-        labels[1].setText("Turn count = "+mode.getTurnCount());
-        labels[2].setText("Current Player = "+currentPlayer.getName());
+        labels[1].setText("Turn count = " + mode.getTurnCount());
+        labels[2].setText("Current Player = " + currentPlayer.getName());
         labels[3].setText("Player 2 time: T");
-        for(JLabel l : labels) {
+        for (JLabel l : labels) {
             l.repaint();
         }
     }
@@ -60,8 +60,8 @@ public class Game extends Loggable {
 
     private void initializeScore() {
         labels[0] = new JLabel("Player 1 time: T");
-        labels[1] = new JLabel("Turn count = "+mode.getTurnCount());
-        labels[2] = new JLabel("Current Player = "+currentPlayer.getName());
+        labels[1] = new JLabel("Turn count = " + mode.getTurnCount());
+        labels[2] = new JLabel("Current Player = " + currentPlayer.getName());
         labels[3] = new JLabel("Player 2 time: T");
         scorePanel.setLayout(new FlowLayout(0, 30, 0));
         for (JLabel label : labels) {

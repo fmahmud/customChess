@@ -26,11 +26,15 @@ public class DrawableBoard extends Loggable {
      * without drawing it. Only a DrawableBoard can be drawn.
      */
     Board board;
-
+    DefaultTableModel tblModel;
+    Square selectedSquare = null;
+    Square prevSelectedSquare = null;
+    Piece selectedPiece = null;
+    Piece prevSelectedPiece = null;
+    MoveDestinations defaultMoveDestinations = new MoveDestinations();
+    MoveDestinations moveDestinations = defaultMoveDestinations;
     private JTable table;
     private JPanel canvas;
-    DefaultTableModel tblModel;
-
     public DrawableBoard(Board b, String prefix) {
         super(prefix);
         board = b;
@@ -57,14 +61,14 @@ public class DrawableBoard extends Loggable {
         table.setCellSelectionEnabled(true);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setShowGrid(false);
-        String[] colTitles = new String[] {"A", "B", "C", "D", "E", "F", "G", "H"};
-        for(String s : colTitles) {
+        String[] colTitles = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
+        for (String s : colTitles) {
             tblModel.addColumn(s);
         }
         tblModel.setColumnCount(numCols);
         tblModel.setRowCount(numRows);
-        for(int row = 0; row < numRows; ++row) {
-            for(int col = 0; col < numCols; ++col) {
+        for (int row = 0; row < numRows; ++row) {
+            for (int col = 0; col < numCols; ++col) {
                 tblModel.setValueAt(board.getSquareAt(col, row), row, col);
             }
         }
@@ -83,24 +87,17 @@ public class DrawableBoard extends Loggable {
         int targRow = table.rowAtPoint(locationOnScreen);
         int targCol = table.columnAtPoint(locationOnScreen);
         Square targetSquare = board.getSquareAt(targCol, targRow);
-        logLine("Right clicked on ("+targCol+", "+targRow+")", 3);
-        if(selectedPiece != null && selectedPiece.getOwner() == board.getCurrentPlayer()) {
+        logLine("Right clicked on (" + targCol + ", " + targRow + ")", 3);
+        if (selectedPiece != null && selectedPiece.getOwner() == board.getCurrentPlayer()) {
             logLine("Sel piece is not null and owned by current player", 3);
-            if(moveDestinations.canMoveTo(targetSquare)) {
+            if (moveDestinations.canMoveTo(targetSquare)) {
                 logLine("Target square is a valid move destination", 3);
                 tryMoveFromTo(selectedSquare, targetSquare);
-            } else if(moveDestinations.canKillAt(targetSquare)) {
+            } else if (moveDestinations.canKillAt(targetSquare)) {
                 tryKillAt(selectedSquare, targetSquare);
             }
         }
     }
-
-    Square selectedSquare = null;
-    Square prevSelectedSquare = null;
-    Piece selectedPiece = null;
-    Piece prevSelectedPiece = null;
-    MoveDestinations defaultMoveDestinations = new MoveDestinations();
-    MoveDestinations moveDestinations = defaultMoveDestinations;
 
     private void tryMoveFromTo(Square from, Square to) {
         board.tryMoveFromTo(from, to);
@@ -128,11 +125,11 @@ public class DrawableBoard extends Loggable {
     }
 
     private boolean updateSelectedSquare(Square s) {
-        if(s != selectedSquare) {
-            if(selectedSquare != null)
+        if (s != selectedSquare) {
+            if (selectedSquare != null)
                 logLine("Changing selected square from ("
-                    +selectedSquare.getColumn()+", "+selectedSquare.getRow()+") to "
-                    +s.getColumn()+", "+s.getRow()+")", 1);
+                        + selectedSquare.getColumn() + ", " + selectedSquare.getRow() + ") to "
+                        + s.getColumn() + ", " + s.getRow() + ")", 1);
             prevSelectedSquare = selectedSquare;
             selectedSquare = s;
             return true;
@@ -142,11 +139,11 @@ public class DrawableBoard extends Loggable {
 
 
     private boolean updateSelectedPiece(Piece p) {
-        if(p != selectedPiece) {
+        if (p != selectedPiece) {
             prevSelectedPiece = selectedPiece;
             selectedPiece = p;
 
-            if(selectedPiece != null && selectedPiece.getOwner() == board.getCurrentPlayer()) {
+            if (selectedPiece != null && selectedPiece.getOwner() == board.getCurrentPlayer()) {
                 moveDestinations = p.getMoveDestinations();
             } else {
                 moveDestinations = defaultMoveDestinations;
@@ -165,23 +162,23 @@ public class DrawableBoard extends Loggable {
             super.getTableCellRendererComponent(table, value, selected, focused, row, column);
             Square currentSquare = board.getSquareAt(column, row);
             boolean repaint = false;
-            if(updateSelectedSquare(board.getSquareAt(table.getSelectedColumn(), table.getSelectedRow()))) {
+            if (updateSelectedSquare(board.getSquareAt(table.getSelectedColumn(), table.getSelectedRow()))) {
                 repaint = updateSelectedPiece(selectedSquare.getPiece());
             }
 
-            if(currentSquare == selectedSquare) {
+            if (currentSquare == selectedSquare) {
                 currentSquare.setOverlayColor(ConfigMaster.selectedItem);
                 return currentSquare.getCanvas();
             }
 
-            if(moveDestinations.canKillAt(currentSquare))
+            if (moveDestinations.canKillAt(currentSquare))
                 currentSquare.setOverlayColor(ConfigMaster.offendLocation);
-            else if(moveDestinations.canMoveTo(currentSquare))
+            else if (moveDestinations.canMoveTo(currentSquare))
                 currentSquare.setOverlayColor(ConfigMaster.moveLocation);
             else
                 currentSquare.setOverlayColor(ConfigMaster.defaultSquare);
 
-            if(repaint)
+            if (repaint)
                 table.repaint();
 
             return currentSquare.getCanvas();
@@ -191,7 +188,7 @@ public class DrawableBoard extends Loggable {
     private class TableMouseListener implements MouseListener {
         @Override
         public void mouseClicked(MouseEvent mouseEvent) {
-            switch(mouseEvent.getButton()) {
+            switch (mouseEvent.getButton()) {
                 case MouseEvent.BUTTON3:
                     onRightClick(mouseEvent.getPoint());
                     break;
@@ -217,6 +214,7 @@ public class DrawableBoard extends Loggable {
         }
 
         @Override
-        public void mouseExited(MouseEvent mouseEvent) { }
+        public void mouseExited(MouseEvent mouseEvent) {
+        }
     }
 }

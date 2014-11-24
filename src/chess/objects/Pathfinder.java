@@ -4,7 +4,6 @@ import chess.general.Loggable;
 
 /**
  * Created by Fez on 9/18/14.
- *
  */
 public class Pathfinder extends Loggable {
     private Board board;
@@ -17,7 +16,7 @@ public class Pathfinder extends Loggable {
     }
 
     private void getInfPaths(Piece self, MoveStyle ms,
-                         MoveDestinations moveDestinations) {
+                             MoveDestinations moveDestinations) {
         int tx = self.getCurrentColumn() + ms.getDx();
         int ty = self.getCurrentRow() + ms.getDy();
         Square target = board.getSquareAt(tx, ty);
@@ -182,7 +181,7 @@ public class Pathfinder extends Loggable {
 
 
     public void generatePath(Piece self, MoveStyle ms,
-                                         MoveDestinations moveDestinations) {
+                             MoveDestinations moveDestinations) {
         logLine("Finding path for: " + self.getPieceName(), 3);
         if (self.hasMoved() && ms.getFirstMoveOnly()) {
             return;
@@ -190,10 +189,10 @@ public class Pathfinder extends Loggable {
         //todo: verify current player is not in check currently
         if (ms.canMoveInfHor() || ms.canMoveInfVer()) {
             //can move infinitely - bishop/queen/rook
-             getInfPaths(self,ms, moveDestinations);
+            getInfPaths(self, ms, moveDestinations);
         } else if (!ms.canMoveInfHor() && !ms.canMoveInfHor()) {
             //cannot move infinitely - pawn/knight/king
-             getFinitePaths(self, ms, moveDestinations);
+            getFinitePaths(self, ms, moveDestinations);
         }
     }
 

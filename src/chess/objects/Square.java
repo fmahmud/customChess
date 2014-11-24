@@ -3,19 +3,23 @@ package chess.objects;
 import java.awt.*;
 
 public class Square extends DrawableObject {
+    private static int width;
     private int row, column;
     private Color color, overlay;
     private Piece piece;
-    private static int width;
 
     public Square(int _col, int _row, Color _color) {
-        super("Square("+_row+", "+_col+")");
+        super("Square(" + _row + ", " + _col + ")");
         logLine("Constructing Square", 2);
         setRow(_row);
         setColumn(_col);
         color = _color;
         overlay = new Color(0, 0, 0, 0);
         logLine("Done Constructing Square", 2);
+    }
+
+    public static void setWidth(int w) {
+        width = w;
     }
 
     public boolean hasPiece() {
@@ -27,9 +31,9 @@ public class Square extends DrawableObject {
     }
 
     public boolean setPiece(Piece p) {
-        if(hasPiece() && p != null) return false;
+        if (hasPiece() && p != null) return false;
         piece = p;
-        if(p != null) {
+        if (p != null) {
             piece.setCurrentColumn(column);
             piece.setCurrentRow(row);
         }
@@ -40,17 +44,13 @@ public class Square extends DrawableObject {
         overlay = c;
     }
 
-    public static void setWidth(int w) {
-        width = w;
-    }
-
     @Override
     public void render(Graphics g) {
         logLine("Rendering Square", 2);
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(color);
         g2.fillRect(2, 2, width, width);
-        if(hasPiece()) {
+        if (hasPiece()) {
             piece.render(g);
         }
         g2.setColor(overlay);
@@ -77,6 +77,6 @@ public class Square extends DrawableObject {
     }
 
     public String getCoordinatesAsString() {
-        return "("+column+", "+row+")";
+        return "(" + column + ", " + row + ")";
     }
 }

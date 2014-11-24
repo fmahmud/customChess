@@ -7,6 +7,12 @@ import java.util.HashSet;
  * Created by Fez on 11/23/14.
  */
 public class MoveTree {
+    Node root;
+
+    public MoveTree(Move first) {
+        root = new Node(first);
+    }
+
     private class Node {
         Move move, bestNextMove;
         HashSet<Node> nextMoves;
@@ -20,16 +26,10 @@ public class MoveTree {
         }
 
         void addNode(Node n) {
-            if(bestNextMove == null || n.move.getIndirectValue() > bestNextMove.getIndirectValue()) {
+            if (bestNextMove == null || n.move.getIndirectValue() > bestNextMove.getIndirectValue()) {
                 bestNextMove = n.move;
             }
             nextMoves.add(n);
         }
-    }
-
-    Node root;
-
-    public MoveTree(Move first) {
-        root = new Node(first);
     }
 }

@@ -18,10 +18,6 @@ public class Runner extends Loggable {
         pieceLibrary.addDirectory(ConfigMaster.piecesLocation);
     }
 
-    private void run() {
-        guiMaster = new GUIMaster(new MainMenuSlate());
-    }
-    
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -36,6 +32,10 @@ public class Runner extends Loggable {
         }
         Runner r = new Runner();
         r.run();
+    }
+
+    private void run() {
+        guiMaster = new GUIMaster(new MainMenuSlate());
     }
 
     /**

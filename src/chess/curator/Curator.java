@@ -34,7 +34,7 @@ public class Curator extends Loggable {
     }
 
     public void addDirectory(File file) {
-        if(file.isDirectory()) {
+        if (file.isDirectory()) {
             Vector<File> files = Common.getFilesInDir(file);
             for (File f : files) {
                 addFile(f);
@@ -49,7 +49,7 @@ public class Curator extends Loggable {
     }
 
     public boolean addJSONObject(JSONObject obj) {
-        if(jsonObjectHashMap.containsKey(obj.getString(keyName)))
+        if (jsonObjectHashMap.containsKey(obj.getString(keyName)))
             return false;
         jsonObjectHashMap.put(obj.getString(keyName), obj);
         return true;
@@ -60,7 +60,7 @@ public class Curator extends Loggable {
     }
 
     private void deleteAllFiles(Vector<File> files) {
-        for(File f : files) {
+        for (File f : files) {
             f.delete();
         }
     }
@@ -76,9 +76,9 @@ public class Curator extends Loggable {
     public void saveAllItems() {
         prune();
         Vector<String> keys = getKeys();
-        for(String s : keys) {
+        for (String s : keys) {
             File f = fileHashMap.get(s);
-            if(f == null) continue;
+            if (f == null) continue;
             try {
                 Common.overWriteFile(f, jsonObjectHashMap.get(s).toString());
             } catch (IOException e) {

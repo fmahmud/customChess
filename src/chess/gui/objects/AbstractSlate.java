@@ -11,25 +11,25 @@ import java.awt.*;
  * Created by Fez on 11/12/14.
  */
 public abstract class AbstractSlate extends Loggable {
+    public final static int centerWidth = GUIMaster.SQUARE_WIDTH * 8;
+    public final static int headFootHeight = (GUIMaster.WINDOW_HEIGHT - centerWidth) / 2;
+    public final static int sideWidth = (GUIMaster.WINDOW_WIDTH - centerWidth) / 2;
     protected final JPanel headerPanel = new JPanel();
     protected final JPanel centerPanel = new JPanel();
     protected final JPanel leftPanel = new JPanel();
     protected final JPanel rightPanel = new JPanel();
     protected final JPanel footerPanel = new JPanel();
     protected final JPanel mainPanel = new JPanel();
-    public final static int centerWidth = GUIMaster.SQUARE_WIDTH * 8;
-    public final static int headFootHeight = (GUIMaster.WINDOW_HEIGHT - centerWidth) / 2;
-    public final static int sideWidth = (GUIMaster.WINDOW_WIDTH - centerWidth) / 2 ;
 
     public AbstractSlate(String prefix) {
         super(prefix);
 
-        setPrefSize(headerPanel , new Dimension(GUIMaster.WINDOW_WIDTH, headFootHeight));
-        setPrefSize(centerPanel , new Dimension(centerWidth, centerWidth));
-        setPrefSize(leftPanel   , new Dimension(sideWidth, centerWidth));
-        setPrefSize(rightPanel  , new Dimension(sideWidth, centerWidth));
-        setPrefSize(footerPanel , new Dimension(GUIMaster.WINDOW_WIDTH, headFootHeight));
-        setPrefSize(mainPanel   , new Dimension(GUIMaster.WINDOW_WIDTH, GUIMaster.WINDOW_HEIGHT));
+        setPrefSize(headerPanel, new Dimension(GUIMaster.WINDOW_WIDTH, headFootHeight));
+        setPrefSize(centerPanel, new Dimension(centerWidth, centerWidth));
+        setPrefSize(leftPanel, new Dimension(sideWidth, centerWidth));
+        setPrefSize(rightPanel, new Dimension(sideWidth, centerWidth));
+        setPrefSize(footerPanel, new Dimension(GUIMaster.WINDOW_WIDTH, headFootHeight));
+        setPrefSize(mainPanel, new Dimension(GUIMaster.WINDOW_WIDTH, GUIMaster.WINDOW_HEIGHT));
     }
 
     protected void panelSetup() {
@@ -52,9 +52,9 @@ public abstract class AbstractSlate extends Loggable {
     }
 
     public void setDebugColor(Component c) {
-        int r = (int)(Math.random()*256);
-        int b = (int)(Math.random()*256);
-        int g = (int)(Math.random()*256);
+        int r = (int) (Math.random() * 256);
+        int b = (int) (Math.random() * 256);
+        int g = (int) (Math.random() * 256);
         c.setBackground(new Color(r, b, g));
     }
 
@@ -68,9 +68,13 @@ public abstract class AbstractSlate extends Loggable {
     }
 
     protected abstract void setupHeaderPanel();
+
     protected abstract void setupLeftPanel();
+
     protected abstract void setupCenterPanel();
+
     protected abstract void setupRightPanel();
+
     protected abstract void setupFooterPanel();
 
     protected void setupMainPanel() {

@@ -15,13 +15,14 @@ public abstract class Loggable {
 
     private String debugPrefix;
     private String name;
+
     public Loggable(String s) {
-        debugPrefix = "["+s+"]: ";
+        debugPrefix = "[" + s + "]: ";
         define();
     }
 
     private void define() {
-        if(availableNames == null) {
+        if (availableNames == null) {
             try {
                 availableNames = Common.getNRandomUniqueLinesInFile(NUM_LOGGERS, ConfigMaster.namesFileLocation);
             } catch (IOException e) {
@@ -35,12 +36,12 @@ public abstract class Loggable {
 //    protected void logAction(String actionName, String parameters, )
 
     protected void logLine(String s, int level) {
-        if(level <= DEBUG_LEVEL)
-            System.out.println("["+System.currentTimeMillis()+"]"+ "[" + name + "]" + debugPrefix +s);
+        if (level <= DEBUG_LEVEL)
+            System.out.println("[" + System.currentTimeMillis() + "]" + "[" + name + "]" + debugPrefix + s);
     }
 
     protected void log(String s, int level) {
-        if(level <= DEBUG_LEVEL)
-            System.out.print(debugPrefix +s);
+        if (level <= DEBUG_LEVEL)
+            System.out.print(debugPrefix + s);
     }
 }

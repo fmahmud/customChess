@@ -4,588 +4,36 @@
     <option name="ANALYZE_TEST_SOURCES" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="72dfaf43-3c51-42e6-badb-5858d6a291b6" name="Default" comment="Renaming conventions. Generalized &quot;PieceMaster&quot; into Curator class to handle any JSONObject to File mapping.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/chess/curator/Curator.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/Doxyfile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_bishop_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_board_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_classic_chess_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_drawable_object_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_event_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_faction_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_game_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_game_mode_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_history_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_king_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_knight_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_main_menu_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_move_style_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_new_game_menu_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_pawn_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_piece_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_player_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_queen_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_rook_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_runner_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_square_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_team_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_turn_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/_utilities_8java.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/annotated.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/annotated.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/bc_s.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/bdwn.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_board-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_board.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_board.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_board_1_1_chess_board_cell_renderer-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_board_1_1_chess_board_cell_renderer.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_board_1_1_chess_board_cell_renderer.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_board_1_1_chess_board_cell_renderer.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_drawable_object-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_drawable_object.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_drawable_object.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_drawable_object.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_event-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_event.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_game-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_game.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_game.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_game_mode-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_game_mode.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_game_mode.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_game_mode.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_history-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_history.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_move_style-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_move_style.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_move_style.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_piece-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_piece.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_piece.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_piece.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_player-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_player.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_player.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_square-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_square.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_square.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_square.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_team-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_team.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_team.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_turn-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_turn.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1base_objects_1_1_turn.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gamemodes_1_1_classic_chess-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gamemodes_1_1_classic_chess.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gamemodes_1_1_classic_chess.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gamemodes_1_1_classic_chess.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1general_1_1_utilities-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1general_1_1_utilities.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_main_menu-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_main_menu.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_main_menu.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_main_menu_1_1_load_game_listener-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_main_menu_1_1_load_game_listener.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_main_menu_1_1_load_game_listener.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_main_menu_1_1_load_game_listener.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_main_menu_1_1_new_game_listener-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_main_menu_1_1_new_game_listener.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_main_menu_1_1_new_game_listener.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_main_menu_1_1_new_game_listener.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_main_menu_1_1_quit_listener-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_main_menu_1_1_quit_listener.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_main_menu_1_1_quit_listener.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_main_menu_1_1_quit_listener.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_main_menu_1_1_settings_listener-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_main_menu_1_1_settings_listener.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_main_menu_1_1_settings_listener.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_main_menu_1_1_settings_listener.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_new_game_menu-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_new_game_menu.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1gui_1_1_new_game_menu.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1master_1_1_runner-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1master_1_1_runner.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_bishop-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_bishop.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_bishop.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_bishop.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_king-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_king.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_king.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_king.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_knight-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_knight.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_knight.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_knight.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_pawn-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_pawn.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_pawn.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_pawn.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_queen-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_queen.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_queen.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_queen.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_rook-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_rook.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_rook.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classchess_1_1pieces_1_1_rook.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/classes.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/closed.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/dir_6748306aab44a39751336c63868f9e96.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/dir_6748306aab44a39751336c63868f9e96.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/dir_68267d1309a1af8e8297ef4c3efbcdba.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/dir_68267d1309a1af8e8297ef4c3efbcdba.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/dir_697a0097910ff28d0b0a37324f8e9400.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/dir_697a0097910ff28d0b0a37324f8e9400.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/dir_8e1b12baee6cd7c14a203297514d7d24.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/dir_8e1b12baee6cd7c14a203297514d7d24.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/dir_96caa8241013ee1be11b57209aa209e6.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/dir_96caa8241013ee1be11b57209aa209e6.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/dir_a469c1a447a1fbb4c350399e58cec756.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/dir_a469c1a447a1fbb4c350399e58cec756.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/dir_b0540eb2e0bcb944816c564a8135ce45.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/dir_b0540eb2e0bcb944816c564a8135ce45.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/dir_bc7a69e718a4480a3137372aa5b51c8e.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/dir_bc7a69e718a4480a3137372aa5b51c8e.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/dir_d7ac24b11c421a51bc41a2c8819c7d7b.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/dir_d7ac24b11c421a51bc41a2c8819c7d7b.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/doxygen.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/doxygen.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/dynsections.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/enumchess_1_1custom_1_1_faction-members.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/enumchess_1_1custom_1_1_faction.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/enumchess_1_1custom_1_1_faction.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/files.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/files.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/ftv2blank.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/ftv2doc.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/ftv2folderclosed.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/ftv2folderopen.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/ftv2lastnode.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/ftv2link.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/ftv2mlastnode.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/ftv2mnode.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/ftv2node.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/ftv2plastnode.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/ftv2pnode.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/ftv2splitbar.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/ftv2vertline.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/functions.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/functions_func.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/functions_vars.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/hierarchy.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/hierarchy.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/namespacechess.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/namespacechess.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/namespacechess_1_1base_objects.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/namespacechess_1_1base_objects.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/namespacechess_1_1custom.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/namespacechess_1_1custom.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/namespacechess_1_1gamemodes.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/namespacechess_1_1gamemodes.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/namespacechess_1_1general.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/namespacechess_1_1general.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/namespacechess_1_1gui.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/namespacechess_1_1gui.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/namespacechess_1_1master.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/namespacechess_1_1master.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/namespacechess_1_1pieces.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/namespacechess_1_1pieces.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/namespaces.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/namespaces.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/nav_f.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/nav_g.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/nav_h.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/navtree.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/navtree.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/navtreeindex0.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/open.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/resize.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_0.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_0.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_1.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_10.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_10.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_11.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_11.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_12.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_12.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_13.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_13.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_14.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_14.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_2.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_2.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_3.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_4.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_4.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_5.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_5.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_6.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_6.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_7.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_7.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_8.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_8.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_9.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_9.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_a.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_a.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_b.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_b.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_c.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_c.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_d.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_d.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_e.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_e.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_f.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/all_f.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_0.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_0.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_1.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_10.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_10.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_2.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_2.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_3.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_4.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_4.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_5.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_5.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_6.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_6.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_7.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_7.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_8.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_8.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_9.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_9.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_a.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_a.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_b.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_b.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_c.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_c.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_d.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_d.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_e.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_e.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_f.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/classes_f.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/close.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/enumvalues_0.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/enumvalues_0.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_0.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_0.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_1.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_2.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_2.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_3.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_4.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_4.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_5.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_5.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_6.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_6.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_7.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_7.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_8.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_8.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_9.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_9.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_a.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_a.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_b.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_b.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_c.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_c.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_d.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_d.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_e.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_e.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_f.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/files_f.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_0.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_0.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_1.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_2.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_2.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_3.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_4.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_4.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_5.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_5.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_6.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_6.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_7.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_7.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_8.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_8.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_9.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_9.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_a.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_a.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_b.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_b.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_c.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_c.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_d.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_d.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_e.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_e.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_f.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/functions_f.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/mag_sel.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/namespaces_0.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/namespaces_0.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/nomatches.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/search.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/search.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/search_l.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/search_m.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/search_r.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/variables_0.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/variables_0.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/variables_1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/variables_1.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/variables_2.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/search/variables_2.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/sync_off.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/sync_on.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/tab_a.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/tab_b.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/tab_h.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/tab_s.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/html/tabs.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/Makefile" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_bishop_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_board_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_classic_chess_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_drawable_object_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_event_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_faction_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_game_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_game_mode_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_history_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_king_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_knight_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_main_menu_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_move_style_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_new_game_menu_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_pawn_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_piece_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_player_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_queen_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_rook_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_runner_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_square_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_team_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_turn_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/_utilities_8java.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/annotated.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1base_objects_1_1_board.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1base_objects_1_1_board_1_1_chess_board_cell_renderer.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1base_objects_1_1_board_1_1_chess_board_cell_renderer.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1base_objects_1_1_drawable_object.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1base_objects_1_1_drawable_object.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1base_objects_1_1_event.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1base_objects_1_1_game.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1base_objects_1_1_game_mode.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1base_objects_1_1_game_mode.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1base_objects_1_1_history.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1base_objects_1_1_move_style.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1base_objects_1_1_piece.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1base_objects_1_1_piece.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1base_objects_1_1_player.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1base_objects_1_1_square.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1base_objects_1_1_square.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1base_objects_1_1_team.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1base_objects_1_1_turn.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1gamemodes_1_1_classic_chess.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1gamemodes_1_1_classic_chess.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1general_1_1_utilities.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1gui_1_1_main_menu.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1gui_1_1_main_menu_1_1_load_game_listener.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1gui_1_1_main_menu_1_1_load_game_listener.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1gui_1_1_main_menu_1_1_new_game_listener.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1gui_1_1_main_menu_1_1_new_game_listener.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1gui_1_1_main_menu_1_1_quit_listener.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1gui_1_1_main_menu_1_1_quit_listener.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1gui_1_1_main_menu_1_1_settings_listener.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1gui_1_1_main_menu_1_1_settings_listener.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1gui_1_1_new_game_menu.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1master_1_1_runner.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1pieces_1_1_bishop.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1pieces_1_1_bishop.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1pieces_1_1_king.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1pieces_1_1_king.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1pieces_1_1_knight.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1pieces_1_1_knight.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1pieces_1_1_pawn.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1pieces_1_1_pawn.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1pieces_1_1_queen.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1pieces_1_1_queen.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1pieces_1_1_rook.eps" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/classchess_1_1pieces_1_1_rook.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/dir_6748306aab44a39751336c63868f9e96.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/dir_68267d1309a1af8e8297ef4c3efbcdba.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/dir_697a0097910ff28d0b0a37324f8e9400.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/dir_8e1b12baee6cd7c14a203297514d7d24.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/dir_96caa8241013ee1be11b57209aa209e6.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/dir_a469c1a447a1fbb4c350399e58cec756.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/dir_b0540eb2e0bcb944816c564a8135ce45.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/dir_bc7a69e718a4480a3137372aa5b51c8e.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/dir_d7ac24b11c421a51bc41a2c8819c7d7b.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/doxygen.sty" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/enumchess_1_1custom_1_1_faction.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/files.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/hierarchy.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/namespacechess.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/namespacechess_1_1base_objects.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/namespacechess_1_1custom.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/namespacechess_1_1gamemodes.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/namespacechess_1_1general.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/namespacechess_1_1gui.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/namespacechess_1_1master.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/namespacechess_1_1pieces.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/namespaces.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/docs/latex/refman.tex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/allclasses-frame.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/allclasses-noframe.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/baseObjects/Board.ChessBoardCellRenderer.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/baseObjects/Board.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/baseObjects/DrawableObject.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/baseObjects/Event.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/baseObjects/Game.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/baseObjects/GameMode.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/baseObjects/History.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/baseObjects/MoveStyle.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/baseObjects/Piece.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/baseObjects/Player.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/baseObjects/Square.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/baseObjects/Team.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/baseObjects/Turn.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/baseObjects/package-frame.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/baseObjects/package-summary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/baseObjects/package-tree.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/custom/Faction.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/custom/package-frame.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/custom/package-summary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/custom/package-tree.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/gamemodes/ClassicChess.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/gamemodes/package-frame.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/gamemodes/package-summary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/gamemodes/package-tree.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/general/Utilities.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/general/package-frame.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/general/package-summary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/general/package-tree.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/gui/MainMenu.LoadGameListener.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/gui/MainMenu.NewGameListener.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/gui/MainMenu.QuitListener.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/gui/MainMenu.SettingsListener.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/gui/MainMenu.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/gui/NewGameMenu.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/gui/package-frame.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/gui/package-summary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/gui/package-tree.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/master/Runner.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/master/package-frame.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/master/package-summary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/master/package-tree.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/pieces/Bishop.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/pieces/King.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/pieces/Knight.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/pieces/Pawn.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/pieces/Queen.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/pieces/Rook.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/pieces/package-frame.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/pieces/package-summary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/chess/pieces/package-tree.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/constant-values.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/deprecated-list.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/help-doc.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/index-files/index-1.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/index-files/index-10.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/index-files/index-11.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/index-files/index-12.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/index-files/index-13.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/index-files/index-14.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/index-files/index-15.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/index-files/index-16.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/index-files/index-17.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/index-files/index-18.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/index-files/index-19.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/index-files/index-2.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/index-files/index-3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/index-files/index-4.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/index-files/index-5.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/index-files/index-6.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/index-files/index-7.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/index-files/index-8.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/index-files/index-9.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/overview-frame.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/overview-summary.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/overview-tree.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/package-list" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/resources/inherit.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/serialized-form.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javadocs/stylesheet.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/chess/baseObjects/HiddenGameMode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/chess/master/PieceMaster.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chess/baseObjects/Board.java" afterPath="$PROJECT_DIR$/src/chess/objects/Board.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chess/baseObjects/DrawableObject.java" afterPath="$PROJECT_DIR$/src/chess/objects/DrawableObject.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chess/baseObjects/Event.java" afterPath="$PROJECT_DIR$/src/chess/objects/Event.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chess/baseObjects/Game.java" afterPath="$PROJECT_DIR$/src/chess/objects/Game.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chess/baseObjects/GameMode.java" afterPath="$PROJECT_DIR$/src/chess/objects/GameMode.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chess/baseObjects/History.java" afterPath="$PROJECT_DIR$/src/chess/objects/History.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chess/baseObjects/Move.java" afterPath="$PROJECT_DIR$/src/chess/objects/Move.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chess/baseObjects/MoveDestinations.java" afterPath="$PROJECT_DIR$/src/chess/objects/MoveDestinations.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chess/baseObjects/MoveStyle.java" afterPath="$PROJECT_DIR$/src/chess/objects/MoveStyle.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chess/baseObjects/MoveTree.java" afterPath="$PROJECT_DIR$/src/chess/objects/MoveTree.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chess/baseObjects/Pathfinder.java" afterPath="$PROJECT_DIR$/src/chess/objects/Pathfinder.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chess/baseObjects/Piece.java" afterPath="$PROJECT_DIR$/src/chess/objects/Piece.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chess/baseObjects/Player.java" afterPath="$PROJECT_DIR$/src/chess/objects/Player.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chess/baseObjects/Square.java" afterPath="$PROJECT_DIR$/src/chess/objects/Square.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chess/baseObjects/Team.java" afterPath="$PROJECT_DIR$/src/chess/objects/Team.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chess/baseObjects/Timer.java" afterPath="$PROJECT_DIR$/src/chess/objects/Timer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chess/master/ConfigMaster.java" afterPath="$PROJECT_DIR$/src/chess/config/ConfigMaster.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chess/master/GUIMaster.java" afterPath="$PROJECT_DIR$/src/chess/gui/GUIMaster.java" />
+    <list default="true" id="72dfaf43-3c51-42e6-badb-5858d6a291b6" name="Default" comment="Removing docs. Generalized PieceMaster to Curator.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/objects/AbstractSlate.java" afterPath="$PROJECT_DIR$/src/chess/gui/objects/AbstractSlate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/objects/Board.java" afterPath="$PROJECT_DIR$/src/chess/objects/Board.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/general/Common.java" afterPath="$PROJECT_DIR$/src/chess/general/Common.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/config/ConfigMaster.java" afterPath="$PROJECT_DIR$/src/chess/config/ConfigMaster.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/curator/Curator.java" afterPath="$PROJECT_DIR$/src/chess/curator/Curator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/objects/DrawableBoard.java" afterPath="$PROJECT_DIR$/src/chess/gui/objects/DrawableBoard.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/objects/DrawableObject.java" afterPath="$PROJECT_DIR$/src/chess/objects/DrawableObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/objects/Event.java" afterPath="$PROJECT_DIR$/src/chess/objects/Event.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/custom/Faction.java" afterPath="$PROJECT_DIR$/src/chess/custom/Faction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/GUIMaster.java" afterPath="$PROJECT_DIR$/src/chess/gui/GUIMaster.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/objects/Game.java" afterPath="$PROJECT_DIR$/src/chess/objects/Game.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/objects/GameMode.java" afterPath="$PROJECT_DIR$/src/chess/objects/GameMode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/objects/History.java" afterPath="$PROJECT_DIR$/src/chess/objects/History.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/general/Loggable.java" afterPath="$PROJECT_DIR$/src/chess/general/Loggable.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/slates/MainMenuSlate.java" afterPath="$PROJECT_DIR$/src/chess/gui/slates/MainMenuSlate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/objects/MoveDestinations.java" afterPath="$PROJECT_DIR$/src/chess/objects/MoveDestinations.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/objects/MoveStyle.java" afterPath="$PROJECT_DIR$/src/chess/objects/MoveStyle.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/objects/MoveTree.java" afterPath="$PROJECT_DIR$/src/chess/objects/MoveTree.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/PathTest.java" afterPath="$PROJECT_DIR$/src/chess/PathTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/objects/Pathfinder.java" afterPath="$PROJECT_DIR$/src/chess/objects/Pathfinder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/objects/Piece.java" afterPath="$PROJECT_DIR$/src/chess/objects/Piece.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java" afterPath="$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/slates/PlayGameSlate.java" afterPath="$PROJECT_DIR$/src/chess/gui/slates/PlayGameSlate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/objects/Player.java" afterPath="$PROJECT_DIR$/src/chess/objects/Player.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/master/Runner.java" afterPath="$PROJECT_DIR$/src/chess/master/Runner.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/slates/SettingsSlate.java" afterPath="$PROJECT_DIR$/src/chess/gui/slates/SettingsSlate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/pieces/blackBishop.json" afterPath="$PROJECT_DIR$/src/chess/pieces/blackBishop.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/pieces/blackKing.json" afterPath="$PROJECT_DIR$/src/chess/pieces/blackKing.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/pieces/blackKnight.json" afterPath="$PROJECT_DIR$/src/chess/pieces/blackKnight.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/pieces/blackPawn.json" afterPath="$PROJECT_DIR$/src/chess/pieces/blackPawn.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/pieces/blackQueen.json" afterPath="$PROJECT_DIR$/src/chess/pieces/blackQueen.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/pieces/blackRook.json" afterPath="$PROJECT_DIR$/src/chess/pieces/blackRook.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/pieces/whiteBishop.json" afterPath="$PROJECT_DIR$/src/chess/pieces/whiteBishop.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/pieces/whiteKing.json" afterPath="$PROJECT_DIR$/src/chess/pieces/whiteKing.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/pieces/whiteKnight.json" afterPath="$PROJECT_DIR$/src/chess/pieces/whiteKnight.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/pieces/whitePawn.json" afterPath="$PROJECT_DIR$/src/chess/pieces/whitePawn.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/pieces/whiteQueen.json" afterPath="$PROJECT_DIR$/src/chess/pieces/whiteQueen.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/pieces/whiteRook.json" afterPath="$PROJECT_DIR$/src/chess/pieces/whiteRook.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/objects/Square.java" afterPath="$PROJECT_DIR$/src/chess/objects/Square.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/objects/Team.java" afterPath="$PROJECT_DIR$/src/chess/objects/Team.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/objects/Timer.java" afterPath="$PROJECT_DIR$/src/chess/objects/Timer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ChessProject.iws" />
@@ -628,8 +76,8 @@
                 <file leaf-file-name="Common.java" pinned="false" current="false" current-in-tab="true">
                   <entry file="file://$PROJECT_DIR$/src/chess/general/Common.java">
                     <provider selected="true" editor-type-id="text-editor">
-                      <state vertical-scroll-proportion="0.7012195" vertical-offset="0" max-vertical-offset="3180">
-                        <caret line="55" column="56" selection-start-line="55" selection-start-column="56" selection-end-line="55" selection-end-column="56" />
+                      <state vertical-scroll-proportion="0.6859756" vertical-offset="0" max-vertical-offset="3195">
+                        <caret line="54" column="56" selection-start-line="54" selection-start-column="56" selection-end-line="54" selection-end-column="56" />
                         <folding />
                       </state>
                     </provider>
@@ -653,10 +101,16 @@
                   <entry file="file://$PROJECT_DIR$/src/chess/objects/MoveTree.java">
                     <provider selected="true" editor-type-id="text-editor">
                       <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
-                        <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+                        <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
                         <folding>
-                          <element signature="e#333#334#0" expanded="true" />
-                          <element signature="e#376#377#0" expanded="true" />
+                          <element signature="e#202#203#0" expanded="false" />
+                          <element signature="e#240#241#0" expanded="false" />
+                          <marker date="1416872991000" expanded="true" signature="266:700" placeholder="{...}" />
+                          <marker date="1416872991000" expanded="false" signature="355:370" placeholder=" { " />
+                          <marker date="1416872991000" expanded="false" signature="379:389" placeholder=" }" />
+                          <marker date="1416872991000" expanded="true" signature="421:436" placeholder=" { " />
+                          <marker date="1416872991000" expanded="true" signature="456:466" placeholder=" }" />
+                          <marker date="1416872991000" expanded="true" signature="497:694" placeholder="{...}" />
                         </folding>
                       </state>
                     </provider>
@@ -665,11 +119,11 @@
                 <file leaf-file-name="Timer.java" pinned="false" current="false" current-in-tab="true">
                   <entry file="file://$PROJECT_DIR$/src/chess/objects/Timer.java">
                     <provider selected="true" editor-type-id="text-editor">
-                      <state vertical-scroll-proportion="0.076219514" vertical-offset="0" max-vertical-offset="1140">
-                        <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
+                      <state vertical-scroll-proportion="0.076219514" vertical-offset="0" max-vertical-offset="1125">
+                        <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
                         <folding>
-                          <element signature="e#614#615#0" expanded="true" />
-                          <element signature="e#661#662#0" expanded="true" />
+                          <element signature="e#611#612#0" expanded="true" />
+                          <element signature="e#658#659#0" expanded="true" />
                         </folding>
                       </state>
                     </provider>
@@ -687,7 +141,7 @@
     <favorites_list name="ChessProject" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.44548872">
+    <splitter split-orientation="horizontal" split-proportion="0.50626564">
       <split-first>
         <leaf>
           <file leaf-file-name="MoveDestinations.java" pinned="false" current="false" current-in-tab="false">
@@ -703,8 +157,8 @@
           <file leaf-file-name="PlayGameSlate.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/PlayGameSlate.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1095">
-                  <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1080">
+                  <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
                   <folding>
                     <element signature="imports" expanded="false" />
                   </folding>
@@ -715,8 +169,8 @@
           <file leaf-file-name="Loggable.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chess/general/Loggable.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="735">
-                  <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="750">
+                  <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
                   <folding />
                 </state>
               </provider>
@@ -735,7 +189,7 @@
           <file leaf-file-name="AbstractSlate.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chess/gui/objects/AbstractSlate.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="419" max-vertical-offset="1515">
+                <state vertical-scroll-proportion="0.0" vertical-offset="419" max-vertical-offset="1575">
                   <caret line="66" column="11" selection-start-line="66" selection-start-column="11" selection-end-line="66" selection-end-column="11" />
                   <folding />
                 </state>
@@ -745,8 +199,8 @@
           <file leaf-file-name="GUIMaster.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chess/gui/GUIMaster.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="143" max-vertical-offset="870">
-                  <caret line="31" column="43" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="128" max-vertical-offset="855">
+                  <caret line="30" column="43" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
                   <folding />
                 </state>
               </provider>
@@ -755,20 +209,18 @@
           <file leaf-file-name="PieceBuilderSlate.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="4928" max-vertical-offset="7125">
-                  <caret line="356" column="62" selection-start-line="356" selection-start-column="62" selection-end-line="356" selection-end-column="62" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
+                <state vertical-scroll-proportion="0.0" vertical-offset="4913" max-vertical-offset="7230">
+                  <caret line="355" column="62" selection-start-line="355" selection-start-column="62" selection-end-line="355" selection-end-column="62" />
+                  <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Move.java" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="Move.java" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/chess/objects/Move.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="840">
-                  <caret line="32" column="23" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="23" />
+                <state vertical-scroll-proportion="0.25398406" vertical-offset="0" max-vertical-offset="1004">
+                  <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
                   <folding>
                     <element signature="e#523#524#0" expanded="true" />
                     <element signature="e#552#553#0" expanded="true" />
@@ -787,11 +239,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Common.java" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/chess/general/Common.java">
+          <file leaf-file-name="Faction.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/chess/custom/Faction.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.2626728" vertical-offset="2529" max-vertical-offset="3180">
-                  <caret line="191" column="3" selection-start-line="191" selection-start-column="3" selection-end-line="191" selection-end-column="3" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
+                  <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
                   <folding />
                 </state>
               </provider>
@@ -804,8 +256,8 @@
           <file leaf-file-name="Event.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chess/objects/Event.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="251" max-vertical-offset="1845">
-                  <caret line="77" column="9" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="9" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="416" max-vertical-offset="2025">
+                  <caret line="88" column="9" selection-start-line="88" selection-start-column="9" selection-end-line="88" selection-end-column="9" />
                   <folding>
                     <element signature="imports" expanded="false" />
                   </folding>
@@ -826,9 +278,12 @@
           <file leaf-file-name="History.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chess/objects/History.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="384" max-vertical-offset="1260">
-                  <caret line="71" column="5" selection-start-line="71" selection-start-column="5" selection-end-line="71" selection-end-column="5" />
-                  <folding />
+                <state vertical-scroll-proportion="0.0" vertical-offset="354" max-vertical-offset="1185">
+                  <caret line="69" column="5" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="5" />
+                  <folding>
+                    <element signature="e#363#600#0" expanded="false" />
+                    <element signature="e#593#594#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -836,10 +291,14 @@
           <file leaf-file-name="GameMode.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chess/objects/GameMode.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="2123" max-vertical-offset="5475">
-                  <caret line="179" column="62" selection-start-line="179" selection-start-column="62" selection-end-line="179" selection-end-column="62" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="1913" max-vertical-offset="5490">
+                  <caret line="167" column="0" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="false" />
+                    <element signature="e#3055#3056#0" expanded="false" />
+                    <element signature="e#3127#3128#0" expanded="false" />
+                    <element signature="e#3813#4065#0" expanded="false" />
+                    <element signature="e#4054#4055#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -848,8 +307,8 @@
           <file leaf-file-name="MoveStyle.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chess/objects/MoveStyle.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="2805" max-vertical-offset="2925">
-                  <caret line="187" column="43" selection-start-line="187" selection-start-column="43" selection-end-line="187" selection-end-column="43" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="2835" max-vertical-offset="2940">
+                  <caret line="189" column="5" selection-start-line="189" selection-start-column="5" selection-end-line="189" selection-end-column="5" />
                   <folding />
                 </state>
               </provider>
@@ -868,44 +327,44 @@
           <file leaf-file-name="Pathfinder.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chess/objects/Pathfinder.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="2865" max-vertical-offset="3090">
-                  <caret line="191" column="53" selection-start-line="191" selection-start-column="53" selection-end-line="191" selection-end-column="53" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="2850" max-vertical-offset="3075">
+                  <caret line="190" column="53" selection-start-line="190" selection-start-column="53" selection-end-line="190" selection-end-column="53" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ConfigMaster.java" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="ConfigMaster.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chess/config/ConfigMaster.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.34562212" vertical-offset="0" max-vertical-offset="651">
-                  <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+                  <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Curator.java" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="Curator.java" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/chess/curator/Curator.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="466" max-vertical-offset="1545">
-                  <caret line="93" column="18" selection-start-line="93" selection-start-column="18" selection-end-line="93" selection-end-column="18" />
+                <state vertical-scroll-proportion="0.30373362" vertical-offset="554" max-vertical-offset="1545">
+                  <caret line="57" column="27" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#364#384#0" expanded="true" />
                     <element signature="e#447#461#0" expanded="true" />
                     <element signature="e#622#623#0" expanded="true" />
                     <element signature="e#691#692#0" expanded="true" />
-                    <element signature="e#1305#1306#0" expanded="true" />
-                    <element signature="e#1354#1355#0" expanded="true" />
-                    <element signature="e#1664#1665#0" expanded="true" />
-                    <element signature="e#1730#1731#0" expanded="true" />
-                    <element signature="e#1929#1937#0" expanded="true" />
-                    <element signature="e#2131#2139#0" expanded="true" />
-                    <element signature="e#2721#2722#0" expanded="true" />
-                    <element signature="e#2794#2795#0" expanded="true" />
-                    <element signature="e#2861#2862#0" expanded="true" />
-                    <element signature="e#2911#2912#0" expanded="true" />
+                    <element signature="e#1306#1307#0" expanded="true" />
+                    <element signature="e#1355#1356#0" expanded="true" />
+                    <element signature="e#1666#1667#0" expanded="true" />
+                    <element signature="e#1732#1733#0" expanded="true" />
+                    <element signature="e#1932#1940#0" expanded="true" />
+                    <element signature="e#2134#2142#0" expanded="true" />
+                    <element signature="e#2726#2727#0" expanded="true" />
+                    <element signature="e#2799#2800#0" expanded="true" />
+                    <element signature="e#2866#2867#0" expanded="true" />
+                    <element signature="e#2916#2917#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -976,12 +435,12 @@
         <option value="$PROJECT_DIR$/src/chess/gui/GUIMaster.java" />
         <option value="$PROJECT_DIR$/src/chess/curator/Curator.java" />
         <option value="$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java" />
-        <option value="$PROJECT_DIR$/src/chess/general/Common.java" />
         <option value="$PROJECT_DIR$/src/chess/objects/Move.java" />
         <option value="$PROJECT_DIR$/src/chess/objects/MoveDestinations.java" />
         <option value="$PROJECT_DIR$/src/chess/objects/MoveTree.java" />
         <option value="$PROJECT_DIR$/src/chess/config/ConfigMaster.java" />
         <option value="$PROJECT_DIR$/src/chess/objects/Timer.java" />
+        <option value="$PROJECT_DIR$/src/chess/general/Common.java" />
       </list>
     </option>
   </component>
@@ -1125,6 +584,104 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChessProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChessProject" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChessProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChessProject" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chess" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChessProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChessProject" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chess" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="general" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChessProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChessProject" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chess" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="curator" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChessProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChessProject" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chess" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope">
@@ -1158,13 +715,14 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="dynamic.classpath" value="false" />
     <property name="FullScreen" value="false" />
-    <property name="LayoutCode.rearrangeEntriesJava" value="false" />
+    <property name="LayoutCode.rearrangeEntriesJava" value="true" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../SkyDrive/Documents/University/Computer Science/CS412HW4" />
     <property name="findjar.last.used.dir" value="$PROJECT_DIR$" />
+    <property name="LayoutCode.rearrangeEntries" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -1432,7 +990,11 @@
       <created>1416849993909</created>
       <updated>1416849993909</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Removing docs. Generalized PieceMaster to Curator.">
+      <created>1416870774139</created>
+      <updated>1416870774139</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -1462,7 +1024,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985783" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13631523" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" x="28" y="162" width="1638" height="315" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3222749" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3222749" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890996" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1544,7 +1106,8 @@
     <MESSAGE value="Added black and white timers to GameMode -&gt; more of a test rather than end product. Will be generalizing GameMode." />
     <MESSAGE value="Added useful text for History and Events. Added getCoordinatesAsString function to Square. Hid gameTimer in GameMode." />
     <MESSAGE value="Renaming conventions. Generalized &quot;PieceMaster&quot; into Curator class to handle any JSONObject to File mapping." />
-    <option name="LAST_COMMIT_MESSAGE" value="Renaming conventions. Generalized &quot;PieceMaster&quot; into Curator class to handle any JSONObject to File mapping." />
+    <MESSAGE value="Removing docs. Generalized PieceMaster to Curator." />
+    <option name="LAST_COMMIT_MESSAGE" value="Removing docs. Generalized PieceMaster to Curator." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1738,8 +1301,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chess/objects/MoveStyle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1366" max-vertical-offset="2370">
-          <caret line="187" column="43" selection-start-line="187" selection-start-column="43" selection-end-line="187" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2835" max-vertical-offset="2940">
+          <caret line="189" column="5" selection-start-line="189" selection-start-column="5" selection-end-line="189" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -1754,8 +1317,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chess/objects/Pathfinder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2865" max-vertical-offset="3090">
-          <caret line="191" column="53" selection-start-line="191" selection-start-column="53" selection-end-line="191" selection-end-column="53" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2850" max-vertical-offset="3075">
+          <caret line="190" column="53" selection-start-line="190" selection-start-column="53" selection-end-line="190" selection-end-column="53" />
           <folding />
         </state>
       </provider>
@@ -1774,16 +1337,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chess/objects/History.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="384" max-vertical-offset="1260">
-          <caret line="71" column="5" selection-start-line="71" selection-start-column="5" selection-end-line="71" selection-end-column="5" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="354" max-vertical-offset="1185">
+          <caret line="69" column="5" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="5" />
+          <folding>
+            <element signature="e#363#600#0" expanded="false" />
+            <element signature="e#593#594#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chess/objects/Event.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="251" max-vertical-offset="1845">
-          <caret line="77" column="9" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="416" max-vertical-offset="2025">
+          <caret line="88" column="9" selection-start-line="88" selection-start-column="9" selection-end-line="88" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
@@ -1824,16 +1390,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chess/general/Loggable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="735">
-          <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="750">
+          <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/PlayGameSlate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1095">
-          <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="1080">
+          <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
@@ -1850,10 +1416,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chess/objects/GameMode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2123" max-vertical-offset="5475">
-          <caret line="179" column="62" selection-start-line="179" selection-start-column="62" selection-end-line="179" selection-end-column="62" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1913" max-vertical-offset="5490">
+          <caret line="167" column="0" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="false" />
+            <element signature="e#3055#3056#0" expanded="false" />
+            <element signature="e#3127#3128#0" expanded="false" />
+            <element signature="e#3813#4065#0" expanded="false" />
+            <element signature="e#4054#4055#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1868,26 +1438,108 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chess/gui/GUIMaster.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="143" max-vertical-offset="870">
-          <caret line="31" column="43" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="128" max-vertical-offset="855">
+          <caret line="30" column="43" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4928" max-vertical-offset="7125">
-          <caret line="356" column="62" selection-start-line="356" selection-start-column="62" selection-end-line="356" selection-end-column="62" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="4913" max-vertical-offset="7230">
+          <caret line="355" column="62" selection-start-line="355" selection-start-column="62" selection-end-line="355" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/objects/MoveTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <element signature="e#202#203#0" expanded="false" />
+            <element signature="e#240#241#0" expanded="false" />
+            <marker date="1416872991000" expanded="true" signature="266:700" placeholder="{...}" />
+            <marker date="1416872991000" expanded="false" signature="355:370" placeholder=" { " />
+            <marker date="1416872991000" expanded="false" signature="379:389" placeholder=" }" />
+            <marker date="1416872991000" expanded="true" signature="421:436" placeholder=" { " />
+            <marker date="1416872991000" expanded="true" signature="456:466" placeholder=" }" />
+            <marker date="1416872991000" expanded="true" signature="497:694" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/objects/MoveDestinations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="690">
+          <caret line="5" column="47" selection-start-line="5" selection-start-column="47" selection-end-line="5" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/objects/Timer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.076219514" vertical-offset="0" max-vertical-offset="1125">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="e#611#612#0" expanded="true" />
+            <element signature="e#658#659#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/config/ConfigMaster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/curator/Curator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30373362" vertical-offset="554" max-vertical-offset="1545">
+          <caret line="57" column="27" selection-start-line="57" selection-start-column="27" selection-end-line="57" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#364#384#0" expanded="true" />
+            <element signature="e#447#461#0" expanded="true" />
+            <element signature="e#622#623#0" expanded="true" />
+            <element signature="e#691#692#0" expanded="true" />
+            <element signature="e#1306#1307#0" expanded="true" />
+            <element signature="e#1355#1356#0" expanded="true" />
+            <element signature="e#1666#1667#0" expanded="true" />
+            <element signature="e#1732#1733#0" expanded="true" />
+            <element signature="e#1932#1940#0" expanded="true" />
+            <element signature="e#2134#2142#0" expanded="true" />
+            <element signature="e#2726#2727#0" expanded="true" />
+            <element signature="e#2799#2800#0" expanded="true" />
+            <element signature="e#2866#2867#0" expanded="true" />
+            <element signature="e#2916#2917#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/custom/Faction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
+          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/general/Common.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6859756" vertical-offset="0" max-vertical-offset="3195">
+          <caret line="54" column="56" selection-start-line="54" selection-start-column="56" selection-end-line="54" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chess/objects/Move.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="840">
-          <caret line="32" column="23" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.25398406" vertical-offset="0" max-vertical-offset="1004">
+          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
           <folding>
             <element signature="e#523#524#0" expanded="true" />
             <element signature="e#552#553#0" expanded="true" />
@@ -1902,76 +1554,6 @@
             <element signature="e#1127#1128#0" expanded="true" />
             <element signature="e#1159#1160#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/objects/MoveTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding>
-            <element signature="e#333#334#0" expanded="true" />
-            <element signature="e#376#377#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/curator/Curator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="466" max-vertical-offset="1545">
-          <caret line="93" column="18" selection-start-line="93" selection-start-column="18" selection-end-line="93" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#364#384#0" expanded="true" />
-            <element signature="e#447#461#0" expanded="true" />
-            <element signature="e#622#623#0" expanded="true" />
-            <element signature="e#691#692#0" expanded="true" />
-            <element signature="e#1305#1306#0" expanded="true" />
-            <element signature="e#1354#1355#0" expanded="true" />
-            <element signature="e#1664#1665#0" expanded="true" />
-            <element signature="e#1730#1731#0" expanded="true" />
-            <element signature="e#1929#1937#0" expanded="true" />
-            <element signature="e#2131#2139#0" expanded="true" />
-            <element signature="e#2721#2722#0" expanded="true" />
-            <element signature="e#2794#2795#0" expanded="true" />
-            <element signature="e#2861#2862#0" expanded="true" />
-            <element signature="e#2911#2912#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/config/ConfigMaster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34562212" vertical-offset="0" max-vertical-offset="651">
-          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/objects/Timer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.076219514" vertical-offset="0" max-vertical-offset="1140">
-          <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
-          <folding>
-            <element signature="e#614#615#0" expanded="true" />
-            <element signature="e#661#662#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/objects/MoveDestinations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="690">
-          <caret line="5" column="47" selection-start-line="5" selection-start-column="47" selection-end-line="5" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/general/Common.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2626728" vertical-offset="2529" max-vertical-offset="3180">
-          <caret line="191" column="3" selection-start-line="191" selection-start-column="3" selection-end-line="191" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>

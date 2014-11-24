@@ -16,12 +16,12 @@ public class MoveDestinations {
     }
 
     public void addMoveLocation(Square s) {
-        if(!moveOnlyLocations.contains(s))
+        if (!moveOnlyLocations.contains(s))
             moveOnlyLocations.add(s);
     }
 
     public void addKillLocation(Square s) {
-        if(!killOnlyLocations.contains(s))
+        if (!killOnlyLocations.contains(s))
             killOnlyLocations.add(s);
     }
 

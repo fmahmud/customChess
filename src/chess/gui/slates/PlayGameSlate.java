@@ -10,18 +10,9 @@ import javax.swing.*;
 
 /**
  * Created by Fez on 9/17/14.
- *
  */
 public class PlayGameSlate extends AbstractSlate {
     private Game game;
-
-    public JPanel getPnlUpper() {
-        return headerPanel;
-    }
-
-    public JPanel getPnlLower() {
-        return centerPanel;
-    }
 
     public PlayGameSlate() {
         super("PlayGameSlate");
@@ -30,16 +21,24 @@ public class PlayGameSlate extends AbstractSlate {
         //and then the game would create a new board.
         //todo new game menu fixing.
         game = new Game(new GameMode("Classic Chess", 2,
-                new int[] {1, 1},
-                new Faction[][] {
-                        new Faction[] { Faction.WHITE },
-                        new Faction[] { Faction.BLACK }
+                new int[]{1, 1},
+                new Faction[][]{
+                        new Faction[]{Faction.WHITE},
+                        new Faction[]{Faction.BLACK}
                 }, new JPanel[]{
-                    headerPanel, centerPanel, rightPanel, leftPanel, footerPanel
+                headerPanel, centerPanel, rightPanel, leftPanel, footerPanel
 
         }
         ));
         panelSetup();
+    }
+
+    public JPanel getPnlUpper() {
+        return headerPanel;
+    }
+
+    public JPanel getPnlLower() {
+        return centerPanel;
     }
 
     @Override

@@ -13,13 +13,12 @@ import java.awt.event.WindowEvent;
  * Created by Fez on 11/12/14.
  */
 public class GUIMaster extends Loggable {
-    private static AbstractSlate currentSlate;
-    private JFrame frame;
-    private static Container pane;
-
     public static final int WINDOW_WIDTH = 1440;
     public static final int WINDOW_HEIGHT = 1024;
     public static final int SQUARE_WIDTH = 84;
+    private static AbstractSlate currentSlate;
+    private static Container pane;
+    private JFrame frame;
 
     public GUIMaster(AbstractSlate as) {
         super("GUIMaster");

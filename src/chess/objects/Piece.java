@@ -12,11 +12,8 @@ import java.util.Vector;
 public class Piece extends DrawableObject {
     private static final int IMG_X_OFFSET = 10;
     private static final int IMG_Y_OFFSET = 10;
-
-    private Vector<MoveStyle> moveStyles;
-
     protected Image img;
-
+    private Vector<MoveStyle> moveStyles;
     private MoveDestinations moveDestinations;
     private int currentRow, currentColumn;
     private String pieceName;
@@ -25,6 +22,21 @@ public class Piece extends DrawableObject {
     private Player owner;
     private boolean beenAttacked = false;
     private int numberOfMoves = 0;
+
+    /**
+     * Constructor
+     *
+     * @param d - takes a String. Look at getPieceFromChar(char c)
+     */
+    public Piece(String d, String _path, JSONArray _ms) {
+        super(d);
+        define(d, _path, _ms);
+    }
+
+    public Piece(JSONObject obj) {
+        super(obj.getString("name"));
+        define(obj.getString("name"), obj.getString("imagePath"), obj.getJSONArray("moveStyles"));
+    }
 
     public void moved() {
         ++numberOfMoves;
@@ -38,20 +50,6 @@ public class Piece extends DrawableObject {
         return numberOfMoves > 0;
     }
 
-    /**
-     * Constructor
-     * @param d - takes a String. Look at getPieceFromChar(char c)
-     */
-    public Piece(String d, String _path, JSONArray _ms) {
-        super(d);
-        define(d, _path, _ms);
-    }
-
-    public Piece(JSONObject obj) {
-        super(obj.getString("name"));
-        define(obj.getString("name"), obj.getString("imagePath"), obj.getJSONArray("moveStyles"));
-    }
-
     public MoveDestinations getMoveDestinations() {
         return moveDestinations;
     }
@@ -61,7 +59,7 @@ public class Piece extends DrawableObject {
     }
 
     public void addMoveStyle(MoveStyle ms) {
-        if(!moveStyles.contains(ms))
+        if (!moveStyles.contains(ms))
             moveStyles.add(ms);
     }
 
@@ -79,7 +77,7 @@ public class Piece extends DrawableObject {
         currentColumn = 0;
         moveStyles = new Vector<MoveStyle>();
         imagePath = _path;
-        for(int i = 0; i < _ms.length(); ++i) {
+        for (int i = 0; i < _ms.length(); ++i) {
             this.addMoveStyle(_ms.getJSONObject(i));
         }
         moveDestinations = new MoveDestinations();
@@ -99,7 +97,7 @@ public class Piece extends DrawableObject {
         toRet.put("name", pieceName);
         toRet.put("imagePath", imagePath);
         JSONArray ms = new JSONArray();
-        for(MoveStyle m : moveStyles) {
+        for (MoveStyle m : moveStyles) {
             ms.put(m.getAsJSONObject());
         }
         toRet.put("moveStyles", ms);
@@ -107,30 +105,17 @@ public class Piece extends DrawableObject {
         return toRet;
     }
 
-    /**
-     * @param i - the row to set to
-     */
-    public void setCurrentRow(int i) {
-        currentRow = i;
-    }
-
-    /**
-     * @param i - the column to set to
-     */
-    public void setCurrentColumn(int i) {
-        currentColumn = i;
-    }
-
     public String getPieceName() {
         return pieceName;
     }
 
     private String getLocationAsString() {
-        return "("+currentColumn+", "+currentRow+")]: ";
+        return "(" + currentColumn + ", " + currentRow + ")]: ";
     }
 
     /**
      * Renders the piece's <code>img</code> onto the given <code>Graphic</code>
+     *
      * @param g
      */
     private void renderImage(Graphics g) {
@@ -141,21 +126,14 @@ public class Piece extends DrawableObject {
     /**
      * Overriding DrawableObject's render function so that when this
      * piece needs to be rendered this function is called.
+     *
      * @param g
      */
     @Override
     public void render(Graphics g) {
-        if(img != null) {
+        if (img != null) {
             renderImage(g);
         }
-    }
-
-    /**
-     * Set the owner of this piece to the provided Player
-     * @param _p - The owner of this piece
-     */
-    public void setOwner(Player _p) {
-        owner = _p;
     }
 
     public Player getOwner() {
@@ -163,11 +141,19 @@ public class Piece extends DrawableObject {
     }
 
     /**
+     * Set the owner of this piece to the provided Player
      *
+     * @param _p - The owner of this piece
+     */
+    public void setOwner(Player _p) {
+        owner = _p;
+    }
+
+    /**
      * @return - The Faction the owner of this piece is.
      */
     public Faction getFaction() {
-        if(owner == null) {
+        if (owner == null) {
             logLine("owner was null", 4);
             return null;
         }
@@ -176,6 +162,7 @@ public class Piece extends DrawableObject {
 
     /**
      * Returns the Team the Piece is associated with
+     *
      * @return - Team pointer to the team the owner of the piece is on.
      */
     public Team getTeam() {
@@ -184,6 +171,7 @@ public class Piece extends DrawableObject {
 
     /**
      * Returned using top-left-zeroed method
+     *
      * @return - the current row the piece is on
      */
     public int getCurrentRow() {
@@ -191,11 +179,24 @@ public class Piece extends DrawableObject {
     }
 
     /**
-     *
+     * @param i - the row to set to
+     */
+    public void setCurrentRow(int i) {
+        currentRow = i;
+    }
+
+    /**
      * @return - the current column the piece is in
      */
     public int getCurrentColumn() {
         return currentColumn;
+    }
+
+    /**
+     * @param i - the column to set to
+     */
+    public void setCurrentColumn(int i) {
+        currentColumn = i;
     }
 
     public boolean canGoTo(Square s) {
@@ -203,12 +204,11 @@ public class Piece extends DrawableObject {
     }
 
     /**
-     *
      * @param other
      * @return
      */
     public boolean canKill(Piece other) {
-        if(other == null) return true;
+        if (other == null) return true;
         return other.getTeam() != this.getTeam();
     }
 }

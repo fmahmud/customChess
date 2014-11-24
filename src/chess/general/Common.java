@@ -11,7 +11,6 @@ import java.util.*;
 
 /**
  * Created by Fez on 9/14/14.
- *
  */
 public class Common extends Loggable {
     public static Font buttonFont = new Font("FacitWeb-Regular", Font.PLAIN, 14);
@@ -23,8 +22,8 @@ public class Common extends Loggable {
 
     public static <T> Vector<T> intersect(Vector<T> a, Vector<T> b) {
         Vector<T> c = new Vector<T>();
-        for(int i = 0; i < a.size(); i++) {
-            if(b.contains(a.get(i))) {
+        for (int i = 0; i < a.size(); i++) {
+            if (b.contains(a.get(i))) {
                 c.add(a.get(i));
             }
         }
@@ -33,8 +32,8 @@ public class Common extends Loggable {
 
     public static <T> Set<T> intersect(Set<T> a, Set<T> b) {
         Set<T> c = new HashSet<T>();
-        for(T o : a) {
-            if(b.contains(o)) {
+        for (T o : a) {
+            if (b.contains(o)) {
                 c.add(o);
             }
         }
@@ -44,8 +43,8 @@ public class Common extends Loggable {
     public static <T, V> Vector<V> removeOutliers(final Vector<T> allowed, HashMap<T, V> hashMap) {
         Vector<T> keys = new Vector<T>(hashMap.keySet());
         Vector<V> removed = new Vector<V>();
-        for(T t : keys) {
-            if(allowed.contains(t)) continue;
+        for (T t : keys) {
+            if (allowed.contains(t)) continue;
             removed.add(hashMap.remove(t));
         }
         return removed;
@@ -54,6 +53,7 @@ public class Common extends Loggable {
     /**
      * Returns a <code>HashSet</code> containing n random numbers between min and max
      * inclusive. Returns whole range if n > (max - min)
+     *
      * @param min
      * @param max
      * @param n
@@ -62,9 +62,9 @@ public class Common extends Loggable {
     public static HashSet<Integer> getNRandomUniqueNumbersBetween(int min, int max, int n) {
         HashSet<Integer> toRet = new HashSet<Integer>();
         int rangeSize = max - min;
-        if(n > rangeSize) n = rangeSize;
-        while(toRet.size() < n) {
-            toRet.add((int)(Math.random() * rangeSize) + min + 1);
+        if (n > rangeSize) n = rangeSize;
+        while (toRet.size() < n) {
+            toRet.add((int) (Math.random() * rangeSize) + min + 1);
         }
         return toRet;
     }
@@ -72,14 +72,14 @@ public class Common extends Loggable {
     public static HashSet<String> getNRandomUniqueLinesInFile(int n, File f) throws IOException {
         HashSet<String> toRet = new HashSet<String>();
         int linesInFile = countLines(f);
-        if(n > linesInFile) n = linesInFile;
+        if (n > linesInFile) n = linesInFile;
         HashSet<Integer> numbers = Common.getNRandomUniqueNumbersBetween(0, linesInFile, n);
         FileInputStream fs = new FileInputStream(f);
         BufferedReader br = new BufferedReader(new InputStreamReader(fs));
         Integer i = 0;
-        while(toRet.size() < n) {
+        while (toRet.size() < n) {
             String s = br.readLine();
-            if(numbers.contains(i)) {
+            if (numbers.contains(i)) {
                 toRet.add(s);
             }
             ++i;
@@ -124,8 +124,8 @@ public class Common extends Loggable {
 
     public static <T> Vector<T> removeDuplicates(Vector<T> a) {
         Vector<T> toRet = new Vector<T>();
-        for(T t : a) {
-            if(toRet.contains(t))
+        for (T t : a) {
+            if (toRet.contains(t))
                 continue;
             toRet.add(t);
         }
@@ -134,7 +134,7 @@ public class Common extends Loggable {
 
     public static Vector<File> getFilesInDir(File directory) {
         File[] temp = directory.listFiles();
-        if(temp != null)
+        if (temp != null)
             return new Vector<File>(Arrays.asList(temp));
         else return new Vector<File>();
     }
@@ -157,7 +157,7 @@ public class Common extends Loggable {
             }
             reader.close();
             return stringBuilder.toString();
-        } catch(Exception e) {
+        } catch (Exception e) {
 
         }
         return "";
@@ -197,18 +197,19 @@ public class Common extends Loggable {
      * Returns k samples from the file f. Assuming each sample is on a
      * separate line.
      * if k > n then null strings will be at the end of the array
+     *
      * @param f
      * @return
      */
     public static String getRandomLineInFile(File f) throws IOException {
         int numLinesInFile = countLines(f);
-        int randomLineNum = (int)(Math.random() * numLinesInFile);
+        int randomLineNum = (int) (Math.random() * numLinesInFile);
         FileInputStream fs = new FileInputStream(f);
         BufferedReader br = new BufferedReader(new InputStreamReader(fs));
-        for(int i = 0; i != randomLineNum; ++i) {
+        for (int i = 0; i != randomLineNum; ++i) {
             br.readLine();
         }
-        String toRet =  br.readLine();
+        String toRet = br.readLine();
         fs.close();
         br.close();
         return toRet;

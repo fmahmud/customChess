@@ -25,7 +25,7 @@ public class Event extends DrawableObject {
                  int _tc,
                  int _wt, int _bt,
                  String _gt) {
-        super("Event("+_tc+")");
+        super("Event(" + _tc + ")");
         origin = _or;
         destination = _d;
         victim = _v;
@@ -46,7 +46,7 @@ public class Event extends DrawableObject {
     }
 
     public void setUnselectedColors() {
-        if(tCount % 2 == 1) {
+        if (tCount % 2 == 1) {
             canvas.setBackground(ConfigMaster.whiteItem);
             canvas.setForeground(ConfigMaster.blackItem);
         } else {
@@ -57,24 +57,35 @@ public class Event extends DrawableObject {
 
     private String getActionEffect() {
         String s = "";
-        if(moveType == 1) {
+        if (moveType == 1) {
             s += "moved " + offender.getPieceName() + " from<br>"
-                    + origin.getCoordinatesAsString()+" to "
-                    + destination.getCoordinatesAsString()+".";
+                    + origin.getCoordinatesAsString() + " to "
+                    + destination.getCoordinatesAsString() + ".";
         } else {
             s += "killed " + victim.getPieceName() + " at "
                     + destination.getCoordinatesAsString() + " with<br>"
                     + offender.getPieceName() + " from "
-                    + origin.getCoordinatesAsString()+".";
+                    + origin.getCoordinatesAsString() + ".";
         }
 
-        switch(effectType) {
-            case 1: s += " Check!"; break;
-            case 2: s += " Stalemate!"; break;
-            case 3: s += " Checkmate!"; break;
-            case 4: s += " Castled."; break;
-            case 5: s += " Enpassant."; break;
-            default: break;
+        switch (effectType) {
+            case 1:
+                s += " Check!";
+                break;
+            case 2:
+                s += " Stalemate!";
+                break;
+            case 3:
+                s += " Checkmate!";
+                break;
+            case 4:
+                s += " Castled.";
+                break;
+            case 5:
+                s += " Enpassant.";
+                break;
+            default:
+                break;
         }
         return s;
     }
@@ -82,12 +93,13 @@ public class Event extends DrawableObject {
 
     /**
      * Should return the event in string form.
+     *
      * @return
      */
     @Override
     public String toString() {
-        return "["+gameTime+"]["+tCount+"]: "+offender.getOwner().getName()+"<br>"
-                + getActionEffect()+"";
+        return "[" + gameTime + "][" + tCount + "]: " + offender.getOwner().getName() + "<br>"
+                + getActionEffect() + "";
     }
 
     public Square getOrigin() {
@@ -104,9 +116,9 @@ public class Event extends DrawableObject {
         g2.setFont(Common.buttonFont);
         String[] toDraw = this.toString().split("<br>");
         int y = 20;
-        for(String s : toDraw) {
+        for (String s : toDraw) {
             g2.drawString(s, 5, y);
-            y+=20;
+            y += 20;
         }
     }
 

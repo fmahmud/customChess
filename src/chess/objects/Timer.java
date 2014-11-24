@@ -5,7 +5,6 @@ import chess.general.Loggable;
 import javax.swing.*;
 
 /**
- *
  * Created by Fez on 11/20/14.
  */
 public class Timer extends Loggable {
@@ -54,14 +53,14 @@ public class Timer extends Loggable {
             @Override
             public void run() {
                 int i = 0;
-                while(!ended) {
+                while (!ended) {
                     try {
                         Thread.sleep(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    if(!paused) {
-                        if(i % 10 == 0) {
+                    if (!paused) {
+                        if (i % 10 == 0) {
                             ++seconds;
                             if (seconds >= 60) {
                                 seconds = 0;

@@ -37,7 +37,7 @@ public class SettingsSlate extends AbstractSlate { //abstract a menu class.
     private JButton makeButton(String name, String action) {
         JButton toRet = Common.buttonFactory(name, action, buttonFont);
         ActionListener a = null;
-        if(action.equals("accept")) {
+        if (action.equals("accept")) {
             a = new AcceptChangesBtnListener();
         }
         toRet.addActionListener(a);
@@ -79,7 +79,7 @@ public class SettingsSlate extends AbstractSlate { //abstract a menu class.
         lblColorSelectedSquare = new JLabel("Selected Square");
         lblColorKillDestination = new JLabel("Kill Destination");
         lblColorMoveDestination = new JLabel("Move Destination");
-        if(centerPanel == null) {
+        if (centerPanel == null) {
             logLine("Center panel was null", 0);
         }
         centerPanel.setLayout(null);
@@ -98,33 +98,39 @@ public class SettingsSlate extends AbstractSlate { //abstract a menu class.
         centerPanel.add(btnReset);
 
         int firstCol = 210;
-        int x = firstCol; int y = 5;
+        int x = firstCol;
+        int y = 5;
         int width = 64;
         int lblWidth = 150;
         lblColorSelectedSquare.setBounds(x, y, lblWidth, width);
         x += 10 + lblWidth;
         colorSelectedSquare.setBounds(x, y, width, width);
-        x = firstCol; y += 5 + width;
+        x = firstCol;
+        y += 5 + width;
 
         lblColorKillDestination.setBounds(x, y, lblWidth, width);
         x += 10 + lblWidth;
         colorKillDestination.setBounds(x, y, width, width);
-        x = firstCol; y += 5 + width;
+        x = firstCol;
+        y += 5 + width;
 
         lblColorMoveDestination.setBounds(x, y, lblWidth, width);
         x += 10 + lblWidth;
         colorMoveDestination.setBounds(x, y, width, width);
-        x = firstCol; y += 5 + width;
+        x = firstCol;
+        y += 5 + width;
 
         lblColorWhiteSquare.setBounds(x, y, lblWidth, width);
         x += 10 + lblWidth;
         colorWhiteSquare.setBounds(x, y, width, width);
-        x = firstCol; y += 5 + width;
+        x = firstCol;
+        y += 5 + width;
 
         lblColorBlackSquare.setBounds(x, y, lblWidth, width);
         x += 10 + lblWidth;
         colorBlackSquare.setBounds(x, y, width, width);
-        x = firstCol-40; y += 20 + width;
+        x = firstCol - 40;
+        y += 20 + width;
 
         int btnWidth = 90;
         int btnHeight = 20;
@@ -174,6 +180,7 @@ public class SettingsSlate extends AbstractSlate { //abstract a menu class.
     public class ColorSquareListener implements MouseListener {
         private JPanel square;
         private Color tempColor;
+
         public ColorSquareListener(JPanel p, Color c) {
             square = p;
             tempColor = c;
@@ -181,7 +188,7 @@ public class SettingsSlate extends AbstractSlate { //abstract a menu class.
 
         private Color askUserForColor(Color original) {
             Color c = JColorChooser.showDialog(null, "Done", original);
-            return c == null? original : c;
+            return c == null ? original : c;
         }
 
         @Override

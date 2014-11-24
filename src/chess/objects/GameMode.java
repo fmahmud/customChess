@@ -16,7 +16,6 @@ import java.awt.event.ActionListener;
 
 /**
  * Class that keeps track of the various teams, the board and the turn order.
- *
  */
 public class GameMode extends Loggable {
     protected Team[] teams;
@@ -29,40 +28,9 @@ public class GameMode extends Loggable {
     protected Board board;
     protected DrawableBoard drawBoard;
     protected JButton btnUndo;
-    private Timer gameTimer;
     String[][] boardLayout;
+    private Timer gameTimer;
     private Timer whiteTimer, blackTimer;
-
-    /**
-     * Gets the next active player while incrementing the turn count.
-     * This ensures that when the next player is requested the act of
-     * getting the next player and incrementing turn count is atomic.
-     * @return - <code>Player</code> pointer pointing to the next active
-     *           player.
-     */
-    public Player getNextActivePlayer()  {
-        return playerOrder[((turnCount++) % playerOrder.length)];
-    }
-
-    private int getCurrentTeamIndex() {
-        return (turnCount-1) % numTeams;
-    }
-
-    private void addPieceToKilledList(Piece piece, Player player) {
-
-    }
-
-    /**
-     * Gets the current <code>Player</code> based on the turn count.
-     * @return - <code>Player</code> who's turn it currently is.
-     */
-    public Player getCurrentActivePlayer()  {
-        return playerOrder[ (turnCount % playerOrder.length) ];
-    }
-
-    public int getTurnCount() {
-        return turnCount;
-    }
 
     public GameMode(String _name, int _numTeams, int[] numPlayersInTeams, Faction[][] factions,
                     JPanel[] panels) {
@@ -78,11 +46,11 @@ public class GameMode extends Loggable {
         int totalNumPlayers = 0;
         for (int i = 0; i < numTeams; i++) {
             //todo: fix team name - push to user input
-            teams[i] = new Team(numPlayersInTeams[i], factions[i], "Team"+(i+1));
+            teams[i] = new Team(numPlayersInTeams[i], factions[i], "Team" + (i + 1));
             totalNumPlayers += numPlayersInTeams[i];
         }
         playerOrder = new Player[totalNumPlayers];
-        for(int i = 0; i < totalNumPlayers; ++i) {
+        for (int i = 0; i < totalNumPlayers; ++i) {
             playerOrder[i] = teams[i % numTeams].getPlayer(i / numTeams);
         }
         playerOrder[0] = teams[0].getPlayer(0);
@@ -93,8 +61,8 @@ public class GameMode extends Loggable {
         drawBoard = new DrawableBoard(board, modeName);
         initializeBoard();
         setBoardLayout(new JSONObject());
-        for(int i = 0; i < boardLayout.length; ++i) {
-            for(int j = 0; j < boardLayout[i].length; ++j) {
+        for (int i = 0; i < boardLayout.length; ++i) {
+            for (int j = 0; j < boardLayout[i].length; ++j) {
                 setPieceAt(boardLayout[i][j], j, i);
             }
         }
@@ -110,6 +78,42 @@ public class GameMode extends Loggable {
         setupFooterPanel();
     }
 
+    public GameMode(JSONObject o) {
+        super(o.getString("title"));
+    }
+
+    /**
+     * Gets the next active player while incrementing the turn count.
+     * This ensures that when the next player is requested the act of
+     * getting the next player and incrementing turn count is atomic.
+     *
+     * @return - <code>Player</code> pointer pointing to the next active
+     * player.
+     */
+    public Player getNextActivePlayer() {
+        return playerOrder[((turnCount++) % playerOrder.length)];
+    }
+
+    private int getCurrentTeamIndex() {
+        return (turnCount - 1) % numTeams;
+    }
+
+    private void addPieceToKilledList(Piece piece, Player player) {
+
+    }
+
+    /**
+     * Gets the current <code>Player</code> based on the turn count.
+     *
+     * @return - <code>Player</code> who's turn it currently is.
+     */
+    public Player getCurrentActivePlayer() {
+        return playerOrder[(turnCount % playerOrder.length)];
+    }
+
+    public int getTurnCount() {
+        return turnCount;
+    }
 
     private void setupFooterPanel() {
 
@@ -162,7 +166,7 @@ public class GameMode extends Loggable {
     }
 
     private void setupCenterPanel() {
-        logLine("centerPanel == null = "+(centerPanel==null)+", drawBoard == null = "+(drawBoard==null), 0);
+        logLine("centerPanel == null = " + (centerPanel == null) + ", drawBoard == null = " + (drawBoard == null), 0);
         centerPanel.add(drawBoard.getCanvas());
     }
 
@@ -175,19 +179,19 @@ public class GameMode extends Loggable {
      * @param row - the current row the piece is in.
      */
     protected void setPieceAt(String s, int col, int row) {
-        if(s.equals(" ")) return;
+        if (s.equals(" ")) return;
         Player owner;
         Piece p = new Piece(Runner.pieceLibrary.getJSONObject(s));
 
-        if(s.contains("white"))
+        if (s.contains("white"))
             owner = playerOrder[0];
-        else if(s.contains("black"))
+        else if (s.contains("black"))
             owner = playerOrder[1];
         else
             owner = null;
 
-        if(p == null) {
-            if(!s.equals(" "))
+        if (p == null) {
+            if (!s.equals(" "))
                 logLine("Piece definition for " + s + " was null...", 0);
         } else {
             p.setOwner(owner);
@@ -196,7 +200,7 @@ public class GameMode extends Loggable {
     }
 
     private void setBoardLayout(JSONObject layout) {
-        boardLayout = new String[][] {
+        boardLayout = new String[][]{
                 {"whiteRook", "whiteKnight", "whiteBishop", "whiteKing", "whiteQueen", "whiteBishop", "whiteKnight", "whiteRook"},
                 {"whitePawn", "whitePawn", "whitePawn", "whitePawn", "whitePawn", "whitePawn", "whitePawn", "whitePawn"},
                 {" ", " ", " ", " ", " ", " ", " ", " "},
@@ -208,15 +212,11 @@ public class GameMode extends Loggable {
         };
     }
 
-    public GameMode(JSONObject o) {
-        super(o.getString("title"));
-    }
-
     /**
      * When a move is completed the turn order is incremented.
      * Also, the possibility of a player being under check is
      * tested and dealt with.
-     *
+     * <p/>
      * why is this so simple?
      * idea modify/update the panels.
      */
@@ -251,13 +251,14 @@ public class GameMode extends Loggable {
      * After user input has provided a starting <code>Square</code>
      * and a destination <code>Square</code> from and to which a their
      * <code>Piece</code> is moving, this function is called.
-     *
+     * <p/>
      * why is this boolean? it always returns true.
      * why is this not so clean?
+     *
      * @param from - <code>Square</code> from which the <code>Piece</code> is
      *             moving
-     * @param to - <code>Square</code> to which the <code>Piece</code> is
-     *           moving
+     * @param to   - <code>Square</code> to which the <code>Piece</code> is
+     *             moving
      * @return - true.
      */
     public boolean tryMoveFromTo(Square from, Square to) {
@@ -285,13 +286,14 @@ public class GameMode extends Loggable {
      * and a destination <code>Square</code> from and to which a their
      * <code>Piece</code> is moving, this function is called if and only
      * if there is an enemy piece in the destination.
-     *
+     * <p/>
      * why is this boolean? it always returns true.
      * why is this not so clean?
+     *
      * @param from - <code>Square</code> from which the <code>Piece</code> is
      *             moving
-     * @param to - <code>Square</code> to which the <code>Piece</code> is
-     *           moving
+     * @param to   - <code>Square</code> to which the <code>Piece</code> is
+     *             moving
      * @return - true.
      */
     public boolean tryKillAt(Square from, Square to) {
@@ -319,11 +321,10 @@ public class GameMode extends Loggable {
 
     /**
      * Nothing currently. Plugged in.
-     *
      */
     public void undo() {
         Event e = history.pop();
-        if(e == null) return;
+        if (e == null) return;
         Square origin = e.getOrigin();
         Square destination = e.getDestination();
         Piece victim = e.getVictim();
@@ -337,7 +338,7 @@ public class GameMode extends Loggable {
         turnCount -= 2;
         board.setCurrentPlayer(getNextActivePlayer());
         board.updateAllValidDestinations();
-        if(victim != null) {
+        if (victim != null) {
             //why is this like this?
 //            killedWhitePieces.remove(victim);
 //            killedBlackPieces.remove(victim);
@@ -357,7 +358,7 @@ public class GameMode extends Loggable {
     /**
      * At the end of every move this function is called to deal with the
      * possibility of a player being under check.
-     *
+     * <p/>
      * todo: figure this out.
      */
     private void dealWithCheck() {
@@ -379,9 +380,9 @@ public class GameMode extends Loggable {
      */
     private void initializeBoard() {
         boolean white = true;
-        for(int i = 0; i < 8; ++i) {
-            for(int j = 0; j < 8; ++j) {
-                if(white) {
+        for (int i = 0; i < 8; ++i) {
+            for (int j = 0; j < 8; ++j) {
+                if (white) {
                     board.setSquareAt(j, i, new Square(j, i, ConfigMaster.whiteSquare));
                 } else {
                     board.setSquareAt(j, i, new Square(j, i, ConfigMaster.blackSquare));
