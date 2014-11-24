@@ -28,6 +28,8 @@ public class GameMode extends Loggable {
     protected Board board;
     protected DrawableBoard drawBoard;
     protected JButton btnUndo;
+    private Timer gameTimer;
+
 
     String[][] boardLayout;
 
@@ -131,9 +133,9 @@ public class GameMode extends Loggable {
     private void setupHeaderPanel() {
         JLabel lblGameTime = new JLabel("00:00");
         lblGameTime.setFont(ConfigMaster.headerFont);
-        Timer t = new Timer("Game Time", lblGameTime);
+        gameTimer = new Timer("Game Time", lblGameTime);
         headerPanel.add(lblGameTime);
-        t.start();
+        gameTimer.start();
         logLine("timer initiated?", 0);
     }
 
@@ -324,6 +326,7 @@ public class GameMode extends Loggable {
 
     public void onEndGame() {
         //do something later?
+        gameTimer.stop();
     }
 
 
