@@ -4,6 +4,7 @@ import chess.baseObjects.Game;
 import chess.baseObjects.GameMode;
 import chess.custom.Faction;
 import chess.gui.objects.AbstractSlate;
+
 import javax.swing.*;
 
 
@@ -43,7 +44,7 @@ public class PlayGameSlate extends AbstractSlate {
 
     @Override
     public void onClose() {
-
+        game.endGame();
     }
 
     @Override

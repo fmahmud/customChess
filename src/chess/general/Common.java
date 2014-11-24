@@ -44,6 +44,42 @@ public class Common extends Loggable {
         return c;
     }
 
+    /**
+     * Returns a <code>HashSet</code> containing n random numbers between min and max
+     * inclusive. Returns whole range if n > (max - min)
+     * @param min
+     * @param max
+     * @param n
+     * @return
+     */
+    public static HashSet<Integer> getNRandomUniqueNumbersBetween(int min, int max, int n) {
+        HashSet<Integer> toRet = new HashSet<Integer>();
+        int rangeSize = max - min;
+        if(n > rangeSize) n = rangeSize;
+        while(toRet.size() < n) {
+            toRet.add((int)(Math.random() * rangeSize) + min + 1);
+        }
+        return toRet;
+    }
+
+    public static HashSet<String> getNRandomUniqueLinesInFile(int n, File f) throws IOException {
+        HashSet<String> toRet = new HashSet<String>();
+        int linesInFile = countLines(f);
+        if(n > linesInFile) n = linesInFile;
+        HashSet<Integer> numbers = Common.getNRandomUniqueNumbersBetween(0, linesInFile, n);
+        FileInputStream fs = new FileInputStream(f);
+        BufferedReader br = new BufferedReader(new InputStreamReader(fs));
+        Integer i = 0;
+        while(toRet.size() < n) {
+            String s = br.readLine();
+            if(numbers.contains(i)) {
+                toRet.add(s);
+            }
+            ++i;
+        }
+        return toRet;
+    }
+
     public static JButton buttonFactory(String name, String action, Font f) {
         JButton b = new JButton(name);
         b.setActionCommand(action);
@@ -126,7 +162,6 @@ public class Common extends Loggable {
         pw.write(s);
         pw.flush();
         pw.close();
-
     }
 
     public static int countLines(File f) throws IOException {
