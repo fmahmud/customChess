@@ -1,16 +1,13 @@
 package chess.general;
 
-import chess.master.ConfigMaster;
+import chess.config.ConfigMaster;
 import org.json.JSONObject;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Vector;
+import java.util.*;
 
 /**
  * Created by Fez on 9/14/14.
@@ -42,6 +39,16 @@ public class Common extends Loggable {
             }
         }
         return c;
+    }
+
+    public static <T, V> Vector<V> removeOutliers(final Vector<T> allowed, HashMap<T, V> hashMap) {
+        Vector<T> keys = new Vector<T>(hashMap.keySet());
+        Vector<V> removed = new Vector<V>();
+        for(T t : keys) {
+            if(allowed.contains(t)) continue;
+            removed.add(hashMap.remove(t));
+        }
+        return removed;
     }
 
     /**
@@ -191,7 +198,6 @@ public class Common extends Loggable {
      * separate line.
      * if k > n then null strings will be at the end of the array
      * @param f
-     * @param k
      * @return
      */
     public static String getRandomLineInFile(File f) throws IOException {

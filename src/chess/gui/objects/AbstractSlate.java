@@ -1,7 +1,7 @@
 package chess.gui.objects;
 
 import chess.general.Loggable;
-import chess.master.GUIMaster;
+import chess.gui.GUIMaster;
 import chess.master.Runner;
 
 import javax.swing.*;

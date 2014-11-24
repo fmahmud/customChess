@@ -1,9 +1,9 @@
 package chess.gui.slates;
 
-import chess.baseObjects.Game;
-import chess.baseObjects.GameMode;
 import chess.custom.Faction;
 import chess.gui.objects.AbstractSlate;
+import chess.objects.Game;
+import chess.objects.GameMode;
 
 import javax.swing.*;
 

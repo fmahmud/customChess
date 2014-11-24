@@ -1,6 +1,6 @@
 package chess.general;
 
-import chess.master.ConfigMaster;
+import chess.config.ConfigMaster;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -10,29 +10,26 @@ import java.util.HashSet;
  */
 public abstract class Loggable {
     private final static int DEBUG_LEVEL = 0;
+    private final static int NUM_LOGGERS = 600;
     private static HashSet<String> availableNames;
 
     private String debugPrefix;
     private String name;
-
-    private static int numLoggers = 0;
-
     public Loggable(String s) {
         debugPrefix = "["+s+"]: ";
         define();
     }
 
-    private void define(){
+    private void define() {
         if(availableNames == null) {
             try {
-                availableNames = Common.getNRandomUniqueLinesInFile(500, ConfigMaster.namesFileLocation);
+                availableNames = Common.getNRandomUniqueLinesInFile(NUM_LOGGERS, ConfigMaster.namesFileLocation);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         name = availableNames.iterator().next();
         availableNames.remove(name);
-        numLoggers++;
     }
 
 //    protected void logAction(String actionName, String parameters, )

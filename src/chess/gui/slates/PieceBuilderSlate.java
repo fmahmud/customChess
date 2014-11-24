@@ -1,11 +1,11 @@
 package chess.gui.slates;
 
-import chess.baseObjects.MoveStyle;
-import chess.baseObjects.Piece;
+import chess.config.ConfigMaster;
 import chess.general.Common;
 import chess.gui.objects.AbstractSlate;
-import chess.master.ConfigMaster;
 import chess.master.Runner;
+import chess.objects.MoveStyle;
+import chess.objects.Piece;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -39,7 +39,7 @@ public class PieceBuilderSlate extends AbstractSlate {
     public PieceBuilderSlate(AbstractSlate _returnTo) {
         super("PieceBuilderSlate");
 
-        jsonPieces = Runner.pieceLibrary.getAllPiecesAsVector();
+        jsonPieces = Runner.pieceLibrary.getAllJSONObjects();
         objToKey = new HashMap<JSONObject, String>();
         for(JSONObject p : jsonPieces) {
             objToKey.put(p, p.getString("name"));
@@ -345,7 +345,7 @@ public class PieceBuilderSlate extends AbstractSlate {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             for(JSONObject o : jsonPieces) {
-                Runner.pieceLibrary.updatePiece(o, objToKey.get(o));
+                Runner.pieceLibrary.updateJSONObject(objToKey.get(o), o);
             }
             Runner.guiMaster.setCurrentSlate(returnTo);
         }

@@ -1,17 +1,21 @@
 package chess.master;
 
+import chess.config.ConfigMaster;
+import chess.curator.Curator;
 import chess.general.Loggable;
+import chess.gui.GUIMaster;
 import chess.gui.slates.MainMenuSlate;
 
 import javax.swing.*;
 
 public class Runner extends Loggable {
     public static GUIMaster guiMaster;
-    public static PieceMaster pieceLibrary;
+    public static Curator pieceLibrary;
 
     public Runner() {
         super("Runner");
-        pieceLibrary = new PieceMaster(ConfigMaster.piecesLocation);
+        pieceLibrary = new Curator("Pieces", "name");
+        pieceLibrary.addDirectory(ConfigMaster.piecesLocation);
     }
 
     private void run() {

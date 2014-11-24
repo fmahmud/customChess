@@ -1,8 +1,8 @@
 package chess.gui.slates;
 
+import chess.config.ConfigMaster;
 import chess.general.Common;
 import chess.gui.objects.AbstractSlate;
-import chess.master.ConfigMaster;
 import chess.master.Runner;
 
 import javax.swing.*;

@@ -1,12 +1,12 @@
 package chess.gui.objects;
 
-import chess.baseObjects.Board;
-import chess.baseObjects.MoveDestinations;
-import chess.baseObjects.Piece;
-import chess.baseObjects.Square;
+import chess.config.ConfigMaster;
 import chess.general.Loggable;
-import chess.master.ConfigMaster;
-import chess.master.GUIMaster;
+import chess.gui.GUIMaster;
+import chess.objects.Board;
+import chess.objects.MoveDestinations;
+import chess.objects.Piece;
+import chess.objects.Square;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -14,7 +14,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Vector;
 
 /**
  * Created by Fez on 9/30/14.
