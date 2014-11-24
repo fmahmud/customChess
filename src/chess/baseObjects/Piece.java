@@ -1,7 +1,6 @@
 package chess.baseObjects;
 
 import chess.custom.Faction;
-import chess.general.Common;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -11,11 +10,14 @@ import java.io.IOException;
 import java.util.Vector;
 
 public class Piece extends DrawableObject {
+    private static final int IMG_X_OFFSET = 10;
+    private static final int IMG_Y_OFFSET = 10;
+
     private Vector<MoveStyle> moveStyles;
 
     protected Image img;
 
-    protected Vector[] validDestinations;
+    private MoveDestinations moveDestinations;
     private int currentRow, currentColumn;
     private String pieceName;
     private String imagePath;
@@ -50,6 +52,10 @@ public class Piece extends DrawableObject {
         define(obj.getString("name"), obj.getString("imagePath"), obj.getJSONArray("moveStyles"));
     }
 
+    public MoveDestinations getMoveDestinations() {
+        return moveDestinations;
+    }
+
     public void setBeenAttacked(boolean b) {
         beenAttacked = b;
     }
@@ -57,6 +63,10 @@ public class Piece extends DrawableObject {
     public void addMoveStyle(MoveStyle ms) {
         if(!moveStyles.contains(ms))
             moveStyles.add(ms);
+    }
+
+    public Vector<MoveStyle> getMoveStyles() {
+        return moveStyles;
     }
 
     public void addMoveStyle(JSONObject jso) {
@@ -67,14 +77,12 @@ public class Piece extends DrawableObject {
         pieceName = d;
         currentRow = 0;
         currentColumn = 0;
-        validDestinations = new Vector[2];
-        validDestinations[0] = new Vector<Square>();
-        validDestinations[1] = new Vector<Square>();
         moveStyles = new Vector<MoveStyle>();
         imagePath = _path;
         for(int i = 0; i < _ms.length(); ++i) {
             this.addMoveStyle(_ms.getJSONObject(i));
         }
+        moveDestinations = new MoveDestinations();
 
         try {
             img = ImageIO.read(getClass().getResource(_path));
@@ -100,7 +108,6 @@ public class Piece extends DrawableObject {
     }
 
     /**
-     * No validation - assumed right.
      * @param i - the row to set to
      */
     public void setCurrentRow(int i) {
@@ -108,7 +115,6 @@ public class Piece extends DrawableObject {
     }
 
     /**
-     * No validation - assumed right.
      * @param i - the column to set to
      */
     public void setCurrentColumn(int i) {
@@ -123,13 +129,20 @@ public class Piece extends DrawableObject {
         return "("+currentColumn+", "+currentRow+")]: ";
     }
 
+    /**
+     * Renders the piece's <code>img</code> onto the given <code>Graphic</code>
+     * @param g
+     */
     private void renderImage(Graphics g) {
-        int yOff = 10;
-        int xOff = 10;
         Graphics2D g2 = (Graphics2D) g;
-        g2.drawImage(img, xOff, yOff, canvas);
+        g2.drawImage(img, IMG_X_OFFSET, IMG_Y_OFFSET, canvas);
     }
 
+    /**
+     * Overriding DrawableObject's render function so that when this
+     * piece needs to be rendered this function is called.
+     * @param g
+     */
     @Override
     public void render(Graphics g) {
         if(img != null) {
@@ -169,38 +182,6 @@ public class Piece extends DrawableObject {
         return owner.getTeam();
     }
 
-   /**
-     * Updates the list of Squares this piece can reach.
-     * @param board
-     */
-    public void updateValidDestinations(Board board) {
-        this.updateValidDestinations(moveStyles, board);
-    }
-
-
-
-    public void updateValidDestinations(Vector<MoveStyle> moveStyles, Board board) {
-        this.validDestinations[0].clear();
-        this.validDestinations[1].clear();
-        for(MoveStyle ms : moveStyles) {
-            Vector[] vs = ms.getPossibleMoveDestinations(board, getCurrentColumn(), getCurrentRow());
-            this.validDestinations[0].addAll(vs[0]);
-            this.validDestinations[1].addAll(vs[1]);
-        }
-
-        // Removing duplicates because something else is
-        // going wrong somewhere else and I don't know where.
-        Common.removeDuplicates(validDestinations[0]);
-        Common.removeDuplicates(validDestinations[1]);
-
-        String _s = "";
-        for(Square s : (Vector<Square>)validDestinations[0]) {
-            _s += "("+s.getColumn()+", "+s.getRow()+") ";
-        }
-
-        logLine(_s, 4);
-    }
-
     /**
      * Returned using top-left-zeroed method
      * @return - the current row the piece is on
@@ -217,6 +198,10 @@ public class Piece extends DrawableObject {
         return currentColumn;
     }
 
+    public boolean canGoTo(Square s) {
+        return moveDestinations.canKillAt(s) || moveDestinations.canMoveTo(s);
+    }
+
     /**
      *
      * @param other
@@ -225,15 +210,5 @@ public class Piece extends DrawableObject {
     public boolean canKill(Piece other) {
         if(other == null) return true;
         return other.getTeam() != this.getTeam();
-    }
-
-    public Vector<Square> getValidMoveDestinations() {
-        logLine("Size of validMoveDestinations = "+validDestinations[0].size(), 4);
-        return validDestinations[0];
-    }
-
-    public Vector<Square> getValidKillDestinations() {
-        logLine("Size of validKillDestinations = "+validDestinations[1].size(), 4);
-        return validDestinations[1];
     }
 }

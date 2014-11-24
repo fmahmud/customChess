@@ -52,7 +52,7 @@ public class GUIMaster extends Loggable {
         addPanelToPane();
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                close();
+                currentSlate.closeFrame();
             }
         });
         frame.setPreferredSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));

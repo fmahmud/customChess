@@ -2,13 +2,15 @@ package chess.baseObjects;
 
 import chess.general.Loggable;
 
-public class Board extends Loggable{
+import java.util.Vector;
+
+public class Board extends Loggable {
 
     private int width, height;
     private Square[][] board;
     private Player currentPlayer;
     private GameMode gameMode;
-    public static Pathfinder pathfinder;
+    public Pathfinder pathfinder;
 
     public Board(int w, int h, GameMode _gm) {
         super("Board");
@@ -17,7 +19,7 @@ public class Board extends Loggable{
         width = w;
         height = h;
         gameMode = _gm;
-        pathfinder = new Pathfinder();
+        pathfinder = new Pathfinder(this);
         logLine("Done Constructing Board", 2);
     }
 
@@ -31,13 +33,22 @@ public class Board extends Loggable{
         currentPlayer = p;
     }
 
+    private void updateValidDestinations(Piece p) {
+        MoveDestinations moveDestinations = p.getMoveDestinations();
+        moveDestinations.clearAll();
+        Vector<MoveStyle> moveStyles = p.getMoveStyles();
+        for(MoveStyle ms : moveStyles) {
+            pathfinder.generatePath(p, ms, moveDestinations);
+        }
+    }
+
     public void updateAllValidDestinations() {
         for(int i = 0; i < height; ++i) {
             for(int j = 0; j < width; ++j) {
                 Square s = getSquareAt(j, i);
                 Piece p = s.getPiece();
                 if(p != null)
-                    p.updateValidDestinations(this);
+                    updateValidDestinations(p);
             }
         }
     }
@@ -56,7 +67,7 @@ public class Board extends Loggable{
                 Square s = getSquareAt(j, i);
                 Piece p = s.getPiece();
                 if(p == null) continue;
-                if(p.getValidKillDestinations().contains(victimLoc))
+                if(p.canGoTo(victimLoc))
                     return p;
             }
         }

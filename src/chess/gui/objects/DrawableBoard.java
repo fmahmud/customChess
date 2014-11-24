@@ -1,6 +1,7 @@
 package chess.gui.objects;
 
 import chess.baseObjects.Board;
+import chess.baseObjects.MoveDestinations;
 import chess.baseObjects.Piece;
 import chess.baseObjects.Square;
 import chess.general.Loggable;
@@ -19,7 +20,6 @@ import java.util.Vector;
  * Created by Fez on 9/30/14.
  */
 
-//TODO: make this class abstract and put an instance of it in GameMode!
 public class DrawableBoard extends Loggable {
     /**
      * Board is within DrawableBoard as a Board stores the state of the board
@@ -87,10 +87,10 @@ public class DrawableBoard extends Loggable {
         logLine("Right clicked on ("+targCol+", "+targRow+")", 3);
         if(selectedPiece != null && selectedPiece.getOwner() == board.getCurrentPlayer()) {
             logLine("Sel piece is not null and owned by current player", 3);
-            if(validMoveDestinations.contains(targetSquare)) {
+            if(moveDestinations.canMoveTo(targetSquare)) {
                 logLine("Target square is a valid move destination", 3);
                 tryMoveFromTo(selectedSquare, targetSquare);
-            } else if(validKillDestinations.contains(targetSquare)) {
+            } else if(moveDestinations.canKillAt(targetSquare)) {
                 tryKillAt(selectedSquare, targetSquare);
             }
         }
@@ -100,9 +100,8 @@ public class DrawableBoard extends Loggable {
     Square prevSelectedSquare = null;
     Piece selectedPiece = null;
     Piece prevSelectedPiece = null;
-    Vector<Square> defaultVec = new Vector<Square>();
-    Vector<Square> validMoveDestinations = defaultVec;
-    Vector<Square> validKillDestinations = defaultVec;
+    MoveDestinations defaultMoveDestinations = new MoveDestinations();
+    MoveDestinations moveDestinations = defaultMoveDestinations;
 
     private void tryMoveFromTo(Square from, Square to) {
         board.tryMoveFromTo(from, to);
@@ -125,8 +124,7 @@ public class DrawableBoard extends Loggable {
         prevSelectedPiece = null;
         prevSelectedSquare = null;
         selectedSquare = null;
-        validMoveDestinations = defaultVec;
-        validKillDestinations = defaultVec;
+        moveDestinations = defaultMoveDestinations;
         table.clearSelection();
     }
 
@@ -150,11 +148,9 @@ public class DrawableBoard extends Loggable {
             selectedPiece = p;
 
             if(selectedPiece != null && selectedPiece.getOwner() == board.getCurrentPlayer()) {
-                validMoveDestinations = selectedPiece.getValidMoveDestinations();
-                validKillDestinations = selectedPiece.getValidKillDestinations();
+                moveDestinations = p.getMoveDestinations();
             } else {
-                validMoveDestinations = defaultVec;
-                validKillDestinations = defaultVec;
+                moveDestinations = defaultMoveDestinations;
             }
             return true;
         }
@@ -179,9 +175,9 @@ public class DrawableBoard extends Loggable {
                 return currentSquare.getCanvas();
             }
 
-            if(validKillDestinations.contains(currentSquare))
+            if(moveDestinations.canKillAt(currentSquare))
                 currentSquare.setOverlayColor(ConfigMaster.offendLocation);
-            else if(validMoveDestinations.contains(currentSquare))
+            else if(moveDestinations.canMoveTo(currentSquare))
                 currentSquare.setOverlayColor(ConfigMaster.moveLocation);
             else
                 currentSquare.setOverlayColor(ConfigMaster.defaultSquare);

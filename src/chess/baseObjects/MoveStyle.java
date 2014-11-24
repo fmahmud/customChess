@@ -197,18 +197,4 @@ public class MoveStyle extends Loggable {
     public String toString() {
         return "";
     }
-
-    /**
-     * Returns the possible destinations, for both killing and moving. This calls
-     * the specific <code>Pathfinder</code> that is created by the specific
-     * <code>GameMode</code>.
-     * @param board
-     * @param _col
-     * @param _row
-     * @return
-     */
-    public Vector[] getPossibleMoveDestinations(Board board, int _col, int _row) {
-        logLine("Board.pathfinder == null = "+(Board.pathfinder == null), 4);
-        return Board.pathfinder.generatePath(_row, _col, board, this);
-    }
 }

@@ -132,7 +132,6 @@ public class MainMenuSlate extends AbstractSlate {
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            //maybe something else?
             closeFrame();
         }
     }

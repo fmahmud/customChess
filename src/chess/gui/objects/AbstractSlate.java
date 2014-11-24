@@ -62,7 +62,7 @@ public abstract class AbstractSlate extends Loggable {
         //by default do nothing.
     }
 
-    protected void closeFrame() {
+    public void closeFrame() {
         onClose();
         Runner.guiMaster.close();
     }

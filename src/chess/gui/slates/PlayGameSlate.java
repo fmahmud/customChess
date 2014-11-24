@@ -3,11 +3,8 @@ package chess.gui.slates;
 import chess.baseObjects.Game;
 import chess.baseObjects.GameMode;
 import chess.custom.Faction;
-//import chess.gamemodes.ClassicChess;
 import chess.gui.objects.AbstractSlate;
-
 import javax.swing.*;
-import java.io.File;
 
 
 /**
