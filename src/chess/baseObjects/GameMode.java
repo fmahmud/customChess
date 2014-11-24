@@ -131,7 +131,7 @@ public class GameMode extends Loggable {
     }
 
     private void setupHeaderPanel() {
-        JPanel temp = new JPanel(new FlowLayout(FlowLayout.CENTER, 80, 20));
+        JPanel temp = new JPanel(new FlowLayout(FlowLayout.CENTER, 300, 40));
 
         JLabel lblGameTime = new JLabel("00:00");
         JLabel lblWhiteTime = new JLabel("00:00");
@@ -144,7 +144,8 @@ public class GameMode extends Loggable {
         whiteTimer = new Timer("White Time", lblWhiteTime);
         blackTimer = new Timer("Black Time", lblBlackTime);
         temp.add(lblWhiteTime);
-        temp.add(lblGameTime);
+//        temp.add(lblGameTime);
+//        lblGameTime.setVisible(false);
         temp.add(lblBlackTime);
         headerPanel.add(temp);
 
@@ -270,7 +271,8 @@ public class GameMode extends Loggable {
                 1, 0,//todo: temp (check for check, mate and stale)
                 turnCount,
                 whiteTimer.getTotalSeconds(),
-                blackTimer.getTotalSeconds()
+                blackTimer.getTotalSeconds(),
+                gameTimer.getTime()
         );
         history.push(e);
         btnUndo.setEnabled(true);
@@ -306,7 +308,8 @@ public class GameMode extends Loggable {
                 2, 0, //todo: temp (check for check and mate or stale)
                 turnCount,
                 whiteTimer.getTotalSeconds(),
-                blackTimer.getTotalSeconds()
+                blackTimer.getTotalSeconds(),
+                gameTimer.getTime()
         );
         history.push(e);
         btnUndo.setEnabled(true);

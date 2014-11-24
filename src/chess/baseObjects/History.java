@@ -80,15 +80,13 @@ public class History {
                                                       int index, boolean isSelected,
                                                       boolean cellHasFocus) {
             Event e = (Event)listData.elementAt(index);
-            JPanel toRet = e.getCanvas();
-            toRet.setPreferredSize(new Dimension(100, 50));
             if(isSelected && cellHasFocus) {
                 e.setSelectedColors();
             } else {
                 e.setUnselectedColors();
             }
-            return toRet;
-            //todo: add selection based coloring.
+            return e.getCanvas();
+
         }
     }
 }

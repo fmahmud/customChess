@@ -26,9 +26,12 @@ public class Timer extends Loggable {
     }
 
     private void updateLabel() {
-        String strMins = String.format("%02d", minutes);
-        String strSeconds = String.format("%02d", seconds);
-        lblTimeFrame.setText(strMins+":"+strSeconds);
+        lblTimeFrame.setText(getTime());
+    }
+
+    public String getTime() {
+        return String.format("%02d", minutes) + ":"
+                + String.format("%02d", seconds);
     }
 
     public void click() {

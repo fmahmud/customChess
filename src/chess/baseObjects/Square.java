@@ -88,4 +88,8 @@ public class Square extends DrawableObject {
     public void setColumn(int column) {
         this.column = column;
     }
+
+    public String getCoordinatesAsString() {
+        return "("+column+", "+row+")";
+    }
 }
