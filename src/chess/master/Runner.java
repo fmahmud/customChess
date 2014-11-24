@@ -6,20 +6,16 @@ import chess.gui.slates.MainMenuSlate;
 import javax.swing.*;
 
 public class Runner extends Loggable {
-    public static MainMenuSlate menu;
     public static GUIMaster guiMaster;
     public static PieceMaster pieceLibrary;
 
     public Runner() {
         super("Runner");
-        menu = new MainMenuSlate();
-        guiMaster = new GUIMaster(menu);
         pieceLibrary = new PieceMaster(ConfigMaster.piecesLocation);
-
     }
 
     private void run() {
-        menu = new MainMenuSlate();
+        guiMaster = new GUIMaster(new MainMenuSlate());
     }
     
     public static void main(String[] args) {
@@ -34,7 +30,6 @@ public class Runner extends Loggable {
         } catch (UnsupportedLookAndFeelException e) {
 
         }
-
         Runner r = new Runner();
         r.run();
     }
