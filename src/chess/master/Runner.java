@@ -10,12 +10,14 @@ import javax.swing.*;
 
 public class Runner extends Loggable {
     public static GUIMaster guiMaster;
-    public static Curator pieceLibrary;
+    public static Curator pieceCollection, gameCollection;
 
     public Runner() {
         super("Runner");
-        pieceLibrary = new Curator("Pieces", "name");
-        pieceLibrary.addDirectory(ConfigMaster.piecesLocation);
+        pieceCollection = new Curator("Pieces", "name");
+        pieceCollection.addDirectory(ConfigMaster.piecesLocation);
+        gameCollection = new Curator("GameModes", "key");
+        gameCollection.addDirectory(ConfigMaster.gameModesLocation);
     }
 
     public static void main(String[] args) {
@@ -42,20 +44,8 @@ public class Runner extends Loggable {
      *
      * idea list:
      *      - done: Color board with possible destinations
-     *      - Allow board to be flipped for pvp
-     *      - Various game modes like bug house
-     *      - Custom Piece maker
-     *          - Various kill styles
-     *          - Various special abilities?
-     *          - Various move styles
-     *              - wrapping
-     *              - color only
-     *              - multi-step moves
-     *              - move to double occupy square?
-     *              - weirder yet?
-     *              - kill while moving
-     *      - traps/contingencies?
+     *      - Allow board to be flipped for pvp/orient board so lower is player
+     *      - done: Custom Piece maker
      *      - (advanced) AI? for suggestion and playing against
-     *      - fat pieces? take up more space?
      */
 }

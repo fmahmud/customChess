@@ -24,7 +24,6 @@ public class PieceBuilderSlate extends AbstractSlate {
     private JList pieceList, movesList;
     private DefaultListModel pieces, moveStyles;
     private JScrollPane scrollPanePieces, scrollPaneMoveStyles;
-    private AbstractSlate returnTo;
     private Vector<JSONObject> jsonPieces, jsonMoveStyles;
     private JButton btnAccept, btnSavePieceChanges, btnResetPieceChanges;
     private JButton addPiece, removePiece, btnAddMS, btnRemoveMS, btnSaveMSChanges, btnResetMS;
@@ -38,16 +37,15 @@ public class PieceBuilderSlate extends AbstractSlate {
     private JPanel moveStylePanel;
 
     public PieceBuilderSlate(AbstractSlate _returnTo) {
-        super("PieceBuilderSlate");
+        super("PieceBuilderSlate", _returnTo);
 
-        jsonPieces = Runner.pieceLibrary.getAllJSONObjects();
+        jsonPieces = Runner.pieceCollection.getAllJSONObjects();
         objToKey = new HashMap<JSONObject, String>();
         for (JSONObject p : jsonPieces) {
             objToKey.put(p, p.getString("name"));
         }
 
         panelSetup();
-        returnTo = _returnTo;
         addComboBoxListeners();
     }
 
@@ -344,9 +342,9 @@ public class PieceBuilderSlate extends AbstractSlate {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             for (JSONObject o : jsonPieces) {
-                Runner.pieceLibrary.updateJSONObject(objToKey.get(o), o);
+                Runner.pieceCollection.updateJSONObject(objToKey.get(o), o);
             }
-            Runner.guiMaster.setCurrentSlate(returnTo);
+            returnToPreviousSlate();
         }
     }
 

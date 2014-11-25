@@ -3,7 +3,6 @@ package chess.gui.slates;
 import chess.config.ConfigMaster;
 import chess.general.Common;
 import chess.gui.objects.AbstractSlate;
-import chess.master.Runner;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,11 +22,9 @@ public class SettingsSlate extends AbstractSlate { //abstract a menu class.
     JLabel lblColorBlackSquare, lblColorWhiteSquare, lblColorSelectedSquare,
             lblColorKillDestination, lblColorMoveDestination;
     JLabel lblTitle;
-    AbstractSlate slateToReturn;
 
-    public SettingsSlate(AbstractSlate _return) {
-        super("Settings");
-        slateToReturn = _return;
+    public SettingsSlate(AbstractSlate _returnTo) {
+        super("Settings", _returnTo);
         btnAcceptChanges = makeButton("Accept", "accept");
         btnCancel = makeButton("Cancel", "cancel");
         btnReset = makeButton("Reset", "reset");
@@ -159,7 +156,7 @@ public class SettingsSlate extends AbstractSlate { //abstract a menu class.
             ConfigMaster.moveLocation = colorMoveDestination.getBackground();
             ConfigMaster.whiteSquare = colorWhiteSquare.getBackground();
             ConfigMaster.blackSquare = colorBlackSquare.getBackground();
-            Runner.guiMaster.setCurrentSlate(slateToReturn);
+            returnToPreviousSlate();
         }
     }
 

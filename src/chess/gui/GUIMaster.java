@@ -28,7 +28,7 @@ public class GUIMaster extends Loggable {
 
     public void close() {
         logLine("Closing!", 0);
-        Runner.pieceLibrary.saveAllItems();
+        Runner.pieceCollection.saveAllItems();
         frame.dispose();
     }
 

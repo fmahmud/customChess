@@ -1,12 +1,13 @@
 package chess.objects;
 
+import chess.config.ConfigMaster;
 import chess.general.Loggable;
 
 import java.util.Vector;
 
 public class Board extends Loggable {
 
-    public Pathfinder pathfinder;
+    private Pathfinder pathfinder;
     private int width, height;
     private Square[][] board;
     private Player currentPlayer;
@@ -20,7 +21,27 @@ public class Board extends Loggable {
         height = h;
         gameMode = _gm;
         pathfinder = new Pathfinder(this);
+        initializeBoard();
         logLine("Done Constructing Board", 2);
+    }
+
+    /**
+     * Sets the <code>Board</code> object up to contain the correct
+     * number <code>Square</code>s at the right places.
+     */
+    private void initializeBoard() {
+        boolean white = true;
+        for (int i = 0; i < 8; ++i) {
+            for (int j = 0; j < 8; ++j) {
+                if (white) {
+                    setSquareAt(j, i, new Square(j, i, ConfigMaster.whiteSquare));
+                } else {
+                    setSquareAt(j, i, new Square(j, i, ConfigMaster.blackSquare));
+                }
+                white = !white;
+            }
+            white = !white;
+        }
     }
 
     public void setSquareAt(int col, int row, Square s) {

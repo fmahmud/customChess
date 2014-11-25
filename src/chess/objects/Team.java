@@ -1,23 +1,34 @@
 package chess.objects;
 
-import chess.custom.Faction;
 import chess.general.Loggable;
+import org.json.JSONObject;
 
 public class Team extends Loggable {
-    int numberOfPlayers;
-    Player[] players;
+    private Player[] players;
     private String name;
     //idea: something for score?
 
-    public Team(int numPlayers, Faction[] _factions, String _n) {
+    public Team(int numPlayers, String _n) {
         super(_n);
-        numberOfPlayers = numPlayers;
+        define(numPlayers, _n);
+    }
+
+    public Team(JSONObject obj) {
+        super(obj.getString("teamName"));
+        define(obj.getInt("numberOfPlayers") , obj.getString("teamName"));
+    }
+
+    private void define(int _p, String _n) {
         name = _n;
-        players = new Player[numPlayers];
-        for (int i = 0; i < numPlayers; i++) {
+        players = new Player[_p];
+        for (int i = 0; i < _p; i++) {
             //todo: fix player name - push to user input
-            players[i] = new Player(this, _factions[i], name + "_" + (i + 1));
+            players[i] = new Player(this, name + "_" + (i + 1));
         }
+    }
+
+    public int getNumberOfPlayers() {
+        return players.length;
     }
 
     public Player getPlayer(int i) {

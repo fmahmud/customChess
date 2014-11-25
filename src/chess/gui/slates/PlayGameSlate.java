@@ -1,36 +1,34 @@
 package chess.gui.slates;
 
-import chess.custom.Faction;
+import chess.general.Common;
 import chess.gui.objects.AbstractSlate;
-import chess.objects.Game;
 import chess.objects.GameMode;
 
 import javax.swing.*;
+import java.io.File;
 
 
 /**
  * Created by Fez on 9/17/14.
  */
 public class PlayGameSlate extends AbstractSlate {
-    private Game game;
+    private GameMode game;
 
-    public PlayGameSlate() {
-        super("PlayGameSlate");
+    public PlayGameSlate(AbstractSlate _returnTo) {
+        super("PlayGameSlate", _returnTo);
         //usually would invoke a choice of game style
         //then with the game style create a new game
         //and then the game would create a new board.
         //todo new game menu fixing.
-        game = new Game(new GameMode("Classic Chess", 2,
-                new int[]{1, 1},
-                new Faction[][]{
-                        new Faction[]{Faction.WHITE},
-                        new Faction[]{Faction.BLACK}
-                }, new JPanel[]{
-                headerPanel, centerPanel, rightPanel, leftPanel, footerPanel
-
-        }
-        ));
+        File classicChess = new File("/Users/Fez/Documents/workspace/ChessProject/src/chess/gamemodes/classicchess.json");
+        game = new GameMode(Common.getJSONObjFromFile(classicChess));
         panelSetup();
+        game.setHeaderPanel(headerPanel);
+        game.setLeftPanel(leftPanel);
+        game.setCenterPanel(centerPanel);
+        game.setRightPanel(rightPanel);
+        game.setFooterPanel(footerPanel);
+        game.setupPanels();
     }
 
     public JPanel getPnlUpper() {
@@ -49,30 +47,25 @@ public class PlayGameSlate extends AbstractSlate {
     @Override
     protected void setupHeaderPanel() {
         headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
-        game.setHeaderPanel(headerPanel);
     }
 
     @Override
     protected void setupLeftPanel() {
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-        game.setLeftPanel(leftPanel);
     }
 
     @Override
     protected void setupCenterPanel() {
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
-        game.setCenterPanel(centerPanel);
     }
 
     @Override
     protected void setupRightPanel() {
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
-        game.setRightPanel(rightPanel);
     }
 
     @Override
     protected void setupFooterPanel() {
         footerPanel.setLayout(new BoxLayout(footerPanel, BoxLayout.Y_AXIS));
-        game.setFooterPanel(footerPanel);
     }
 }

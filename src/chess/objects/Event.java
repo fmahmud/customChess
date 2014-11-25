@@ -2,6 +2,7 @@ package chess.objects;
 
 import chess.config.ConfigMaster;
 import chess.general.Common;
+import chess.gui.objects.DrawableObject;
 
 import java.awt.*;
 
@@ -13,7 +14,6 @@ public class Event extends DrawableObject {
     private int moveType = 0; //1 = move, 2 = kill.
     private int effectType = 0; //1 = check, 2 = stale, 3 = checkmate
     //4 = castle, 5 = enpassant?
-    private int whiteTime, blackTime;
     private Square origin, destination;
     private Piece victim, offender;
     private String gameTime;
@@ -23,7 +23,6 @@ public class Event extends DrawableObject {
                  Piece _v, Piece _of,
                  int _mt, int _et,
                  int _tc,
-                 int _wt, int _bt,
                  String _gt) {
         super("Event(" + _tc + ")");
         origin = _or;
@@ -33,8 +32,6 @@ public class Event extends DrawableObject {
         tCount = _tc;
         moveType = _mt;
         effectType = _et;
-        whiteTime = _wt;
-        blackTime = _bt;
         gameTime = _gt;
         canvas.setPreferredSize(new Dimension(100, 70));
         this.setUnselectedColors();
@@ -128,14 +125,6 @@ public class Event extends DrawableObject {
 
     public int getEffectType() {
         return effectType;
-    }
-
-    public long getWhiteTime() {
-        return whiteTime;
-    }
-
-    public long getBlackTime() {
-        return blackTime;
     }
 
     public Piece getVictim() {

@@ -1,0 +1,103 @@
+{
+    "key":"classic_chess_01",
+    "name":"Classic Chess",
+    "teams":[
+        {
+            "teamName":"White Team",
+            "numberOfPlayers":1
+        },
+        {
+            "teamName":"Black Team",
+            "numberOfPlayers":1
+        }
+    ],
+    "turnOrder":[
+        "0,0",
+        "1,0"
+    ],
+    "maxTime":-1,
+    "layout":{
+        "rows":[
+            [
+                "whiteRook",
+                "whiteKnight",
+                "whiteBishop",
+                "whiteKing",
+                "whiteQueen",
+                "whiteBishop",
+                "whiteKnight",
+                "whiteRook"
+            ],
+            [
+                "whitePawn",
+                "whitePawn",
+                "whitePawn",
+                "whitePawn",
+                "whitePawn",
+                "whitePawn",
+                "whitePawn",
+                "whitePawn"
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " ",
+                " "
+            ],
+            [
+                "blackPawn",
+                "blackPawn",
+                "blackPawn",
+                "blackPawn",
+                "blackPawn",
+                "blackPawn",
+                "blackPawn",
+                "blackPawn"
+            ],
+            [
+                "blackRook",
+                "blackKnight",
+                "blackBishop",
+                "blackKing",
+                "blackQueen",
+                "blackBishop",
+                "blackKnight",
+                "blackRook"
+            ]
+        ]
+    }
+}

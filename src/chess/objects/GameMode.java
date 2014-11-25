@@ -1,16 +1,15 @@
 package chess.objects;
 
 
-import chess.config.ConfigMaster;
-import chess.custom.Faction;
 import chess.general.Common;
 import chess.general.Loggable;
 import chess.gui.objects.DrawableBoard;
+import chess.gui.objects.DrawableTimer;
 import chess.master.Runner;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,69 +17,75 @@ import java.awt.event.ActionListener;
  * Class that keeps track of the various teams, the board and the turn order.
  */
 public class GameMode extends Loggable {
-    protected Team[] teams;
-    protected int numTeams;
+    private String modeName;
+    private Team[] teams;
+    private String[][] startingLayout;
+    private Player[] playerOrder;
+    private int maxTime;
+    private DrawableTimer[] timers;
+
     protected int turnCount = 0;
-    protected Player[] playerOrder;
     protected JPanel leftPanel, rightPanel, headerPanel, footerPanel, centerPanel;
-    protected String modeName;
     protected History history;
     protected Board board;
     protected DrawableBoard drawBoard;
     protected JButton btnUndo;
-    String[][] boardLayout;
-    private Timer gameTimer;
-    private Timer whiteTimer, blackTimer;
-
-    public GameMode(String _name, int _numTeams, int[] numPlayersInTeams, Faction[][] factions,
-                    JPanel[] panels) {
-        super(_name);
-        headerPanel = panels[0];
-        centerPanel = panels[1];
-        rightPanel = panels[2];
-        leftPanel = panels[3];
-        footerPanel = panels[4];
-        modeName = _name;
-        this.numTeams = _numTeams;
-        teams = new Team[numTeams];
-        int totalNumPlayers = 0;
-        for (int i = 0; i < numTeams; i++) {
-            //todo: fix team name - push to user input
-            teams[i] = new Team(numPlayersInTeams[i], factions[i], "Team" + (i + 1));
-            totalNumPlayers += numPlayersInTeams[i];
-        }
-        playerOrder = new Player[totalNumPlayers];
-        for (int i = 0; i < totalNumPlayers; ++i) {
-            playerOrder[i] = teams[i % numTeams].getPlayer(i / numTeams);
-        }
-        playerOrder[0] = teams[0].getPlayer(0);
-        playerOrder[1] = teams[1].getPlayer(0);
-
-        //why is this here? push up to GameMode?
-        board = new Board(8, 8, this);
-        drawBoard = new DrawableBoard(board, modeName);
-        initializeBoard();
-        setBoardLayout(new JSONObject());
-        for (int i = 0; i < boardLayout.length; ++i) {
-            for (int j = 0; j < boardLayout[i].length; ++j) {
-                setPieceAt(boardLayout[i][j], j, i);
-            }
-        }
-
-        board.updateAllValidDestinations();
-        board.setCurrentPlayer(playerOrder[0]);
-        history = new History();
-
-        setupCenterPanel();
-        setupLeftPanel();
-        setupRightPanel();
-        setupHeaderPanel();
-        setupFooterPanel();
-    }
+    private DrawableTimer gameTimer;
 
     public GameMode(JSONObject o) {
-        super(o.getString("title"));
+        super(o.getString("name"));
+
+        // name of game type
+        modeName = o.getString("name");
+
+        // layout
+        setStartingLayout(o.getJSONObject("layout"));
+
+        // team structure
+        JSONArray jsonTeams = o.getJSONArray("teams");
+        teams = new Team[jsonTeams.length()];
+        for(int i = 0; i < jsonTeams.length(); ++i) {
+            teams[i] = new Team(jsonTeams.getJSONObject(i));
+        }
+
+        //////////////////////////////////////////////////////////
+        // Turn order will be stored as tuples:
+        // "0,0","1,0" means team 0's player 0 will go first
+        // then team 1's player 0 will go next.
+        // Stored as array of Strings.
+        //////////////////////////////////////////////////////////
+        JSONArray tuples = o.getJSONArray("turnOrder");
+        playerOrder = new Player[tuples.length()];
+        for(int i = 0; i < tuples.length(); ++i) {
+            String[] tuple = tuples.getString(i).split(",");
+            playerOrder[i] = teams[Integer.parseInt(tuple[0])].getPlayer(Integer.parseInt(tuple[1]));
+        }
+
+        // timers and max time
+        maxTime = o.getInt("maxTime"); //max time per player
+        timers = new DrawableTimer[playerOrder.length];
+        for(int i = 0; i < timers.length; ++i ) {
+            timers[i] = new DrawableTimer(playerOrder[i].getName(), maxTime);
+        }
+        gameTimer = new DrawableTimer("Game Time");
+        gameTimer.start();
+        gameTimer.click();
+        this.define();
     }
+
+    private void define() {
+        board = new Board(8, 8, this);
+        drawBoard = new DrawableBoard(board, modeName);
+        for (int i = 0; i < startingLayout.length; ++i) {
+            for (int j = 0; j < startingLayout[i].length; ++j) {
+                board.setPieceAt(getPieceFromName(startingLayout[i][j]), j, i);
+            }
+        }
+        board.updateAllValidDestinations();
+        incrementTurnOrder();
+        history = new History();
+    }
+
 
     /**
      * Gets the next active player while incrementing the turn count.
@@ -91,28 +96,7 @@ public class GameMode extends Loggable {
      * player.
      */
     public Player getNextActivePlayer() {
-        return playerOrder[((turnCount++) % playerOrder.length)];
-    }
-
-    private int getCurrentTeamIndex() {
-        return (turnCount - 1) % numTeams;
-    }
-
-    private void addPieceToKilledList(Piece piece, Player player) {
-
-    }
-
-    /**
-     * Gets the current <code>Player</code> based on the turn count.
-     *
-     * @return - <code>Player</code> who's turn it currently is.
-     */
-    public Player getCurrentActivePlayer() {
-        return playerOrder[(turnCount % playerOrder.length)];
-    }
-
-    public int getTurnCount() {
-        return turnCount;
+        return playerOrder[((turnCount - 1) % playerOrder.length)];
     }
 
     private void setupFooterPanel() {
@@ -135,30 +119,11 @@ public class GameMode extends Loggable {
     }
 
     private void setupHeaderPanel() {
-        JPanel temp = new JPanel(new FlowLayout(FlowLayout.CENTER, 300, 40));
-
-        JLabel lblGameTime = new JLabel("00:00");
-        JLabel lblWhiteTime = new JLabel("00:00");
-        JLabel lblBlackTime = new JLabel("00:00");
-        lblGameTime.setFont(ConfigMaster.titleFont);
-        lblWhiteTime.setFont(ConfigMaster.headerOneFont);
-        lblBlackTime.setFont(ConfigMaster.headerOneFont);
-
-        gameTimer = new Timer("Game Time", lblGameTime);
-        whiteTimer = new Timer("White Time", lblWhiteTime);
-        blackTimer = new Timer("Black Time", lblBlackTime);
-        temp.add(lblWhiteTime);
-//        temp.add(lblGameTime);
-//        lblGameTime.setVisible(false);
-        temp.add(lblBlackTime);
-        headerPanel.add(temp);
-
-        gameTimer.start();
-        gameTimer.click();
-        whiteTimer.start();
-        blackTimer.start();
-        whiteTimer.click();
-        logLine("timer initiated?", 0);
+//        for(DrawableTimer timer : timers) {
+//            headerPanel.add(timer.getCanvas());
+//            timer.start();
+//        }
+        headerPanel.add(gameTimer.getCanvas());
     }
 
     private void setupLeftPanel() {
@@ -166,23 +131,21 @@ public class GameMode extends Loggable {
     }
 
     private void setupCenterPanel() {
-        logLine("centerPanel == null = " + (centerPanel == null) + ", drawBoard == null = " + (drawBoard == null), 0);
         centerPanel.add(drawBoard.getCanvas());
     }
 
-    /**
-     * Sets the piece at (<code>col</code>, <code>row</code>) to the
-     * correct <code>Piece</code> depending on the value of <code>c</code>.
-     * Calls <code>getPieceFromChar(...)</code> to determine the piece.
-     *
-     * @param col - the current column the piece is in.
-     * @param row - the current row the piece is in.
-     */
-    protected void setPieceAt(String s, int col, int row) {
-        if (s.equals(" ")) return;
-        Player owner;
-        Piece p = new Piece(Runner.pieceLibrary.getJSONObject(s));
 
+    /**
+     *
+     * @param s
+     */
+    protected Piece getPieceFromName(String s) {
+        if (s.equals(" ")) return null;
+        Player owner;
+        Piece p = new Piece(Runner.pieceCollection.getJSONObject(s));
+
+        //todo: change this when pieces are in GameMode...
+        //idea: "white1_Rook" (team)(playerNo)_(PieceName)
         if (s.contains("white"))
             owner = playerOrder[0];
         else if (s.contains("black"))
@@ -190,26 +153,19 @@ public class GameMode extends Loggable {
         else
             owner = null;
 
-        if (p == null) {
-            if (!s.equals(" "))
-                logLine("Piece definition for " + s + " was null...", 0);
-        } else {
-            p.setOwner(owner);
-            board.setPieceAt(p, col, row);
-        }
+       p.setOwner(owner);
+       return p;
     }
 
-    private void setBoardLayout(JSONObject layout) {
-        boardLayout = new String[][]{
-                {"whiteRook", "whiteKnight", "whiteBishop", "whiteKing", "whiteQueen", "whiteBishop", "whiteKnight", "whiteRook"},
-                {"whitePawn", "whitePawn", "whitePawn", "whitePawn", "whitePawn", "whitePawn", "whitePawn", "whitePawn"},
-                {" ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " "},
-                {" ", " ", " ", " ", " ", " ", " ", " "},
-                {"blackPawn", "blackPawn", "blackPawn", "blackPawn", "blackPawn", "blackPawn", "blackPawn", "blackPawn"},
-                {"blackRook", "blackKnight", "blackBishop", "blackKing", "blackQueen", "blackBishop", "blackKnight", "blackRook"}
-        };
+    private void setStartingLayout(JSONObject layout) {
+        startingLayout = new String[8][8];
+        JSONArray rows = layout.getJSONArray("rows");
+        for(int i = 0; i < rows.length(); ++i) {
+            JSONArray row = rows.getJSONArray(i);
+            for(int j = 0; j < row.length(); ++j) {
+                startingLayout[i][j] = row.getString(j);
+            }
+        }
     }
 
     /**
@@ -220,10 +176,11 @@ public class GameMode extends Loggable {
      * why is this so simple?
      * idea modify/update the panels.
      */
-    private void incrememntTurnOrder() {
+    private void incrementTurnOrder() {
+        ++turnCount;
         board.setCurrentPlayer(getNextActivePlayer());
-        whiteTimer.click();
-        blackTimer.click();
+//        timers[(turnCount - 1) % timers.length].click();
+//        timers[turnCount % timers.length].click();
 //        dealWithCheck();
     }
 
@@ -271,13 +228,11 @@ public class GameMode extends Loggable {
                 null, to.getPiece(),
                 1, 0,//todo: temp (check for check, mate and stale)
                 turnCount,
-                whiteTimer.getTotalSeconds(),
-                blackTimer.getTotalSeconds(),
-                gameTimer.getTime()
+                DrawableTimer.getFormattedTime(gameTimer.getMinutes(), gameTimer.getSeconds())
         );
         history.push(e);
         btnUndo.setEnabled(true);
-        incrememntTurnOrder();
+        incrementTurnOrder();
         return true;
     }
 
@@ -309,13 +264,11 @@ public class GameMode extends Loggable {
                 killedPiece, to.getPiece(),
                 2, 0, //todo: temp (check for check and mate or stale)
                 turnCount,
-                whiteTimer.getTotalSeconds(),
-                blackTimer.getTotalSeconds(),
-                gameTimer.getTime()
+                DrawableTimer.getFormattedTime(gameTimer.getMinutes(), gameTimer.getSeconds())
         );
         history.push(e);
         btnUndo.setEnabled(true);
-        incrememntTurnOrder();
+        incrementTurnOrder();
         return true;
     }
 
@@ -347,13 +300,13 @@ public class GameMode extends Loggable {
         drawBoard.tryRepaint();
     }
 
-    public void onEndGame() {
+    public void endGame() {
         //do something later?
         gameTimer.stop();
-        whiteTimer.stop();
-        blackTimer.stop();
+        for(DrawableTimer t : timers) {
+            t.stop();
+        }
     }
-
 
     /**
      * At the end of every move this function is called to deal with the
@@ -373,23 +326,11 @@ public class GameMode extends Loggable {
 //        }
     }
 
-
-    /**
-     * Sets the <code>Board</code> object up to contain the correct
-     * number <code>Square</code>s at the right places.
-     */
-    private void initializeBoard() {
-        boolean white = true;
-        for (int i = 0; i < 8; ++i) {
-            for (int j = 0; j < 8; ++j) {
-                if (white) {
-                    board.setSquareAt(j, i, new Square(j, i, ConfigMaster.whiteSquare));
-                } else {
-                    board.setSquareAt(j, i, new Square(j, i, ConfigMaster.blackSquare));
-                }
-                white = !white;
-            }
-            white = !white;
-        }
+    public void setupPanels() {
+        setupCenterPanel();
+        setupLeftPanel();
+        setupRightPanel();
+        setupHeaderPanel();
+        setupFooterPanel();
     }
 }

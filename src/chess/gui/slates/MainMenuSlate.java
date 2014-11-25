@@ -22,7 +22,7 @@ public class MainMenuSlate extends AbstractSlate {
      */
 
     public MainMenuSlate() {
-        super("MainMenu");
+        super("MainMenu", null);
         panelSetup();
     }
 

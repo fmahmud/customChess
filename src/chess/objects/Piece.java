@@ -1,6 +1,6 @@
 package chess.objects;
 
-import chess.custom.Faction;
+import chess.gui.objects.DrawableObject;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -147,17 +147,6 @@ public class Piece extends DrawableObject {
      */
     public void setOwner(Player _p) {
         owner = _p;
-    }
-
-    /**
-     * @return - The Faction the owner of this piece is.
-     */
-    public Faction getFaction() {
-        if (owner == null) {
-            logLine("owner was null", 4);
-            return null;
-        }
-        return owner.getFaction();
     }
 
     /**

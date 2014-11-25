@@ -20,10 +20,11 @@ public abstract class AbstractSlate extends Loggable {
     protected final JPanel rightPanel = new JPanel();
     protected final JPanel footerPanel = new JPanel();
     protected final JPanel mainPanel = new JPanel();
+    private AbstractSlate returnTo;
 
-    public AbstractSlate(String prefix) {
+    public AbstractSlate(String prefix, AbstractSlate _returnTo) {
         super(prefix);
-
+        returnTo = _returnTo;
         setPrefSize(headerPanel, new Dimension(GUIMaster.WINDOW_WIDTH, headFootHeight));
         setPrefSize(centerPanel, new Dimension(centerWidth, centerWidth));
         setPrefSize(leftPanel, new Dimension(sideWidth, centerWidth));
@@ -39,6 +40,10 @@ public abstract class AbstractSlate extends Loggable {
         setupLeftPanel();
         setupRightPanel();
         setupMainPanel();
+    }
+
+    protected void returnToPreviousSlate() {
+        Runner.guiMaster.setCurrentSlate(returnTo);
     }
 
     public JPanel getMainPanel() {

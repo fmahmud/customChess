@@ -1,4 +1,4 @@
-package chess.objects;
+package chess.gui.objects;
 
 import chess.general.Loggable;
 

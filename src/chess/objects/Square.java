@@ -1,5 +1,7 @@
 package chess.objects;
 
+import chess.gui.objects.DrawableObject;
+
 import java.awt.*;
 
 public class Square extends DrawableObject {
