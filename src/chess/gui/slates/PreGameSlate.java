@@ -1,6 +1,10 @@
 package chess.gui.slates;
 
+import chess.config.ConfigMaster;
 import chess.gui.objects.AbstractSlate;
+import chess.gui.objects.LabelledTextField;
+
+import javax.swing.*;
 
 /**
  * This Slate is the pre-game menu. Players choose game mode
@@ -10,11 +14,13 @@ import chess.gui.objects.AbstractSlate;
  */
 public class PreGameSlate extends AbstractSlate {
 
+    JButton buttonNext, buttonBack;
+    LabelledTextField[] playerNames;
 
 
     public PreGameSlate(AbstractSlate _returnTo) {
         super("PreGameSlate", _returnTo);
-
+        panelSetup();
     }
 
     @Override
@@ -29,7 +35,6 @@ public class PreGameSlate extends AbstractSlate {
 
     @Override
     protected void setupCenterPanel() {
-
     }
 
     @Override
@@ -39,6 +44,8 @@ public class PreGameSlate extends AbstractSlate {
 
     @Override
     protected void setupFooterPanel() {
-
+        JLabel lblsomething = new JLabel(">");
+        lblsomething.setFont(ConfigMaster.titleFont);
+        footerPanel.add(lblsomething);
     }
 }

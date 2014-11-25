@@ -10,7 +10,7 @@ import java.util.HashSet;
  */
 public abstract class Loggable {
     private final static int DEBUG_LEVEL = 0;
-    private final static int NUM_LOGGERS = 600;
+    private final static int NUM_LOGGERS = 1000;
     private static HashSet<String> availableNames;
 
     private String debugPrefix;
@@ -19,6 +19,13 @@ public abstract class Loggable {
     public Loggable(String s) {
         debugPrefix = "[" + s + "]: ";
         define();
+//        logLine("Spawned "+s, 0);
+    }
+
+    public static String getName() {
+        String toRet = availableNames.iterator().next();
+        availableNames.remove(toRet);
+        return toRet;
     }
 
     private void define() {
@@ -29,8 +36,7 @@ public abstract class Loggable {
                 e.printStackTrace();
             }
         }
-        name = availableNames.iterator().next();
-        availableNames.remove(name);
+        name = getName();
     }
 
 //    protected void logAction(String actionName, String parameters, )

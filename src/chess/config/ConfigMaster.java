@@ -9,11 +9,11 @@ import java.io.File;
  */
 public class ConfigMaster {
     public static File piecesLocation = new File("/Users/Fez/Documents/workspace/ChessProject/src/chess/pieces");
-    public static File namesFileLocation = new File("/Users/Fez/Documents/workspace/ChessProject/src/chess/custom/names.txt");
+    public static File namesFileLocation = new File("/Users/Fez/Documents/workspace/ChessProject/src/chess/config/names.txt");
     public static File gameModesLocation = new File("/Users/Fez/Documents/workspace/ChessProject/src/chess/gamemodes");
 
     public static Font defaultFont = new Font("Calibri", Font.PLAIN, 13);
-    public static Font textFieldFont = new Font("Calibri", Font.PLAIN, 18);
+    public static Font headerFiveFont = new Font("Calibri", Font.PLAIN, 18);
     public static Font headerFourFont = new Font("Calibri", Font.PLAIN, 27);
     public static Font headerThreeFont = new Font("Calibri", Font.PLAIN, 36);
     public static Font headerTwoFont = new Font("Calibri", Font.PLAIN, 45);

@@ -36,7 +36,7 @@ public class Player extends Loggable {
         return team;
     }
 
-    public String getName() {
+    public String getPlayerName() {
         return name;
     }
 }

@@ -1,7 +1,6 @@
 package chess.game.objects;
 
 import chess.config.ConfigMaster;
-import chess.general.Common;
 import chess.gui.objects.DrawableObject;
 
 import java.awt.*;
@@ -95,7 +94,7 @@ public class Event extends DrawableObject {
      */
     @Override
     public String toString() {
-        return "[" + gameTime + "][" + tCount + "]: " + offender.getOwner().getName() + "<br>"
+        return "[" + gameTime + "][" + tCount + "]: " + offender.getOwner().getPlayerName() + "<br>"
                 + getActionEffect() + "";
     }
 
@@ -110,7 +109,7 @@ public class Event extends DrawableObject {
     @Override
     public void render(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-        g2.setFont(Common.buttonFont);
+        g2.setFont(ConfigMaster.headerFiveFont);
         String[] toDraw = this.toString().split("<br>");
         int y = 20;
         for (String s : toDraw) {

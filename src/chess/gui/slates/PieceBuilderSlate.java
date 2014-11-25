@@ -103,7 +103,7 @@ public class PieceBuilderSlate extends AbstractSlate {
 
     private void setSelectedPiece(JSONObject piece) {
         jsonMoveStyles = new Vector<JSONObject>();
-//        taShowJSON.setText(makePretty(piece.toString()));
+//        taShowJSON.setLabel(makePretty(piece.toString()));
         tfPieceName.setText(piece.getString("name"));
         tfImagePath.setText(piece.getString("imagePath"));
         moveStyles.clear();
@@ -136,7 +136,7 @@ public class PieceBuilderSlate extends AbstractSlate {
         tfImagePath.setEnabled(false);
         JLabel lblImagePath = Common.labelFactory("Image Path:");
         JButton btnImgPathBrowse = Common.buttonFactory("Browse", "browse", new BrowseButtonListener());
-        btnImgPathBrowse.setFont(ConfigMaster.textFieldFont);
+        btnImgPathBrowse.setFont(ConfigMaster.headerFiveFont);
         pnlSecond.add(lblImagePath);
         pnlSecond.add(tfImagePath);
         pnlSecond.add(btnImgPathBrowse);

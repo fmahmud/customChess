@@ -13,7 +13,6 @@ import java.util.*;
  * Created by Fez on 9/14/14.
  */
 public class Common extends Loggable {
-    public static Font buttonFont = new Font("FacitWeb-Regular", Font.PLAIN, 14);
 
     public Common(String s) {
         super(s);
@@ -110,6 +109,16 @@ public class Common extends Loggable {
         return b;
     }
 
+    public static JButton buttonFactory(String name, Dimension dim, ActionListener al) {
+        JButton b = new JButton(name);
+        b.addActionListener(al);
+        b.setFont(ConfigMaster.defaultFont);
+        b.setMinimumSize(dim);
+        b.setMaximumSize(dim);
+        b.setPreferredSize(dim);
+        return b;
+    }
+
     public static JLabel labelFactory(String title) {
         JLabel l = new JLabel(title);
         l.setFont(ConfigMaster.defaultFont);
@@ -118,7 +127,7 @@ public class Common extends Loggable {
 
     public static JTextField textFieldFactory(int numCols) {
         JTextField toRet = new JTextField(numCols);
-        toRet.setFont(ConfigMaster.textFieldFont);
+        toRet.setFont(ConfigMaster.headerFiveFont);
         return toRet;
     }
 

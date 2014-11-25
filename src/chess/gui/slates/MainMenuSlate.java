@@ -1,7 +1,8 @@
 package chess.gui.slates;
 
-import chess.general.Common;
+import chess.config.ConfigMaster;
 import chess.gui.objects.AbstractSlate;
+import chess.gui.objects.MetroButton;
 import chess.master.Runner;
 
 import javax.swing.*;
@@ -28,84 +29,73 @@ public class MainMenuSlate extends AbstractSlate {
 
     @Override
     protected void setupHeaderPanel() {
+        headerPanel.setBackground(Color.black);
+        headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
         JLabel lblLogo = new JLabel("Chess!");
+        lblLogo.setAlignmentX(0.5f);
         lblLogo.setFont(new Font("FacitWeb-Regular", Font.BOLD, 80));
+        lblLogo.setForeground(Color.white);
+        headerPanel.add(Box.createVerticalGlue());
         headerPanel.add(lblLogo);
+        headerPanel.add(Box.createVerticalGlue());
     }
 
     @Override
     protected void setupLeftPanel() {
+        leftPanel.setBackground(Color.black);
 
+    }
+
+    private MetroButton makeMetroButton(String s, ActionListener al) {
+        MetroButton toRet = new MetroButton(s, ConfigMaster.moveLocation, Color.white, Color.white);
+        toRet.setRequiredDimension(new Dimension(200, 80));
+        toRet.addActionListener(al);
+        return toRet;
     }
 
     @Override
     protected void setupCenterPanel() {
-        JButton btnNewGame = makeButton("New Game", "newGame");
-        JButton btnLoadGame = makeButton("Load Game", "loadGame");
-        JButton btnQuit = makeButton("Quit", "quit");
-        JButton btnSettings = makeButton("Settings", "settings");
-        JButton btnBuilder = makeButton("Builder", "builder");
-        centerPanel.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.BOTH;
-        c.gridy = 0;
-        c.gridx = 0;
-        c.ipadx = 20;
-        c.ipady = 20;
+        centerPanel.setBackground(Color.black);
+        MetroButton newGameMBtn = makeMetroButton("New Game", new NewGameListener());
+        MetroButton loadGameMBtn = makeMetroButton("Load Game", new LoadGameListener());
+        MetroButton builderMBtn = makeMetroButton("Piece Builder", new BuilderListener());
+        MetroButton settingsMBtn = makeMetroButton("Settings", new SettingsListener());
+        MetroButton exitMBtn = makeMetroButton("Exit", new ExitListener());
 
-        c.gridy++;
-        centerPanel.add(btnNewGame, c);
 
-        c.gridy++;
-        centerPanel.add(btnLoadGame, c);
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+        centerPanel.add(Box.createVerticalGlue());
+        centerPanel.add(newGameMBtn.getCanvas());
+        centerPanel.add(Box.createVerticalGlue());
+        centerPanel.add(loadGameMBtn.getCanvas());
+        centerPanel.add(Box.createVerticalGlue());
+        centerPanel.add(builderMBtn.getCanvas());
+        centerPanel.add(Box.createVerticalGlue());
+        centerPanel.add(settingsMBtn.getCanvas());
+        centerPanel.add(Box.createVerticalGlue());
+        centerPanel.add(exitMBtn.getCanvas());
+        centerPanel.add(Box.createVerticalGlue());
 
-        c.gridy++;
-        centerPanel.add(btnBuilder, c);
-
-        c.gridy++;
-        centerPanel.add(btnSettings, c);
-
-        c.gridy++;
-        centerPanel.add(btnQuit, c);
-
-        btnSettings.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnLoadGame.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnNewGame.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnQuit.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
 
     @Override
     protected void setupRightPanel() {
+        rightPanel.setBackground(Color.black);
 
     }
 
     @Override
     protected void setupFooterPanel() {
+        footerPanel.setBackground(Color.black);
 
     }
 
-    private JButton makeButton(String name, String action) {
-        JButton b = Common.buttonFactory(name, action, Common.buttonFont);
-        ActionListener a = null;
-        if (action.equals("newGame")) {
-            a = new NewGameListener();
-        } else if (action.equals("quit")) {
-            a = new QuitListener();
-        } else if (action.equals("loadGame")) {
-            a = new LoadGameListener();
-        } else if (action.equals("settings")) {
-            a = new SettingsListener();
-        } else if (action.equals("builder")) {
-            a = new BuilderListener();
-        }
-        b.addActionListener(a);
-        return b;
-    }
 
     public class NewGameListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
+//            Runner.guiMaster.setCurrentSlate(new PreGameSlate(MainMenuSlate.this));
             Runner.guiMaster.setCurrentSlate(new PlayGameSlate(MainMenuSlate.this));
         }
     }
@@ -126,7 +116,7 @@ public class MainMenuSlate extends AbstractSlate {
         }
     }
 
-    public class QuitListener implements ActionListener {
+    public class ExitListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {

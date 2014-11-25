@@ -22,7 +22,6 @@ public class GameMode extends Loggable {
     private Team[] teams;
     private String[][] startingLayout;
     private Player[] playerOrder;
-    private int maxTime;
     private DrawableTimer[] timers;
 
     protected int turnCount = 0;
@@ -62,11 +61,12 @@ public class GameMode extends Loggable {
             playerOrder[i] = teams[Integer.parseInt(tuple[0])].getPlayer(Integer.parseInt(tuple[1]));
         }
 
+        int maxTime;
         // timers and max time
         maxTime = o.getInt("maxTime"); //max time per player
         timers = new DrawableTimer[playerOrder.length];
         for(int i = 0; i < timers.length; ++i ) {
-            timers[i] = new DrawableTimer(playerOrder[i].getName(), maxTime);
+            timers[i] = new DrawableTimer(playerOrder[i].getPlayerName(), maxTime);
             timers[i].start();
         }
         gameTimer = new DrawableTimer("Game Time");

@@ -83,11 +83,11 @@ public class Piece extends DrawableObject {
         moveDestinations = new MoveDestinations();
 
         try {
-            img = ImageIO.read(getClass().getResource(_path));
+            img = ImageIO.read(getClass().getResource("../"+_path));
         } catch (IOException e) {
             logLine("IOException...", 0);
         } catch (Exception npe) {
-            logLine("Something went wrong with" + getPieceName(), 0);
+            logLine("Something went wrong with " + getPieceName()+" trying to read from "+_path, 0);
         }
     }
 

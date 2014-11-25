@@ -1545,7 +1545,8 @@ Lyja
 Lynx
 M
 M-Twins
-MN-E (Ultraverse)
+MN-E
+Ultraverse
 MODAM
 MODOK
 Mac Gargan
@@ -2830,8 +2831,8 @@ Addam Marbrand
 Addam Osgrey
 Addison Hill
 Aegon Blackfyre
-Aegon Frey (Bloodborn)
-Aegon Frey (Jinglebell)
+Aegon Frey, Bloodborn
+Aegon Frey, Jinglebell
 Aegon I Targaryen
 Aegon II Targaryen
 Aegon III Targaryen
@@ -2914,7 +2915,6 @@ Arrec
 Arron
 Arron Qorgyle
 Arryk
-Arryk (Guard)
 Arson
 Arthur Ambrose
 Arthur Dayne
@@ -2939,7 +2939,6 @@ Balon Swann
 Bandy
 Bannen
 Barristan Selmy
-Barth (brewer)
 Barth Stark
 Bass
 Bayard Norcross
@@ -2959,8 +2958,8 @@ Benedict Broom
 Benfred Tallhart
 Benfrey Frey
 Benjen Stark
-Benjen Stark (Bitter)
-Benjen Stark (Sweet)
+Benjen the Bitter
+Benjen the Sweet
 Bennard Brune
 Bennarion Botley
 Bennet
@@ -2989,11 +2988,11 @@ Bran Stark
 Bran the Builder
 Brandon Norrey
 Brandon Stark
-Brandon Stark (Bad)
-Brandon Stark (Burner)
-Brandon Stark (Lord)
-Brandon Stark (Shipwright)
-Brandon Stark (the daughterless)
+Brandon the Bad
+Brandon the Burner
+Lord Brandon Stark
+Brandon the Shipwright
+Brandon the daughterless
 Brandon Tallhart
 Branston Cuy
 Brenett
@@ -3085,7 +3084,6 @@ Dagon
 Dagon Greyjoy
 Dagos Manwoody
 Dake
-Dake (Guard)
 Dale Drumm
 Damion Lannister
 Damon Lannister
@@ -3205,7 +3203,6 @@ Erreg
 Erren Florent
 Errok
 Erryk
-Erryk (Guard)
 Esgred
 Ethan Glover
 Euron Greyjoy
@@ -3230,8 +3227,7 @@ Gallard
 Galtry the Green
 Gareth Clifton
 Gareth the Grey
-Garin (Orphans)
-Garin (Prince)
+Prince Garin
 Gariss
 Garizon
 Garlan Tyrell
@@ -3875,7 +3871,8 @@ Robert Baratheon
 Robert Brax
 Robert Brax (son of Flement)
 Robert Flowers
-Robert Flowers, "Red Robert"
+Robert Flowers
+Red Robert
 Robert Frey
 Robert Frey (son of Raymund)
 Robert Paege

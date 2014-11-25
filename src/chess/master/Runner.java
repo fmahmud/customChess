@@ -34,6 +34,7 @@ public class Runner extends Loggable {
         }
         Runner r = new Runner();
         r.run();
+
     }
 
     private void run() {
