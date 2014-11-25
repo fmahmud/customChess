@@ -1,11 +1,11 @@
 package chess.gui.slates;
 
 import chess.config.ConfigMaster;
+import chess.game.objects.MoveStyle;
+import chess.game.objects.Piece;
 import chess.general.Common;
 import chess.gui.objects.AbstractSlate;
 import chess.master.Runner;
-import chess.objects.MoveStyle;
-import chess.objects.Piece;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

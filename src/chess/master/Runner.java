@@ -1,7 +1,7 @@
 package chess.master;
 
 import chess.config.ConfigMaster;
-import chess.curator.Curator;
+import chess.general.Curator;
 import chess.general.Loggable;
 import chess.gui.GUIMaster;
 import chess.gui.slates.MainMenuSlate;

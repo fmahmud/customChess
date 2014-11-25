@@ -1,7 +1,5 @@
-package chess.curator;
+package chess.general;
 
-import chess.general.Common;
-import chess.general.Loggable;
 import org.json.JSONObject;
 
 import java.io.File;

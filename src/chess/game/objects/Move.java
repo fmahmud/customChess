@@ -1,4 +1,4 @@
-package chess.objects;
+package chess.game.objects;
 
 /**
  * todo: description for Move class

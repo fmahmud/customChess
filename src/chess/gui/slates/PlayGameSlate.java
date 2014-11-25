@@ -1,8 +1,8 @@
 package chess.gui.slates;
 
+import chess.game.objects.GameMode;
 import chess.general.Common;
 import chess.gui.objects.AbstractSlate;
-import chess.objects.GameMode;
 
 import javax.swing.*;
 import java.io.File;

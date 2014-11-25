@@ -1,12 +1,12 @@
 package chess.gui.objects;
 
 import chess.config.ConfigMaster;
+import chess.game.objects.Board;
+import chess.game.objects.MoveDestinations;
+import chess.game.objects.Piece;
+import chess.game.objects.Square;
 import chess.general.Loggable;
 import chess.gui.GUIMaster;
-import chess.objects.Board;
-import chess.objects.MoveDestinations;
-import chess.objects.Piece;
-import chess.objects.Square;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;

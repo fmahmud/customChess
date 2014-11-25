@@ -1,4 +1,4 @@
-package chess.objects;
+package chess.game.objects;
 
 import chess.gui.objects.AbstractSlate;
 
