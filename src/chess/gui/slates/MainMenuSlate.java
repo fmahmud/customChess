@@ -106,7 +106,7 @@ public class MainMenuSlate extends AbstractSlate {
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            Runner.guiMaster.setCurrentSlate(new PlayGameSlate());
+            Runner.guiMaster.setCurrentSlate(new PlayGameSlate(MainMenuSlate.this));
         }
     }
 

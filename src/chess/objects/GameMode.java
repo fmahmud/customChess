@@ -10,6 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -66,11 +67,12 @@ public class GameMode extends Loggable {
         timers = new DrawableTimer[playerOrder.length];
         for(int i = 0; i < timers.length; ++i ) {
             timers[i] = new DrawableTimer(playerOrder[i].getName(), maxTime);
+            timers[i].start();
         }
         gameTimer = new DrawableTimer("Game Time");
         gameTimer.start();
-        gameTimer.click();
         this.define();
+        this.startGame();
     }
 
     private void define() {
@@ -82,8 +84,14 @@ public class GameMode extends Loggable {
             }
         }
         board.updateAllValidDestinations();
-        incrementTurnOrder();
         history = new History();
+    }
+
+    private void startGame() {
+        gameTimer.click();
+        timers[0].click();
+        ++turnCount;
+        board.setCurrentPlayer(getNextActivePlayer());
     }
 
 
@@ -96,6 +104,7 @@ public class GameMode extends Loggable {
      * player.
      */
     public Player getNextActivePlayer() {
+        //note: turnCount is not zero-indexed.
         return playerOrder[((turnCount - 1) % playerOrder.length)];
     }
 
@@ -119,10 +128,10 @@ public class GameMode extends Loggable {
     }
 
     private void setupHeaderPanel() {
-//        for(DrawableTimer timer : timers) {
-//            headerPanel.add(timer.getCanvas());
-//            timer.start();
-//        }
+        headerPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 10));
+        for(DrawableTimer timer : timers) {
+            headerPanel.add(timer.getCanvas());
+        }
         headerPanel.add(gameTimer.getCanvas());
     }
 
@@ -177,10 +186,10 @@ public class GameMode extends Loggable {
      * idea modify/update the panels.
      */
     private void incrementTurnOrder() {
+        timers[turnCount % timers.length].click();
         ++turnCount;
         board.setCurrentPlayer(getNextActivePlayer());
-//        timers[(turnCount - 1) % timers.length].click();
-//        timers[turnCount % timers.length].click();
+        timers[turnCount % timers.length].click();
 //        dealWithCheck();
     }
 
