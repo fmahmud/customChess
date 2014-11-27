@@ -14,12 +14,12 @@ public abstract class Loggable {
     private static HashSet<String> availableNames;
 
     private String debugPrefix;
-    private String name;
+//    private String name;
 
     public Loggable(String s) {
-        debugPrefix = "[" + s + "]: ";
+        debugPrefix = "[" + String.format("%-15s", s) + "]: ";
         define();
-//        logLine("Spawned "+s, 0);
+        logLine("Spawned "+s, 0);
     }
 
     public static String getName() {
@@ -36,14 +36,14 @@ public abstract class Loggable {
                 e.printStackTrace();
             }
         }
-        name = getName();
+        debugPrefix = "[" + String.format("%-30s", getName()) +"]" + debugPrefix;
     }
 
 //    protected void logAction(String actionName, String parameters, )
 
     protected void logLine(String s, int level) {
         if (level <= DEBUG_LEVEL)
-            System.out.println("[" + System.currentTimeMillis() + "]" + "[" + name + "]" + debugPrefix + s);
+            System.out.println("[" + System.currentTimeMillis() + "]" + debugPrefix + s);
     }
 
     protected void log(String s, int level) {

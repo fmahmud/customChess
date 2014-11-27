@@ -1,6 +1,7 @@
 package chess.general;
 
 import chess.config.ConfigMaster;
+import chess.game.objects.Square;
 import org.json.JSONObject;
 
 import javax.swing.*;
@@ -224,4 +225,10 @@ public class Common extends Loggable {
         return toRet;
     }
 
+    public static Vector<Square> union(Vector<Square> moveOnlyLocations, Vector<Square> killOnlyLocations) {
+        Vector<Square> toRet = new Vector<Square>();
+        toRet.addAll(moveOnlyLocations);
+        toRet.addAll(killOnlyLocations);
+        return Common.removeDuplicates(toRet);
+    }
 }

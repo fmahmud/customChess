@@ -32,7 +32,7 @@
                 "whitePawn",
                 "whitePawn",
                 "whitePawn",
-                "whitePawn",
+                "whiteQueen",
                 "whitePawn",
                 "whitePawn",
                 "whitePawn",
@@ -82,7 +82,7 @@
                 "blackPawn",
                 "blackPawn",
                 "blackPawn",
-                "blackPawn",
+                "blackQueen",
                 "blackPawn",
                 "blackPawn",
                 "blackPawn",
@@ -99,5 +99,9 @@
                 "blackRook"
             ]
         ]
-    }
+    },
+    "objectives":[
+        "whiteKing",
+        "blackKing"
+    ]
 }

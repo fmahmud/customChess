@@ -18,6 +18,7 @@ public class Piece extends DrawableObject {
     private int currentRow, currentColumn;
     private String pieceName;
     private String imagePath;
+    private boolean isObjective = false;
 
     private Player owner;
     private boolean beenAttacked = false;
@@ -80,7 +81,7 @@ public class Piece extends DrawableObject {
         for (int i = 0; i < _ms.length(); ++i) {
             this.addMoveStyle(_ms.getJSONObject(i));
         }
-        moveDestinations = new MoveDestinations();
+        moveDestinations = new MoveDestinations(pieceName);
 
         try {
             img = ImageIO.read(getClass().getResource("../"+_path));
@@ -199,5 +200,13 @@ public class Piece extends DrawableObject {
     public boolean canKill(Piece other) {
         if (other == null) return true;
         return other.getTeam() != this.getTeam();
+    }
+
+    public boolean isObjective() {
+        return isObjective;
+    }
+
+    public void setObjective(boolean isObjective) {
+        this.isObjective = isObjective;
     }
 }

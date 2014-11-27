@@ -2,6 +2,8 @@ package chess.game.objects;
 
 import chess.general.Loggable;
 
+import java.util.Vector;
+
 /**
  * Created by Fez on 9/18/14.
  */
@@ -19,92 +21,39 @@ public class Pathfinder extends Loggable {
                              MoveDestinations moveDestinations) {
         int tx = self.getCurrentColumn() + ms.getDx();
         int ty = self.getCurrentRow() + ms.getDy();
-        Square target = board.getSquareAt(tx, ty);
-        while (target != null) {
-            target = board.getSquareAt(tx, ty);
-            if (target == null)
-                break;
-            if (target.hasPiece()) {
-                if (self.canKill(target.getPiece())) {
-                    moveDestinations.addKillLocation(target);
+        Square target;
+        boolean lookingForPin = false;
+        Piece possiblePinnedPiece = null;
+        boolean foundPin = false;
+        Piece victim;
+        Vector<Square> currentPath = new Vector<Square>();
+        while ((target = board.getSquareAt(tx, ty)) != null) {
+            if ((victim = target.getPiece()) != null) {
+                if (self.canKill(victim)) {
+                    if(!lookingForPin) {
+                        moveDestinations.addKillLocation(target);
+                        lookingForPin = true;
+                        possiblePinnedPiece = victim;
+                    } else {
+                        if(victim.isObjective()) {
+                            foundPin = true;
+                        }
+                        break;
+                    }
+                } else {
+                    break;
                 }
-                break;
             } else {
-                moveDestinations.addMoveLocation(target);
-                tx += ms.getDx();
-                ty += ms.getDy();
+                if(!lookingForPin)
+                    moveDestinations.addMoveLocation(target);
+                currentPath.add(target);
             }
+            tx += ms.getDx();
+            ty += ms.getDy();
         }
+        if(foundPin)
+            moveDestinations.addPinnedPiece(possiblePinnedPiece, currentPath);
     }
-
-
-//    private void getInfDiagPaths(Piece self, MoveStyle ms,
-//                                 MoveDestinations moveDestinations) {
-//        int tx = self.getCurrentColumn() + ms.getDx();
-//        int ty = self.getCurrentRow() + ms.getDy();
-//        Square target = board.getSquareAt(tx, ty);
-//        while (target != null) {
-//            target = board.getSquareAt(tx, ty);
-//            if (target == null)
-//                break;
-//            if (target.hasPiece()) {
-//                if (self.canKill(target.getPiece())) {
-//                    moveDestinations.addKillLocation(target);
-//                }
-//                break;
-//            } else {
-//                moveDestinations.addMoveLocation(target);
-//                tx += ms.getDx();
-//                ty += ms.getDy();
-//            }
-//        }
-//    }
-//
-//    private Vector<Square>[] getInfVertPaths(int row, int col, Piece self, Board b, MoveStyle ms) {
-//        Vector<Square> validMoveDestinations = new Vector<Square>();
-//        Vector<Square> validKillDestinations = new Vector<Square>();
-//        int tx = col + ms.getDx();
-//        int ty = row + ms.getDy();
-//        Square target = b.getSquareAt(tx, ty);
-//        while (target != null) {
-//            target = b.getSquareAt(tx, ty);
-//            if (target == null)
-//                break;
-//            if (target.hasPiece()) {
-//                if (self.canKill(target.getPiece())) {
-//                    validKillDestinations.add(target);
-//                }
-//                break;
-//            } else {
-//                validMoveDestinations.add(target);
-//                tx += ms.getDx();
-//            }
-//        }
-//        return new Vector[]{validMoveDestinations, validKillDestinations};
-//    }
-//
-//    private Vector<Square>[] getInfHorizPaths(int row, int col, Piece self, Board b, MoveStyle ms) {
-//        Vector<Square> validMoveDestinations = new Vector<Square>();
-//        Vector<Square> validKillDestinations = new Vector<Square>();
-//        int tx = col + ms.getDx();
-//        int ty = row + ms.getDy();
-//        Square target = b.getSquareAt(tx, ty);
-//        while (target != null) {
-//            target = b.getSquareAt(tx, ty);
-//            if (target == null)
-//                break;
-//            if (target.hasPiece()) {
-//                if (self.canKill(target.getPiece())) {
-//                    validKillDestinations.add(target);
-//                }
-//                break;
-//            } else {
-//                validMoveDestinations.add(target);
-//                ty += ms.getDy();
-//            }
-//        }
-//        return new Vector[]{validMoveDestinations, validKillDestinations};
-//    }
 
     private void getFinitePaths(Piece self, MoveStyle ms, MoveDestinations moveDestinations) {
         int col = self.getCurrentColumn();

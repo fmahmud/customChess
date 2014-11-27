@@ -31,6 +31,12 @@ public abstract class AbstractSlate extends Loggable {
         setPrefSize(rightPanel, new Dimension(sideWidth, centerWidth));
         setPrefSize(footerPanel, new Dimension(GUIMaster.WINDOW_WIDTH, headFootHeight));
         setPrefSize(mainPanel, new Dimension(GUIMaster.WINDOW_WIDTH, GUIMaster.WINDOW_HEIGHT));
+
+//        headerPanel.setBackground(Color.black);
+//        centerPanel.setBackground(Color.black);
+//        leftPanel.setBackground(Color.black);
+//        rightPanel.setBackground(Color.black);
+//        footerPanel.setBackground(Color.black);
     }
 
     protected void panelSetup() {

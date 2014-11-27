@@ -31,7 +31,7 @@ public class DrawableBoard extends Loggable {
     Square prevSelectedSquare = null;
     Piece selectedPiece = null;
     Piece prevSelectedPiece = null;
-    MoveDestinations defaultMoveDestinations = new MoveDestinations();
+    MoveDestinations defaultMoveDestinations = new MoveDestinations("default");
     MoveDestinations moveDestinations = defaultMoveDestinations;
     private JTable table;
     private JPanel canvas;

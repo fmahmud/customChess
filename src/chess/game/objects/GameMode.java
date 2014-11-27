@@ -13,6 +13,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 /**
  * Class that keeps track of the various teams, the board and the turn order.
@@ -71,19 +72,30 @@ public class GameMode extends Loggable {
         }
         gameTimer = new DrawableTimer("Game Time");
         gameTimer.start();
-        this.define();
+        JSONArray objs = o.getJSONArray("objectives");
+        Vector<String> objectives = new Vector<String>();
+        for(int i = 0; i < objs.length(); ++i) {
+            objectives.add(objs.getString(i));
+            logLine("Objective["+i+"} = "+objs.getString(i), 0);
+        }
+        this.define(objectives);
         this.startGame();
     }
 
-    private void define() {
+    private void define(Vector<String> objectives) {
         board = new Board(8, 8, this);
         drawBoard = new DrawableBoard(board, modeName);
         for (int i = 0; i < startingLayout.length; ++i) {
             for (int j = 0; j < startingLayout[i].length; ++j) {
-                board.setPieceAt(getPieceFromName(startingLayout[i][j]), j, i);
+                Piece p = getPieceFromName(startingLayout[i][j]);
+                board.setPieceAt(p, j, i);
+                if(p == null) continue;
+                if(objectives.contains(p.getPieceName()))
+                    p.setObjective(true);
+                else
+                    p.setObjective(false);
             }
         }
-        board.updateAllValidDestinations();
         history = new History();
     }
 
@@ -92,6 +104,7 @@ public class GameMode extends Loggable {
         timers[0].click();
         ++turnCount;
         board.setCurrentPlayer(getNextActivePlayer());
+        board.updateAllValidDestinations();
     }
 
 
@@ -132,7 +145,7 @@ public class GameMode extends Loggable {
         for(DrawableTimer timer : timers) {
             headerPanel.add(timer.getCanvas());
         }
-        headerPanel.add(gameTimer.getCanvas());
+//        headerPanel.add(gameTimer.getCanvas());
     }
 
     private void setupLeftPanel() {
@@ -189,7 +202,9 @@ public class GameMode extends Loggable {
         timers[turnCount % timers.length].click();
         ++turnCount;
         board.setCurrentPlayer(getNextActivePlayer());
+        board.updateAllValidDestinations();
         timers[turnCount % timers.length].click();
+
 //        dealWithCheck();
     }
 
@@ -232,7 +247,6 @@ public class GameMode extends Loggable {
         p.moved();
         to.setPiece(p);
         from.setPiece(null);
-        board.updateAllValidDestinations();
         Event e = new Event(from, to,
                 null, to.getPiece(),
                 1, 0,//todo: temp (check for check, mate and stale)
@@ -268,7 +282,6 @@ public class GameMode extends Loggable {
         p.moved();
         to.setPiece(p);
         from.setPiece(null);
-        board.updateAllValidDestinations();
         Event e = new Event(from, to,
                 killedPiece, to.getPiece(),
                 2, 0, //todo: temp (check for check and mate or stale)

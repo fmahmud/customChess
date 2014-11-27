@@ -3,6 +3,7 @@ package chess.game.objects;
 import chess.config.ConfigMaster;
 import chess.general.Loggable;
 
+import java.util.HashMap;
 import java.util.Vector;
 
 public class Board extends Loggable {
@@ -59,13 +60,35 @@ public class Board extends Loggable {
         }
     }
 
+
+    public void dealWithPinning(Piece pinner) {
+        HashMap<Piece, Vector<Square>> pieceVectorHashMap = pinner.getMoveDestinations().getPinnedPieces();
+        Vector<Piece> pinnedPieces = new Vector<Piece>(pieceVectorHashMap.keySet());
+        for(Piece p : pinnedPieces) {
+            Vector<Square> pinnerLocations = pieceVectorHashMap.get(p);
+            pinnerLocations.add(getSquareAt(pinner.getCurrentColumn(), pinner.getCurrentRow()));
+            p.getMoveDestinations().intersectWith(pinnerLocations);
+        }
+    }
+
     public void updateAllValidDestinations() {
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j) {
                 Square s = getSquareAt(j, i);
                 Piece p = s.getPiece();
-                if (p != null)
+                if (p != null) {
                     updateValidDestinations(p);
+                }
+            }
+        }
+
+        for (int i = 0; i < height; ++i) {
+            for (int j = 0; j < width; ++j) {
+                Square s = getSquareAt(j, i);
+                Piece p = s.getPiece();
+                if (p != null && p.getOwner() != currentPlayer) {
+                    dealWithPinning(p);
+                }
             }
         }
     }
