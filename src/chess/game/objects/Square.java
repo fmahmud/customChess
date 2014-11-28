@@ -32,8 +32,9 @@ public class Square extends DrawableObject {
         return piece;
     }
 
+
     public boolean setPiece(Piece p) {
-        if (hasPiece() && p != null) return false;
+        if (this.hasPiece() && p != null) return false;
         piece = p;
         if (p != null) {
             piece.setCurrentColumn(column);

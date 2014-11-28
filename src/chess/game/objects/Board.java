@@ -12,15 +12,13 @@ public class Board extends Loggable {
     private int width, height;
     private Square[][] board;
     private Player currentPlayer;
-    private GameMode gameMode;
 
-    public Board(int w, int h, GameMode _gm) {
+    public Board(int w, int h) {
         super("Board");
         logLine("Constructing Board", 2);
         board = new Square[h][w]; // IN THIS CLASS: [row][column] = [y][x]
         width = w;
         height = h;
-        gameMode = _gm;
         pathfinder = new Pathfinder(this);
         initializeBoard();
         logLine("Done Constructing Board", 2);
@@ -171,11 +169,4 @@ public class Board extends Loggable {
         currentPlayer = p;
     }
 
-    public void tryMoveFromTo(Square from, Square to) {
-        gameMode.tryMoveFromTo(from, to);
-    }
-
-    public void tryKillAt(Square from, Square to) {
-        gameMode.tryKillAt(from, to);
-    }
 }

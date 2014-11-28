@@ -14,12 +14,14 @@ public class MoveDestinations extends Loggable {
     private Vector<Square> moveOnlyLocations;
     private Vector<Square> killOnlyLocations;
     private HashMap<Piece, Vector<Square>> pinnedPieces;
+    private Vector<Square> pathToObjective;
 
     public MoveDestinations(String pieceName) {
         super("MoveDestinations("+pieceName+")");
         moveOnlyLocations = new Vector<Square>();
         killOnlyLocations = new Vector<Square>();
         pinnedPieces = new HashMap<Piece, Vector<Square>>();
+        pathToObjective = new Vector<Square>();
     }
 
     public void addMoveLocation(Square s) {
@@ -30,6 +32,15 @@ public class MoveDestinations extends Loggable {
     public void addKillLocation(Square s) {
         if (!killOnlyLocations.contains(s))
             killOnlyLocations.add(s);
+    }
+
+    public void addPinnedPiece(Piece p, Vector<Square> rail) {
+        // each piece that is pinned can only move down the "rail"
+        // with which the pinner is attacking it
+        if(p != null && !pinnedPieces.containsKey(p)) {
+            pinnedPieces.put(p, rail);
+            logLine("Pinning " + p.getPieceName(), 0);
+        }
     }
 
     public void intersectWith(Vector<Square> locations) {
@@ -50,16 +61,10 @@ public class MoveDestinations extends Loggable {
                 ++i;
             }
         }
-
     }
 
-    public void addPinnedPiece(Piece p, Vector<Square> rail) {
-        // each piece that is pinned can only move down the "rail"
-        // with which the pinner is attacking it
-        if(p != null && !pinnedPieces.containsKey(p)) {
-            pinnedPieces.put(p, rail);
-            logLine("Pinning " + p.getPieceName(), 0);
-        }
+    public void addPathToObjective(Vector<Square> squares) {
+        pathToObjective.addAll(squares);
     }
 
     public void clearMoveLocations() {
@@ -74,10 +79,15 @@ public class MoveDestinations extends Loggable {
         pinnedPieces.clear();
     }
 
+    public void clearPathToObjective() {
+        pathToObjective.clear();
+    }
+
     public void clearAll() {
         clearMoveLocations();
         clearKillLocations();
         clearPiecesPinning();
+        clearPathToObjective();
     }
 
     public boolean canMoveTo(Square s) {

@@ -83,8 +83,10 @@ public class GameMode extends Loggable {
     }
 
     private void define(Vector<String> objectives) {
-        board = new Board(8, 8, this);
+        board = new Board(8, 8);
         drawBoard = new DrawableBoard(board, modeName);
+        drawBoard.addKillListener(new KillActionCallBack());
+        drawBoard.addMoveListener(new MoveActionCallback());
         for (int i = 0; i < startingLayout.length; ++i) {
             for (int j = 0; j < startingLayout[i].length; ++j) {
                 Piece p = getPieceFromName(startingLayout[i][j]);
@@ -195,8 +197,6 @@ public class GameMode extends Loggable {
      * Also, the possibility of a player being under check is
      * tested and dealt with.
      * <p/>
-     * why is this so simple?
-     * idea modify/update the panels.
      */
     private void incrementTurnOrder() {
         timers[turnCount % timers.length].click();
@@ -204,8 +204,7 @@ public class GameMode extends Loggable {
         board.setCurrentPlayer(getNextActivePlayer());
         board.updateAllValidDestinations();
         timers[turnCount % timers.length].click();
-
-//        dealWithCheck();
+        dealWithCheck();
     }
 
     public void setLeftPanel(JPanel pnl) {
@@ -228,96 +227,99 @@ public class GameMode extends Loggable {
         centerPanel = pnl;
     }
 
-    /**
-     * After user input has provided a starting <code>Square</code>
-     * and a destination <code>Square</code> from and to which a their
-     * <code>Piece</code> is moving, this function is called.
-     * <p/>
-     * why is this boolean? it always returns true.
-     * why is this not so clean?
-     *
-     * @param from - <code>Square</code> from which the <code>Piece</code> is
-     *             moving
-     * @param to   - <code>Square</code> to which the <code>Piece</code> is
-     *             moving
-     * @return - true.
-     */
-    public boolean tryMoveFromTo(Square from, Square to) {
-        Piece p = from.getPiece();
-        p.moved();
-        to.setPiece(p);
-        from.setPiece(null);
-        Event e = new Event(from, to,
-                null, to.getPiece(),
-                1, 0,//todo: temp (check for check, mate and stale)
-                turnCount,
-                DrawableTimer.getFormattedTime(gameTimer.getMinutes(), gameTimer.getSeconds())
-        );
-        history.push(e);
-        btnUndo.setEnabled(true);
-        incrementTurnOrder();
-        return true;
+    private class MoveActionCallback implements ActionCallBack {
+
+        /**
+         * After user input has provided a starting <code>Square</code>
+         * and a destination <code>Square</code> from and to which a their
+         * <code>Piece</code> is moving, this function is called.
+         * <p/>
+         * why is this boolean? it always returns true.
+         * why is this not so clean?
+         *
+         * @param from - <code>Square</code> from which the <code>Piece</code> is
+         *             moving
+         * @param to   - <code>Square</code> to which the <code>Piece</code> is
+         *             moving
+         * @return - true.
+         */
+        @Override
+        public boolean registerAction(Square from, Square to) {
+            Piece p = from.getPiece();
+            p.moved();
+            to.setPiece(p);
+            from.setPiece(null);
+            Event e = new Event(from, to,
+                    null, to.getPiece(),
+                    1, 0,//todo: temp (check for check, mate and stale)
+                    turnCount,
+                    DrawableTimer.getFormattedTime(gameTimer.getMinutes(), gameTimer.getSeconds())
+            );
+            history.push(e);
+            btnUndo.setEnabled(true);
+            incrementTurnOrder();
+            return true;
+        }
     }
 
-    /**
-     * After user input has provided a starting <code>Square</code>
-     * and a destination <code>Square</code> from and to which a their
-     * <code>Piece</code> is moving, this function is called if and only
-     * if there is an enemy piece in the destination.
-     * <p/>
-     * why is this boolean? it always returns true.
-     * why is this not so clean?
-     *
-     * @param from - <code>Square</code> from which the <code>Piece</code> is
-     *             moving
-     * @param to   - <code>Square</code> to which the <code>Piece</code> is
-     *             moving
-     * @return - true.
-     */
-    public boolean tryKillAt(Square from, Square to) {
-        Piece killedPiece = to.getPiece();
-        killedPiece.getOwner().addKilledPiece(killedPiece);
-        to.setPiece(null);
-        Piece p = from.getPiece();
-        p.moved();
-        to.setPiece(p);
-        from.setPiece(null);
-        Event e = new Event(from, to,
-                killedPiece, to.getPiece(),
-                2, 0, //todo: temp (check for check and mate or stale)
-                turnCount,
-                DrawableTimer.getFormattedTime(gameTimer.getMinutes(), gameTimer.getSeconds())
-        );
-        history.push(e);
-        btnUndo.setEnabled(true);
-        incrementTurnOrder();
-        return true;
+    private class KillActionCallBack implements ActionCallBack {
+
+        /**
+         * After user input has provided a starting <code>Square</code>
+         * and a destination <code>Square</code> from and to which a their
+         * <code>Piece</code> is moving, this function is called if and only
+         * if there is an enemy piece in the destination.
+         * <p/>
+         * why is this boolean? it always returns true.
+         * why is this not so clean?
+         *
+         * @param from - <code>Square</code> from which the <code>Piece</code> is
+         *             moving
+         * @param to   - <code>Square</code> to which the <code>Piece</code> is
+         *             moving
+         * @return - true.
+         */
+        @Override
+        public boolean registerAction(Square from, Square to) {
+            Piece killedPiece = to.getPiece();
+            killedPiece.getOwner().addKilledPiece(killedPiece);
+            to.setPiece(null);
+            Piece p = from.getPiece();
+            p.moved();
+            to.setPiece(p);
+            from.setPiece(null);
+            Event e = new Event(from, to,
+                    killedPiece, to.getPiece(),
+                    2, 0, //todo: temp (check for check and mate or stale)
+                    turnCount,
+                    DrawableTimer.getFormattedTime(gameTimer.getMinutes(), gameTimer.getSeconds())
+            );
+            history.push(e);
+            btnUndo.setEnabled(true);
+            incrementTurnOrder();
+            return true;
+        }
     }
 
-    /**
-     * Nothing currently. Plugged in.
-     */
     public void undo() {
         Event e = history.pop();
         if (e == null) return;
+        // valid event popped. should never be null.
+        // grab required pointers
         Square origin = e.getOrigin();
         Square destination = e.getDestination();
         Piece victim = e.getVictim();
         Piece offender = e.getOffender();
 
+        // modify affected pieces/squares
         origin.setPiece(null);
         destination.setPiece(null);
         origin.setPiece(offender);
         offender.undoMove();
         destination.setPiece(victim);
-        turnCount -= 2;
+        turnCount -= 1;
         board.setCurrentPlayer(getNextActivePlayer());
         board.updateAllValidDestinations();
-        if (victim != null) {
-            //why is this like this?
-//            killedWhitePieces.remove(victim);
-//            killedBlackPieces.remove(victim);
-        }
         dealWithCheck();
         drawBoard.tryRepaint();
     }

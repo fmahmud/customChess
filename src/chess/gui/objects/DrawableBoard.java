@@ -1,10 +1,7 @@
 package chess.gui.objects;
 
 import chess.config.ConfigMaster;
-import chess.game.objects.Board;
-import chess.game.objects.MoveDestinations;
-import chess.game.objects.Piece;
-import chess.game.objects.Square;
+import chess.game.objects.*;
 import chess.general.Loggable;
 import chess.gui.GUIMaster;
 
@@ -14,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Vector;
 
 /**
  * Created by Fez on 9/30/14.
@@ -25,19 +23,23 @@ public class DrawableBoard extends Loggable {
      * so it can be used as a class to store a possible future move etc.
      * without drawing it. Only a DrawableBoard can be drawn.
      */
-    Board board;
-    DefaultTableModel tblModel;
-    Square selectedSquare = null;
-    Square prevSelectedSquare = null;
-    Piece selectedPiece = null;
-    Piece prevSelectedPiece = null;
+    private Board board;
+    private Square selectedSquare = null;
+    private Piece selectedPiece = null;
+    private Vector<ActionCallBack> onKillListeners, onMoveListeners;
+
     MoveDestinations defaultMoveDestinations = new MoveDestinations("default");
     MoveDestinations moveDestinations = defaultMoveDestinations;
     private JTable table;
     private JPanel canvas;
+
     public DrawableBoard(Board b, String prefix) {
         super(prefix);
         board = b;
+
+        onKillListeners = new Vector<ActionCallBack>();
+        onMoveListeners = new Vector<ActionCallBack>();
+
         initializeBoard();
     }
 
@@ -47,7 +49,7 @@ public class DrawableBoard extends Loggable {
         Square.setWidth(squareWidth);
         canvas = new JPanel();
         canvas.setLayout(new BoxLayout(canvas, BoxLayout.Y_AXIS));
-        tblModel = new DefaultTableModel() {
+        DefaultTableModel tblModel = new DefaultTableModel() {
             public boolean isCellEditable(int rowIndex, int mColIndex) {
                 return false;
             }
@@ -78,8 +80,17 @@ public class DrawableBoard extends Loggable {
         logLine("Done Initializing Board", 2);
     }
 
+    public void addKillListener(ActionCallBack acb) {
+        if(!onKillListeners.contains(acb))
+            onKillListeners.add(acb);
+    }
+
+    public void addMoveListener(ActionCallBack acb) {
+        if(!onMoveListeners.contains(acb))
+            onMoveListeners.add(acb);
+    }
+
     public JPanel getCanvas() {
-        //canvas.setBackground(Color.BLACK);
         return canvas;
     }
 
@@ -100,13 +111,17 @@ public class DrawableBoard extends Loggable {
     }
 
     private void tryMoveFromTo(Square from, Square to) {
-        board.tryMoveFromTo(from, to);
+        for(ActionCallBack acb : onMoveListeners)
+            acb.registerAction(from, to);
+
         clearTempVars();
         table.repaint();
     }
 
     private void tryKillAt(Square from, Square to) {
-        board.tryKillAt(from, to);
+        for(ActionCallBack acb : onKillListeners)
+            acb.registerAction(from, to);
+
         clearTempVars();
         table.repaint();
     }
@@ -117,8 +132,6 @@ public class DrawableBoard extends Loggable {
 
     private void clearTempVars() {
         selectedPiece = null;
-        prevSelectedPiece = null;
-        prevSelectedSquare = null;
         selectedSquare = null;
         moveDestinations = defaultMoveDestinations;
         table.clearSelection();
@@ -130,7 +143,6 @@ public class DrawableBoard extends Loggable {
                 logLine("Changing selected square from ("
                         + selectedSquare.getColumn() + ", " + selectedSquare.getRow() + ") to "
                         + s.getColumn() + ", " + s.getRow() + ")", 1);
-            prevSelectedSquare = selectedSquare;
             selectedSquare = s;
             return true;
         }
@@ -140,7 +152,6 @@ public class DrawableBoard extends Loggable {
 
     private boolean updateSelectedPiece(Piece p) {
         if (p != selectedPiece) {
-            prevSelectedPiece = selectedPiece;
             selectedPiece = p;
 
             if (selectedPiece != null && selectedPiece.getOwner() == board.getCurrentPlayer()) {

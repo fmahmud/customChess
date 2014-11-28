@@ -10,8 +10,6 @@ import java.util.Vector;
 public class Pathfinder extends Loggable {
     private Board board;
 
-//    public abstract Vector<Square>[] generatePath(int row, int col, Board b, MoveStyle ms);
-
     public Pathfinder(Board b) {
         super("PathFinder");
         board = b;
@@ -22,20 +20,34 @@ public class Pathfinder extends Loggable {
         int tx = self.getCurrentColumn() + ms.getDx();
         int ty = self.getCurrentRow() + ms.getDy();
         Square target;
+
         boolean lookingForPin = false;
-        Piece possiblePinnedPiece = null;
         boolean foundPin = false;
+        Piece possiblePinnedPiece = null;
         Piece victim;
         Vector<Square> currentPath = new Vector<Square>();
         while ((target = board.getSquareAt(tx, ty)) != null) {
             if ((victim = target.getPiece()) != null) {
                 if (self.canKill(victim)) {
                     if(!lookingForPin) {
+                        // when not looking for pin add the victim's location
+                        // as a valid kill destination
                         moveDestinations.addKillLocation(target);
-                        lookingForPin = true;
-                        possiblePinnedPiece = victim;
+                        if(victim.isObjective()) {
+                            // if the victim is an objective... (when not looking for pin)
+                            // must be check...
+                            moveDestinations.addPathToObjective(currentPath);
+                        } else {
+                            // if the victim is not an objective
+                            // start looking for pin
+                            lookingForPin = true;
+                            possiblePinnedPiece = victim;
+                        }
+
                     } else {
                         if(victim.isObjective()) {
+                            // while looking for pin if the current victim is
+                            // an objective, pin has been found.
                             foundPin = true;
                         }
                         break;
@@ -44,6 +56,7 @@ public class Pathfinder extends Loggable {
                     break;
                 }
             } else {
+                // when there is no piece on target square,
                 if(!lookingForPin)
                     moveDestinations.addMoveLocation(target);
                 currentPath.add(target);
@@ -99,9 +112,7 @@ public class Pathfinder extends Loggable {
             }
         } else { //does not collide during
             //knight
-//            logLine("Doesn't collide during", 3);
             if (victim == null) {
-//                logLine("Target square is vacant", 3);
                 //if there is no piece in the resulting square
                 if (ms.isKillOnly()) {
                     //if the move is kill only
@@ -110,7 +121,6 @@ public class Pathfinder extends Loggable {
                     moveDestinations.addMoveLocation(targetSquare);
                 }
             } else {
-//                logLine("Target square is not vacant", 3);
                 //there is a piece on the resulting square
                 if (self.canKill(victim)) { //if target piece can be killed
                     if (!ms.isMoveOnly()) {
@@ -121,7 +131,6 @@ public class Pathfinder extends Loggable {
                         //do nothing - something for later?
                     } else {
                         //do nothing - something for later?
-                        //idea: can double occupy?
                     }
                 }
             }
@@ -135,7 +144,6 @@ public class Pathfinder extends Loggable {
         if (self.hasMoved() && ms.getFirstMoveOnly()) {
             return;
         }
-        //todo: verify current player is not in check currently
         if (ms.canMoveInfHor() || ms.canMoveInfVer()) {
             //can move infinitely - bishop/queen/rook
             getInfPaths(self, ms, moveDestinations);
