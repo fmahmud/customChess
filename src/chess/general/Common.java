@@ -122,7 +122,8 @@ public class Common extends Loggable {
 
     public static JLabel labelFactory(String title) {
         JLabel l = new JLabel(title);
-        l.setFont(ConfigMaster.defaultFont);
+        l.setFont(ConfigMaster.headerFiveFont);
+        l.setForeground(Color.white);
         return l;
     }
 

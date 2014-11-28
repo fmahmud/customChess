@@ -178,16 +178,16 @@ public class DrawableBoard extends Loggable {
             }
 
             if (currentSquare == selectedSquare) {
-                currentSquare.setOverlayColor(ConfigMaster.selectedItem);
+                currentSquare.setOverlayColor(ConfigMaster.selectedItemColor);
                 return currentSquare.getCanvas();
             }
 
             if (moveDestinations.canKillAt(currentSquare))
-                currentSquare.setOverlayColor(ConfigMaster.offendLocation);
+                currentSquare.setOverlayColor(ConfigMaster.offendLocationColor);
             else if (moveDestinations.canMoveTo(currentSquare))
-                currentSquare.setOverlayColor(ConfigMaster.moveLocation);
+                currentSquare.setOverlayColor(ConfigMaster.moveLocationColor);
             else
-                currentSquare.setOverlayColor(ConfigMaster.defaultSquare);
+                currentSquare.setOverlayColor(ConfigMaster.transparentColor);
 
             if (repaint)
                 table.repaint();

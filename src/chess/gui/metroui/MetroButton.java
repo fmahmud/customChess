@@ -1,4 +1,4 @@
-package chess.gui.objects;
+package chess.gui.metroui;
 
 import chess.config.ConfigMaster;
 
@@ -13,42 +13,56 @@ import java.util.Vector;
 /**
  * Created by Fez on 11/25/14.
  */
-public class MetroButton {
+public class MetroButton extends MetroPanel {
     private static final int BORDER_WIDTH = 1;
     private JLabel label;
-    private JPanel canvas;
     private Vector<ActionListener> listeners;
     private Color foregroundColor, backgroundColor, borderColor;
 
-    public MetroButton(String _s, Color _bg, Color _fg, Color _border) {
-        foregroundColor = _fg;
-        backgroundColor = _bg;
-        borderColor = _border;
+    public MetroButton(String _s) {
+        super(_s);
+        foregroundColor = Color.white;
+        backgroundColor = ConfigMaster.moveLocationColor;
+        borderColor = Color.white;
+
         listeners = new Vector<ActionListener>();
-
-        canvas = new JPanel();
-
         canvas.setLayout(new BoxLayout(canvas, BoxLayout.Y_AXIS));
-        canvas.setBackground(_bg);
 
         label = new JLabel(_s);
-        label.setForeground(_fg);
         label.setAlignmentX(0.5f);
         label.setFont(ConfigMaster.headerFiveFont);
+
         canvas.add(Box.createVerticalGlue());
         canvas.add(label, BorderLayout.CENTER);
         canvas.add(Box.createVerticalGlue());
 
-        canvas.setBorder(BorderFactory.createMatteBorder(
-                BORDER_WIDTH, BORDER_WIDTH,
-                BORDER_WIDTH, BORDER_WIDTH,
-                _border
-        ));
+        updateColors();
 
         MouseListener ms = new MetroButtonListener();
         canvas.addMouseListener(ms);
-        label.addMouseListener(ms);
 
+    }
+
+    private void updateColors() {
+        canvas.setBackground(backgroundColor);
+        canvas.setBorder(BorderFactory.createMatteBorder(
+                BORDER_WIDTH, BORDER_WIDTH,
+                BORDER_WIDTH, BORDER_WIDTH,
+                borderColor
+        ));
+        label.setForeground(foregroundColor);
+    }
+
+    public void setBackgroundColor(Color c) {
+        backgroundColor = c;
+    }
+
+    public void setForegroundColor(Color c) {
+        foregroundColor = c;
+    }
+
+    public void setBorderColor(Color c) {
+        borderColor = c;
     }
 
     public JPanel getCanvas() {
@@ -85,7 +99,7 @@ public class MetroButton {
 
         @Override
         public void mousePressed(MouseEvent mouseEvent) {
-            canvas.setBackground(ConfigMaster.selectedItem);
+            canvas.setBackground(ConfigMaster.selectedItemColor);
             label.setForeground(Color.gray);
         }
 

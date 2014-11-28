@@ -33,9 +33,9 @@ public class Board extends Loggable {
         for (int i = 0; i < 8; ++i) {
             for (int j = 0; j < 8; ++j) {
                 if (white) {
-                    setSquareAt(j, i, new Square(j, i, ConfigMaster.whiteSquare));
+                    setSquareAt(j, i, new Square(j, i, ConfigMaster.whiteSquareColor));
                 } else {
-                    setSquareAt(j, i, new Square(j, i, ConfigMaster.blackSquare));
+                    setSquareAt(j, i, new Square(j, i, ConfigMaster.blackSquareColor));
                 }
                 white = !white;
             }

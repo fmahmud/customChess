@@ -4,6 +4,7 @@ import chess.config.ConfigMaster;
 import chess.general.Loggable;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created by Fez on 11/20/14.
@@ -40,10 +41,13 @@ public class DrawableTimer extends Loggable {
         }
         lblTime = new JLabel(getFormattedTime(minutes, seconds));
         lblTime.setFont(ConfigMaster.headerOneFont);
+        lblTime.setForeground(Color.white);
         lblTitle = new JLabel(n);
+        lblTitle.setForeground(Color.white);
         lblTime.setAlignmentX(0.5f);
         lblTitle.setAlignmentX(0.5f);
         canvas = new JPanel();
+        canvas.setBackground(Color.black);
         canvas.setLayout(new BoxLayout(canvas, BoxLayout.Y_AXIS));
         canvas.add(lblTime);
         canvas.add(lblTitle);

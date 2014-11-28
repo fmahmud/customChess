@@ -143,11 +143,10 @@ public class GameMode extends Loggable {
     }
 
     private void setupHeaderPanel() {
-        headerPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 10));
+        headerPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 200, 10));
         for(DrawableTimer timer : timers) {
             headerPanel.add(timer.getCanvas());
         }
-//        headerPanel.add(gameTimer.getCanvas());
     }
 
     private void setupLeftPanel() {

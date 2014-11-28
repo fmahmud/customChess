@@ -14,6 +14,7 @@ public class Curator extends Loggable {
     private HashMap<String, JSONObject> jsonObjectHashMap = new HashMap<String, JSONObject>();
     private HashMap<String, File> fileHashMap = new HashMap<String, File>();
     private String keyName;
+    private boolean hasChanged = false;
 
     public Curator(String s, String _kn) {
         super(s);
@@ -73,6 +74,7 @@ public class Curator extends Loggable {
 
     public void saveAllItems() {
         prune();
+        if(!hasChanged) return;
         Vector<String> keys = getKeys();
         for (String s : keys) {
             File f = fileHashMap.get(s);
@@ -90,6 +92,6 @@ public class Curator extends Loggable {
     }
 
     public void updateJSONObject(String key, JSONObject newObj) {
-        jsonObjectHashMap.put(key, newObj);
+        hasChanged = jsonObjectHashMap.put(key, newObj) != null;
     }
 }

@@ -1,4 +1,6 @@
-package chess.gui.objects;
+package chess.gui.metroui;
+
+import chess.config.ConfigMaster;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,19 +10,29 @@ import java.awt.event.FocusListener;
 /**
  * Created by Fez on 11/25/14.
  */
-public class LabelledTextField {
-    JPanel canvas;
-    JLabel label;
-    JTextField textField;
-    String defaultText;
+public class MetroLabelledTextField extends MetroPanel {
+    private JLabel label;
+    private JTextField textField;
+    private String defaultText;
 
-    public LabelledTextField(String lblText, String defText, Dimension pnlDim) {
-        canvas = new JPanel();
+    public MetroLabelledTextField(String lblText, String defText, Dimension pnlDim) {
+        super("mlbltf("+lblText+")");
+        defineMLTF(lblText, defText, pnlDim);
+    }
+
+    private void defineMLTF(String lblText, String defText, Dimension pnlDim) {
         canvas.setLayout(new BoxLayout(canvas, BoxLayout.X_AXIS));
+
         label = new JLabel(lblText);
+        label.setForeground(Color.white);
+        label.setFont(ConfigMaster.headerFiveFont);
+
         textField = new JTextField(20);
+        textField.setForeground(Color.gray);
+        textField.setFont(ConfigMaster.headerFiveFont);
         textField.setText(defaultText = defText);
         textField.addFocusListener(new TextFieldFocusListener());
+
         canvas.setPreferredSize(pnlDim);
         canvas.add(label);
         canvas.add(textField);
@@ -40,20 +52,26 @@ public class LabelledTextField {
     }
 
     public void setText(String s) {
+        textFieldHasBeenFocused = true;
         textField.setText(s);
     }
 
+    public void setEditable(boolean b) {
+        textField.setEditable(b);
+    }
+
+    boolean textFieldHasBeenFocused = false;
+
     private class TextFieldFocusListener implements FocusListener {
-        boolean hasBeenFocused = false;
         @Override
         public void focusGained(FocusEvent focusEvent) {
-            if(hasBeenFocused) {
+            if(textFieldHasBeenFocused) {
                 textField.selectAll();
             } else {
                 textField.setText("");
                 textField.setForeground(Color.black);
             }
-            hasBeenFocused = true;
+            textFieldHasBeenFocused = true;
         }
 
         @Override
@@ -61,7 +79,6 @@ public class LabelledTextField {
             if(textField.getText().equals("")) {
                 textField.setText(defaultText);
                 textField.setForeground(Color.gray);
-                hasBeenFocused = false;
             }
         }
     }

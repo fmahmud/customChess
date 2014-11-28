@@ -4,6 +4,9 @@ import chess.config.ConfigMaster;
 import chess.game.objects.MoveStyle;
 import chess.game.objects.Piece;
 import chess.general.Common;
+import chess.gui.metroui.MetroButton;
+import chess.gui.metroui.MetroLabelledTextField;
+import chess.gui.metroui.MetroList;
 import chess.gui.objects.AbstractSlate;
 import chess.master.Runner;
 import org.json.JSONArray;
@@ -21,12 +24,11 @@ import java.util.Vector;
  */
 public class PieceBuilderSlate extends AbstractSlate {
 
-    private JList pieceList, movesList;
-    private DefaultListModel pieces, moveStyles;
-    private JScrollPane scrollPanePieces, scrollPaneMoveStyles;
+    private MetroList piecesList, movesList;
+    private MetroLabelledTextField lblTFPieceName, lblTFImgPath;
     private Vector<JSONObject> jsonPieces, jsonMoveStyles;
     private JButton btnAccept, btnSavePieceChanges, btnResetPieceChanges;
-    private JButton addPiece, removePiece, btnAddMS, btnRemoveMS, btnSaveMSChanges, btnResetMS;
+    private JButton addPiece, removePiece, btnSaveMSChanges, btnResetMS;
     private JComboBox cbDX, cbDY, cbInfMoveX, cbInfMoveY, cbFirstMove, cbColDur, cbColEnd, cbMoveObjective;
     private JLabel lblDX, lblDY, lblInfMoveX, lblInfMoveY, lblFirstMove, lblColDur, lblColEnd, lblMoveObjective;
     private JTextField tfPieceName, tfImagePath;
@@ -56,30 +58,23 @@ public class PieceBuilderSlate extends AbstractSlate {
 
     @Override
     protected void setupLeftPanel() {
-        pieces = new DefaultListModel();
-        pieceList = new JList(pieces);
-        pieceList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        pieceList.setFont(ConfigMaster.defaultFont);
-        pieceList.setCellRenderer(new PiecesListCellRenderer());
-        scrollPanePieces = new JScrollPane(pieceList);
-        scrollPanePieces.setPreferredSize(new Dimension(AbstractSlate.sideWidth, AbstractSlate.centerWidth - 100));
+        piecesList = new MetroList();
 
+
+        piecesList.setRequiredDimension(new Dimension(AbstractSlate.sideWidth-3, AbstractSlate.centerWidth-5));
+        piecesList.setCellRenderer(new PiecesListCellRenderer());
         for (JSONObject o : jsonPieces) {
-            pieces.addElement(o.getString("name"));
+            piecesList.append(o.getString("name"));
         }
 
-        if (pieces.size() != 0)
-            pieceList.setSelectedIndex(0);
+        MetroButton btnAddPiece = new MetroButton("Add Piece");
+        btnAddPiece.addActionListener(new AddPieceButtonListener());
+        piecesList.addButton(btnAddPiece);
+        MetroButton btnRemovePiece = new MetroButton("Remove Piece");
+        btnRemovePiece.addActionListener(new RemovePieceButtonListener());
+        piecesList.addButton(btnRemovePiece);
 
-        addPiece = Common.buttonFactory("Add Piece", "addPiece", new AddPieceButtonListener());
-        addPiece.setPreferredSize(new Dimension((AbstractSlate.sideWidth) - 20, 40));
-        removePiece = Common.buttonFactory("Remove Piece", "removePiece", new RemovePieceButtonListener());
-        removePiece.setEnabled(false);
-        removePiece.setPreferredSize(new Dimension((AbstractSlate.sideWidth) - 20, 40));
-
-        leftPanel.add(scrollPanePieces);
-        leftPanel.add(addPiece);
-        leftPanel.add(removePiece);
+        leftPanel.add(piecesList.getCanvas());
 
     }
 
@@ -92,30 +87,20 @@ public class PieceBuilderSlate extends AbstractSlate {
         return null;
     }
 
-    private String makePretty(String s) {
-        String toRet = s.replace("{", "{\n")
-                .replace("[", "[\n")
-                .replace(",\"", ",\n\"")
-                .replace("]", "\n]")
-                .replace("}", "\n}");
-        return toRet;
-    }
-
-    private void setSelectedPiece(JSONObject piece) {
+   private void setSelectedPiece(JSONObject piece) {
         jsonMoveStyles = new Vector<JSONObject>();
-//        taShowJSON.setLabel(makePretty(piece.toString()));
-        tfPieceName.setText(piece.getString("name"));
-        tfImagePath.setText(piece.getString("imagePath"));
-        moveStyles.clear();
+        lblTFPieceName.setText(piece.getString("name"));
+        lblTFImgPath.setText(piece.getString("imagePath"));
+        movesList.clear();
         JSONArray _ms = piece.getJSONArray("moveStyles");
         for (int i = 0; i < _ms.length(); ++i) {
             jsonMoveStyles.add((JSONObject) _ms.get(i));
-            moveStyles.addElement("Movestyle " + (i + 1));
+            movesList.append("Movestyle " + (i + 1));
         }
     }
 
     private void setSelectedPieceIndex(int index) {
-        setSelectedPiece(getJSONFromList((String) pieces.get(index)));
+        setSelectedPiece(getJSONFromList(piecesList.getElementAt(index)));
         movesList.setSelectedIndex(0);
         setSelectedMoveStyleFromIndex(0);
 
@@ -124,26 +109,18 @@ public class PieceBuilderSlate extends AbstractSlate {
     @Override
     protected void setupCenterPanel() {
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+        Dimension someDim = new Dimension(AbstractSlate.centerWidth, 60);
+        lblTFPieceName =
+                new MetroLabelledTextField("Piece Name: ", "e.g. White Bishop",
+                        someDim);
 
-        JPanel pnlFirst = new JPanel();
-        tfPieceName = Common.textFieldFactory(44);
-        JLabel lblPieceName = Common.labelFactory("Piece Name:");
-        pnlFirst.add(lblPieceName);
-        pnlFirst.add(tfPieceName);
-
-        JPanel pnlSecond = new JPanel();
-        tfImagePath = Common.textFieldFactory(37);
-        tfImagePath.setEnabled(false);
-        JLabel lblImagePath = Common.labelFactory("Image Path:");
-        JButton btnImgPathBrowse = Common.buttonFactory("Browse", "browse", new BrowseButtonListener());
-        btnImgPathBrowse.setFont(ConfigMaster.headerFiveFont);
-        pnlSecond.add(lblImagePath);
-        pnlSecond.add(tfImagePath);
-        pnlSecond.add(btnImgPathBrowse);
+        lblTFImgPath =
+                new MetroLabelledTextField(" Image Path: ", "e.g. /path/to/image.png",
+                        someDim);
 
         JPanel pnlInfo = new JPanel();
-        pnlInfo.add(pnlFirst);
-        pnlInfo.add(pnlSecond);
+        pnlInfo.add(lblTFPieceName.getCanvas());
+        pnlInfo.add(lblTFImgPath.getCanvas());
         setPrefSize(pnlInfo, new Dimension(AbstractSlate.centerWidth, 120));
 
         JPanel pnlMiddle = new JPanel();
@@ -155,6 +132,9 @@ public class PieceBuilderSlate extends AbstractSlate {
         pnlLower.add(btnResetPieceChanges = Common.buttonFactory("Reset Piece", "resetPiece", new ResetPieceBtnListener()));
         setPrefSize(pnlLower, new Dimension(AbstractSlate.centerWidth, 40));
 
+        pnlInfo.setBackground(Color.black);
+        pnlMiddle.setBackground(Color.black);
+        pnlLower.setBackground(Color.black);
         centerPanel.add(pnlInfo);
         centerPanel.add(pnlMiddle);
         centerPanel.add(pnlLower);
@@ -236,17 +216,31 @@ public class PieceBuilderSlate extends AbstractSlate {
 
     @Override
     protected void setupRightPanel() {
-        moveStyles = new DefaultListModel();
-        movesList = new JList(moveStyles);
-        movesList.setCellRenderer(new MoveStylesListCellRenderer());
-        scrollPaneMoveStyles = new JScrollPane(movesList);
-        scrollPaneMoveStyles.setPreferredSize(new Dimension(AbstractSlate.sideWidth, AbstractSlate.centerWidth / 6));
-        rightPanel.add(scrollPaneMoveStyles);
+//        moveStyles = new DefaultListModel();
+//        movesList = new JList(moveStyles);
+//        movesList.setCellRenderer(new MoveStylesListCellRenderer());
+//        scrollPaneMoveStyles = new JScrollPane(movesList);
+//        scrollPaneMoveStyles.setPreferredSize(
+//        rightPanel.add(scrollPaneMoveStyles);
+//
+//        btnAddMS = Common.buttonFactory("Add Movestyle", "addMS", new AddMSButtonListener());
+//        btnRemoveMS = Common.buttonFactory("Remove Movestyle", "remMS", new RemoveMSButtonListener());
+//        rightPanel.add(btnAddMS);
+//        rightPanel.add(btnRemoveMS);
 
-        btnAddMS = Common.buttonFactory("Add Movestyle", "addMS", new AddMSButtonListener());
-        btnRemoveMS = Common.buttonFactory("Remove Movestyle", "remMS", new RemoveMSButtonListener());
-        rightPanel.add(btnAddMS);
-        rightPanel.add(btnRemoveMS);
+        movesList = new MetroList();
+        movesList.setCellRenderer(new MoveStylesListCellRenderer());
+        movesList.setRequiredDimension(new Dimension(AbstractSlate.sideWidth - 3, AbstractSlate.centerWidth / 3));
+
+        MetroButton btnAddMS = new MetroButton("Add Movestyle");
+        btnAddMS.addActionListener(new AddMSButtonListener());
+        movesList.addButton(btnAddMS);
+        MetroButton btnRemoveMS = new MetroButton("Remove Movestyle");
+        btnRemoveMS.addActionListener(new RemoveMSButtonListener());
+        movesList.addButton(btnRemoveMS);
+
+
+        rightPanel.add(movesList.getCanvas());
 
         String[] nums = new String[15];
         for (int i = -7; i < 8; ++i) {
@@ -352,10 +346,10 @@ public class PieceBuilderSlate extends AbstractSlate {
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            pieces.addElement("NewPiece" + jsonPieces.size());
+            piecesList.append("NewPiece" + jsonPieces.size());
             jsonPieces.add(new Piece("NewPiece" + jsonPieces.size(), "../images/NewPiece" + jsonPieces.size() + ".png",
                     new JSONArray()).getPieceAsJSON());
-            pieceList.setSelectedIndex(jsonPieces.size() - 1);
+            piecesList.setSelectedIndex(jsonPieces.size() - 1);
         }
     }
 
@@ -371,7 +365,7 @@ public class PieceBuilderSlate extends AbstractSlate {
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            moveStyles.addElement("Movestyle " + (moveStyles.size() + 1));
+            movesList.append("Movestyle " + (jsonMoveStyles.size() + 1));
             jsonMoveStyles.add(new MoveStyle(0, 0, false, true, MoveStyle.MoveObjective.BOTH,
                     new boolean[]{false, false}, false).getAsJSONObject());
             movesList.setSelectedIndex(jsonMoveStyles.size() - 1);
@@ -383,7 +377,7 @@ public class PieceBuilderSlate extends AbstractSlate {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             jsonMoveStyles.remove(movesList.getSelectedIndex());
-            moveStyles.remove(movesList.getSelectedIndex());
+            movesList.removeElementAt(movesList.getSelectedIndex());
             indexSelectedMovestyle = -1;
             movesList.setSelectedIndex(0);
         }

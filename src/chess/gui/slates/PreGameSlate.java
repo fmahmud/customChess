@@ -1,8 +1,8 @@
 package chess.gui.slates;
 
 import chess.config.ConfigMaster;
+import chess.gui.metroui.MetroLabelledTextField;
 import chess.gui.objects.AbstractSlate;
-import chess.gui.objects.LabelledTextField;
 
 import javax.swing.*;
 
@@ -15,7 +15,7 @@ import javax.swing.*;
 public class PreGameSlate extends AbstractSlate {
 
     JButton buttonNext, buttonBack;
-    LabelledTextField[] playerNames;
+    MetroLabelledTextField[] playerNames;
 
 
     public PreGameSlate(AbstractSlate _returnTo) {
@@ -25,7 +25,8 @@ public class PreGameSlate extends AbstractSlate {
 
     @Override
     protected void setupHeaderPanel() {
-
+        JLabel label = new JLabel("Setup your game");
+        label.setFont(ConfigMaster.titleFont);
     }
 
     @Override

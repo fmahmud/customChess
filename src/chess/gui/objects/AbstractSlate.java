@@ -2,10 +2,12 @@ package chess.gui.objects;
 
 import chess.general.Loggable;
 import chess.gui.GUIMaster;
+import chess.gui.metroui.MetroButton;
 import chess.master.Runner;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Fez on 11/12/14.
@@ -32,11 +34,11 @@ public abstract class AbstractSlate extends Loggable {
         setPrefSize(footerPanel, new Dimension(GUIMaster.WINDOW_WIDTH, headFootHeight));
         setPrefSize(mainPanel, new Dimension(GUIMaster.WINDOW_WIDTH, GUIMaster.WINDOW_HEIGHT));
 
-//        headerPanel.setBackground(Color.black);
-//        centerPanel.setBackground(Color.black);
-//        leftPanel.setBackground(Color.black);
-//        rightPanel.setBackground(Color.black);
-//        footerPanel.setBackground(Color.black);
+        headerPanel.setBackground(Color.black);
+        centerPanel.setBackground(Color.black);
+        leftPanel.setBackground(Color.black);
+        rightPanel.setBackground(Color.black);
+        footerPanel.setBackground(Color.black);
     }
 
     protected void panelSetup() {
@@ -76,6 +78,13 @@ public abstract class AbstractSlate extends Loggable {
     public void closeFrame() {
         onClose();
         Runner.guiMaster.close();
+    }
+
+    protected MetroButton makeMetroButton(String s, ActionListener al) {
+        MetroButton toRet = new MetroButton(s);
+        toRet.setRequiredDimension(new Dimension(200, 80));
+        toRet.addActionListener(al);
+        return toRet;
     }
 
     protected abstract void setupHeaderPanel();

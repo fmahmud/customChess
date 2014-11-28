@@ -1,8 +1,7 @@
 package chess.gui.slates;
 
-import chess.config.ConfigMaster;
+import chess.gui.metroui.MetroButton;
 import chess.gui.objects.AbstractSlate;
-import chess.gui.objects.MetroButton;
 import chess.master.Runner;
 
 import javax.swing.*;
@@ -44,13 +43,6 @@ public class MainMenuSlate extends AbstractSlate {
     protected void setupLeftPanel() {
         leftPanel.setBackground(Color.black);
 
-    }
-
-    private MetroButton makeMetroButton(String s, ActionListener al) {
-        MetroButton toRet = new MetroButton(s, ConfigMaster.moveLocation, Color.white, Color.white);
-        toRet.setRequiredDimension(new Dimension(200, 80));
-        toRet.addActionListener(al);
-        return toRet;
     }
 
     @Override

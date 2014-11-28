@@ -37,17 +37,17 @@ public class Event extends DrawableObject {
     }
 
     public void setSelectedColors() {
-        canvas.setBackground(ConfigMaster.selectedItem);
+        canvas.setBackground(ConfigMaster.selectedItemColor);
         canvas.setForeground(new Color(0, 0, 0));
     }
 
     public void setUnselectedColors() {
         if (tCount % 2 == 1) {
-            canvas.setBackground(ConfigMaster.whiteItem);
-            canvas.setForeground(ConfigMaster.blackItem);
+            canvas.setBackground(ConfigMaster.whiteItemColor);
+            canvas.setForeground(ConfigMaster.blackItemColor);
         } else {
-            canvas.setBackground(ConfigMaster.blackItem);
-            canvas.setForeground(ConfigMaster.whiteItem);
+            canvas.setBackground(ConfigMaster.blackItemColor);
+            canvas.setForeground(ConfigMaster.whiteItemColor);
         }
     }
 

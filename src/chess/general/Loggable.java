@@ -17,8 +17,8 @@ public abstract class Loggable {
 //    private String name;
 
     public Loggable(String s) {
-        debugPrefix = "[" + String.format("%-15s", s) + "]: ";
-        define();
+        debugPrefix = "[" + String.format("%-20s", s) + "]: ";
+        defineLogger();
         logLine("Spawned "+s, 0);
     }
 
@@ -28,7 +28,7 @@ public abstract class Loggable {
         return toRet;
     }
 
-    private void define() {
+    private void defineLogger() {
         if (availableNames == null) {
             try {
                 availableNames = Common.getNRandomUniqueLinesInFile(NUM_LOGGERS, ConfigMaster.namesFileLocation);
@@ -36,7 +36,7 @@ public abstract class Loggable {
                 e.printStackTrace();
             }
         }
-        debugPrefix = "[" + String.format("%-30s", getName()) +"]" + debugPrefix;
+        debugPrefix = "[" + String.format("%-30s", getName()) + "]" + debugPrefix;
     }
 
 //    protected void logAction(String actionName, String parameters, )

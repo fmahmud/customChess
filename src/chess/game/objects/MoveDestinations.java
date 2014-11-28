@@ -17,7 +17,7 @@ public class MoveDestinations extends Loggable {
     private Vector<Square> pathToObjective;
 
     public MoveDestinations(String pieceName) {
-        super("MoveDestinations("+pieceName+")");
+        super("MoveDests("+pieceName+")");
         moveOnlyLocations = new Vector<Square>();
         killOnlyLocations = new Vector<Square>();
         pinnedPieces = new HashMap<Piece, Vector<Square>>();
