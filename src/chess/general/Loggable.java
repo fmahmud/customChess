@@ -17,9 +17,9 @@ public abstract class Loggable {
 //    private String name;
 
     public Loggable(String s) {
-        debugPrefix = "[" + String.format("%-20s", s) + "]: ";
+        debugPrefix = "[" + String.format("%-30s", s) + "]: ";
         defineLogger();
-        logLine("Spawned "+s, 0);
+//        logLine("Spawned "+s, 0);
     }
 
     public static String getName() {

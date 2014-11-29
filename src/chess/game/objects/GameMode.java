@@ -76,7 +76,7 @@ public class GameMode extends Loggable {
         Vector<String> objectives = new Vector<String>();
         for(int i = 0; i < objs.length(); ++i) {
             objectives.add(objs.getString(i));
-            logLine("Objective["+i+"} = "+objs.getString(i), 0);
+            logLine("Objective["+i+"] = "+objs.getString(i), 0);
         }
         this.define(objectives);
         this.startGame();
@@ -176,8 +176,10 @@ public class GameMode extends Loggable {
         else
             owner = null;
 
-       p.setOwner(owner);
-       return p;
+        if(owner != null)
+            owner.addPiece(p);
+
+        return p;
     }
 
     private void setStartingLayout(JSONObject layout) {

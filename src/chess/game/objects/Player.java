@@ -19,8 +19,11 @@ public class Player extends Loggable {
         pieces = new Vector<Piece>();
     }
 
-    public void ownPiece(Piece p) {
-        pieces.add(p);
+    public void addPiece(Piece p) {
+        if(!pieces.contains(p)) {
+            pieces.add(p);
+            p.setOwner(this);
+        }
     }
 
     public void addKilledPiece(Piece p) {
@@ -30,6 +33,10 @@ public class Player extends Loggable {
 
     public Vector<Piece> getKilledPieces() {
         return killedPieces;
+    }
+
+    public Vector<Piece> getPieces() {
+        return pieces;
     }
 
     public Team getTeam() {

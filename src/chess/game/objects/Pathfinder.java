@@ -21,51 +21,46 @@ public class Pathfinder extends Loggable {
         int ty = self.getCurrentRow() + ms.getDy();
         Square target;
 
-        boolean lookingForPin = false;
-        boolean foundPin = false;
-        Piece possiblePinnedPiece = null;
+        Piece firstPiece = null;
+        Piece secondPiece = null;
         Piece victim;
         Vector<Square> currentPath = new Vector<Square>();
         while ((target = board.getSquareAt(tx, ty)) != null) {
             if ((victim = target.getPiece()) != null) {
-                if (self.canKill(victim)) {
-                    if(!lookingForPin) {
-                        // when not looking for pin add the victim's location
-                        // as a valid kill destination
-                        moveDestinations.addKillLocation(target);
-                        if(victim.isObjective()) {
-                            // if the victim is an objective... (when not looking for pin)
-                            // must be check...
-                            moveDestinations.addPathToObjective(currentPath);
-                        } else {
-                            // if the victim is not an objective
-                            // start looking for pin
-                            lookingForPin = true;
-                            possiblePinnedPiece = victim;
-                        }
-
-                    } else {
-                        if(victim.isObjective()) {
-                            // while looking for pin if the current victim is
-                            // an objective, pin has been found.
-                            foundPin = true;
-                        }
-                        break;
-                    }
+                if(firstPiece == null) {
+                    firstPiece = victim;
+                } else if(secondPiece == null) {
+                    secondPiece = victim;
                 } else {
                     break;
                 }
             } else {
-                // when there is no piece on target square,
-                if(!lookingForPin)
+                if(firstPiece == null)
                     moveDestinations.addMoveLocation(target);
-                currentPath.add(target);
             }
+            currentPath.add(target);
             tx += ms.getDx();
             ty += ms.getDy();
         }
-        if(foundPin)
-            moveDestinations.addPinnedPiece(possiblePinnedPiece, currentPath);
+
+        if(firstPiece != null) {
+            if(self.canKill(firstPiece)) {
+                if(firstPiece.isObjective()) {
+                    //check
+                    logLine("Check!", 0);
+                    moveDestinations.addPathToObjective(currentPath);
+                } else if(secondPiece != null && self.canKill(secondPiece) && secondPiece.isObjective()) {
+                    //pin
+                    logLine("Pin!", 0);
+                    moveDestinations.addPinnedPiece(firstPiece, currentPath);
+                }
+                moveDestinations.addKillLocation(
+                        board.getSquareAt(
+                        firstPiece.getCurrentColumn(),
+                        firstPiece.getCurrentRow())
+                );
+            }
+        }
     }
 
     private void getFinitePaths(Piece self, MoveStyle ms, MoveDestinations moveDestinations) {
