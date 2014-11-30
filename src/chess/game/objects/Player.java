@@ -31,8 +31,10 @@ public class Player extends Loggable {
     }
 
     public void addKilledPiece(Piece p) {
-        if (pieces.contains(p))
+        if (pieces.contains(p)) {
             killedPieces.add(p);
+            pieces.remove(p);
+        }
     }
 
     public Vector<Piece> getObjectives() {

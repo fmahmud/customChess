@@ -16,6 +16,7 @@ public class MoveDestinations extends Loggable {
     private HashMap<Piece, Vector<Square>> pinnedPieces;
     private Vector<Square> pathToObjective;
     private Vector<Square> pathAfterObjective;
+    private int totalNumMoves = 0;
 
     public MoveDestinations(String pieceName) {
         super("MoveDests("+pieceName+")");
@@ -27,13 +28,17 @@ public class MoveDestinations extends Loggable {
     }
 
     public void addMoveLocation(Square s) {
-        if (!moveOnlyLocations.contains(s))
+        if (!moveOnlyLocations.contains(s)) {
             moveOnlyLocations.add(s);
+            totalNumMoves++;
+        }
     }
 
     public void addKillLocation(Square s) {
-        if (!killOnlyLocations.contains(s))
+        if (!killOnlyLocations.contains(s)) {
             killOnlyLocations.add(s);
+            totalNumMoves++;
+        }
     }
 
     public void addPinnedPiece(Piece p, Vector<Square> rail) {
@@ -66,6 +71,8 @@ public class MoveDestinations extends Loggable {
                 ++i;
             }
         }
+
+        totalNumMoves = killOnlyLocations.size() + moveOnlyLocations.size();
     }
 
     public void subtractWith(Vector<Square> locations) {
@@ -86,6 +93,8 @@ public class MoveDestinations extends Loggable {
                 ++i;
             }
         }
+
+        totalNumMoves = killOnlyLocations.size() + moveOnlyLocations.size();
     }
 
     public void addPathToObjective(Vector<Square> squares) {
@@ -135,6 +144,7 @@ public class MoveDestinations extends Loggable {
         clearKillLocations();
         clearPiecesPinning();
         clearObjectivePaths();
+        totalNumMoves = 0;
     }
 
     public boolean canMoveTo(Square s) {
@@ -154,6 +164,10 @@ public class MoveDestinations extends Loggable {
                     Common.union(pathAfterObjective, pathToObjective  ),
                     Common.union(moveOnlyLocations , killOnlyLocations)
         );
+    }
+
+    public int getTotalNumMoves() {
+        return totalNumMoves;
     }
 
 }

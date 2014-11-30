@@ -104,7 +104,7 @@ public class GameMode extends Loggable {
         gameTimer.click();
         timers[0].click();
         ++turnCount;
-        board.setCurrentPlayer(getNextActivePlayer());
+        board.setCurrentPlayer(getCurrentPlayer());
         board.updateAllValidDestinations();
     }
 
@@ -117,7 +117,7 @@ public class GameMode extends Loggable {
      * @return - <code>Player</code> pointer pointing to the next active
      * player.
      */
-    public Player getNextActivePlayer() {
+    public Player getCurrentPlayer() {
         //note: turnCount is not zero-indexed.
         return playerOrder[((turnCount - 1) % playerOrder.length)];
     }
@@ -147,7 +147,7 @@ public class GameMode extends Loggable {
         inCheckLabel = new JLabel("");
         inCheckLabel.setFont(ConfigMaster.titleFont);
         inCheckLabel.setForeground(Color.white);
-        inCheckPanel.setRequiredDimension(new Dimension(300, AbstractSlate.headFootHeight - 40));
+        inCheckPanel.setRequiredDimension(new Dimension(500, AbstractSlate.headFootHeight - 40));
         inCheckPanel.getCanvas().add(inCheckLabel);
         headerPanel.add(inCheckPanel.getCanvas());
         headerPanel.add(timers[1].getCanvas());
@@ -212,7 +212,7 @@ public class GameMode extends Loggable {
     private void incrementTurnOrder() {
         timers[turnCount % timers.length].click();
         ++turnCount;
-        board.setCurrentPlayer(getNextActivePlayer());
+        board.setCurrentPlayer(getCurrentPlayer());
         board.updateAllValidDestinations();
         timers[turnCount % timers.length].click();
     }
@@ -328,7 +328,7 @@ public class GameMode extends Loggable {
         offender.undoMove();
         destination.setPiece(victim);
         turnCount -= 1;
-        board.setCurrentPlayer(getNextActivePlayer());
+        board.setCurrentPlayer(getCurrentPlayer());
         board.updateAllValidDestinations();
         dealWithCheck();
         drawBoard.tryRepaint();
@@ -342,14 +342,6 @@ public class GameMode extends Loggable {
         }
     }
 
-    public void setInCheck(Player player) {
-        if(player == null) {
-            inCheckLabel.setText("");
-        } else {
-            inCheckLabel.setText("Check!");
-        }
-    }
-
     /**
      * At the end of every move this function is called to deal with the
      * possibility of a player being under check.
@@ -359,19 +351,37 @@ public class GameMode extends Loggable {
      * todo: figure this out.
      */
     private int dealWithCheck() {
-        boolean someCheck = false;
-        Vector<Piece> objectives = board.getCurrentPlayer().getObjectives();
-        for(Piece p : objectives) {
-            if(board.checkForOffend(p) != null) {
-                p.setBeenAttacked(true);
-                setInCheck(board.getCurrentPlayer());
-                someCheck = true;
-                return 1;
+        //attacked player's objectives
+        Player attackedPlayer = getCurrentPlayer();
+        Vector<Piece> pieces = attackedPlayer.getPieces();
+        int totalNumMoves = 0;
+        int effect;
+        Player player = null;
+        for(Piece p : pieces) {
+            totalNumMoves += p.getMoveDestinations().getTotalNumMoves();
+            if(p.isObjective()) {
+                Piece attacker = board.checkForOffend(p);
+                if(attacker != null) {
+                    p.setBeenAttacked(true);
+                    player = getCurrentPlayer();
+                }
             }
         }
-        if(!someCheck)
-            setInCheck(null);
-        return 0;
+        if(totalNumMoves == 0) {
+            if(player == null)
+                effect = 2; //stalemate
+            else
+                effect = 3; //checkmate
+        } else {
+            if(player == null)
+                effect = 0; //nothing
+            else
+                effect = 1; //check
+        }
+
+        inCheckLabel.setText(Event.getStringFromEffect(effect));
+
+        return effect;
     }
 
     public void setupPanels() {

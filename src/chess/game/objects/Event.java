@@ -59,29 +59,33 @@ public class Event extends DrawableObject {
         if (moveType == 1) {
             s += "moved " + offender.getPieceName() + " from<br>"
                     + origin.getCoordinatesAsString() + " to "
-                    + destination.getCoordinatesAsString() + ".";
+                    + destination.getCoordinatesAsString() + ". ";
         } else {
             s += "killed " + victim.getPieceName() + " at "
                     + destination.getCoordinatesAsString() + " with<br>"
                     + offender.getPieceName() + " from "
-                    + origin.getCoordinatesAsString() + ".";
+                    + origin.getCoordinatesAsString() + ". ";
         }
+        return s + getStringFromEffect(effectType);
+    }
 
-        switch (effectType) {
+    public static String getStringFromEffect(int et) {
+        String s = "";
+        switch (et) {
             case 1:
-                s += " Check!";
+                s += "Check!";
                 break;
             case 2:
-                s += " Stalemate!";
+                s += "Stalemate!";
                 break;
             case 3:
-                s += " Checkmate!";
+                s += "Checkmate!";
                 break;
             case 4:
-                s += " Castled.";
+                s += "Castled.";
                 break;
             case 5:
-                s += " Enpassant.";
+                s += "Enpassant.";
                 break;
             default:
                 break;

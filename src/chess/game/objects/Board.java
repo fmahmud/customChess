@@ -12,7 +12,6 @@ public class Board extends Loggable {
     private int width, height;
     private Square[][] board;
     private Player currentPlayer;
-    private boolean isUnderCheck = false;
 
     public Board(int w, int h) {
         super("Board");
@@ -108,7 +107,6 @@ public class Board extends Loggable {
 
         for(Piece p : objectiveAttackers) {
             dealWithChecking(p);
-            isUnderCheck = true;
         }
 
         for (int i = 0; i < height; ++i) {
@@ -121,8 +119,6 @@ public class Board extends Loggable {
                 }
             }
         }
-
-
     }
 
     /**
