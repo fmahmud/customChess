@@ -81,13 +81,6 @@ public class MetroButton extends MetroPanel {
         label.setText(s);
     }
 
-    public void setRequiredDimension(Dimension dim) {
-        canvas.setPreferredSize(dim);
-        canvas.setMinimumSize(dim);
-        canvas.setMaximumSize(dim);
-    }
-
-
     private class MetroButtonListener implements MouseListener {
         @Override
         public void mouseClicked(MouseEvent mouseEvent) {

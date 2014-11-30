@@ -11,12 +11,17 @@ import java.awt.*;
 public class Event extends DrawableObject {
 
     private int moveType = 0; //1 = move, 2 = kill.
-    private int effectType = 0; //1 = check, 2 = stale, 3 = checkmate
-    //4 = castle, 5 = enpassant?
+
+    //1 = check, 2 = stale, 3 = checkmate, 4 = castle, 5 = enpassant?
+    private int effectType = 0;
+
     private Square origin, destination;
     private Piece victim, offender;
     private String gameTime;
     private int tCount = -1; //the turn count
+
+    private static Color oddEvent = new Color(255, 255, 255, 40);
+    private static Color evenEvent = new Color(255, 255, 255, 0);
 
     public Event(Square _or, Square _d,
                  Piece _v, Piece _of,
@@ -38,17 +43,15 @@ public class Event extends DrawableObject {
 
     public void setSelectedColors() {
         canvas.setBackground(ConfigMaster.selectedItemColor);
-        canvas.setForeground(new Color(0, 0, 0));
     }
 
     public void setUnselectedColors() {
         if (tCount % 2 == 1) {
-            canvas.setBackground(ConfigMaster.whiteItemColor);
-            canvas.setForeground(ConfigMaster.blackItemColor);
+            canvas.setBackground(oddEvent);
         } else {
-            canvas.setBackground(ConfigMaster.blackItemColor);
-            canvas.setForeground(ConfigMaster.whiteItemColor);
+            canvas.setBackground(evenEvent);
         }
+        canvas.setForeground(Color.white);
     }
 
     private String getActionEffect() {

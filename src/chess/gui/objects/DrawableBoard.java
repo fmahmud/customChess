@@ -98,11 +98,11 @@ public class DrawableBoard extends Loggable {
         int targRow = table.rowAtPoint(locationOnScreen);
         int targCol = table.columnAtPoint(locationOnScreen);
         Square targetSquare = board.getSquareAt(targCol, targRow);
-        logLine("Right clicked on (" + targCol + ", " + targRow + ")", 3);
+//        logLine("Right clicked on (" + targCol + ", " + targRow + ")", 3);
         if (selectedPiece != null && selectedPiece.getOwner() == board.getCurrentPlayer()) {
-            logLine("Sel piece is not null and owned by current player", 3);
+//            logLine("Sel piece is not null and owned by current player", 3);
             if (moveDestinations.canMoveTo(targetSquare)) {
-                logLine("Target square is a valid move destination", 3);
+//                logLine("Target square is a valid move destination", 3);
                 tryMoveFromTo(selectedSquare, targetSquare);
             } else if (moveDestinations.canKillAt(targetSquare)) {
                 tryKillAt(selectedSquare, targetSquare);

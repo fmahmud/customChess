@@ -41,12 +41,12 @@ public class MoveDestinations extends Loggable {
         // with which the pinner is attacking it
         if(p != null && !pinnedPieces.containsKey(p)) {
             pinnedPieces.put(p, rail);
-            logLine("Pinning " + p.getPieceName(), 0);
+//            logLine("Pinning " + p.getPieceName(), 0);
         }
     }
 
     public void intersectWith(Vector<Square> locations) {
-        logLine("Before "+moveOnlyLocations.size(), 0);
+//        logLine("Before "+moveOnlyLocations.size(), 0);
         for(int i = 0; i < moveOnlyLocations.size();) {
             Square s = moveOnlyLocations.get(i);
             if(!locations.contains(s)) {
@@ -55,7 +55,7 @@ public class MoveDestinations extends Loggable {
                 ++i;
             }
         }
-        logLine("after "+moveOnlyLocations.size(), 0);
+//        logLine("after "+moveOnlyLocations.size(), 0);
 
 
         for(int i = 0; i < killOnlyLocations.size();) {
@@ -92,13 +92,12 @@ public class MoveDestinations extends Loggable {
         boolean foundKing = false;
         for(Square s : squares) {
             Piece p = s.getPiece();
-            if(p != null && p.isObjective())
-                foundKing = true;
-
             if(foundKing)
                 pathAfterObjective.add(s);
             else
                 pathToObjective.add(s);
+            if(p != null && p.isObjective())
+                foundKing = true;
         }
     }
 
@@ -151,8 +150,9 @@ public class MoveDestinations extends Loggable {
     }
 
     public Vector<Square> getAllAsOne() {
-        return Common.union(Common.union(pathAfterObjective, pathToObjective),
-                            Common.union(moveOnlyLocations, killOnlyLocations)
+        return Common.union(
+                    Common.union(pathAfterObjective, pathToObjective  ),
+                    Common.union(moveOnlyLocations , killOnlyLocations)
         );
     }
 

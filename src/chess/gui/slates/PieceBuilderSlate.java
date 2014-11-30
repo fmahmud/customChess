@@ -7,6 +7,7 @@ import chess.general.Common;
 import chess.gui.metroui.MetroButton;
 import chess.gui.metroui.MetroLabelledTextField;
 import chess.gui.metroui.MetroList;
+import chess.gui.metroui.MetroPanel;
 import chess.gui.objects.AbstractSlate;
 import chess.master.Runner;
 import org.json.JSONArray;
@@ -28,7 +29,8 @@ public class PieceBuilderSlate extends AbstractSlate {
     private MetroLabelledTextField lblTFPieceName, lblTFImgPath;
     private Vector<JSONObject> jsonPieces, jsonMoveStyles;
     private JButton btnAccept, btnSavePieceChanges, btnResetPieceChanges;
-    private JButton addPiece, removePiece, btnSaveMSChanges, btnResetMS;
+    private JButton addPiece, removePiece;
+    private MetroButton mbtnSaveMSChanges, mbtnResetMS;
     private JComboBox cbDX, cbDY, cbInfMoveX, cbInfMoveY, cbFirstMove, cbColDur, cbColEnd, cbMoveObjective;
     private JLabel lblDX, lblDY, lblInfMoveX, lblInfMoveY, lblFirstMove, lblColDur, lblColEnd, lblMoveObjective;
     private JTextField tfPieceName, tfImagePath;
@@ -117,6 +119,7 @@ public class PieceBuilderSlate extends AbstractSlate {
         lblTFImgPath =
                 new MetroLabelledTextField(" Image Path: ", "e.g. /path/to/image.png",
                         someDim);
+        lblTFImgPath.setEditable(false);
 
         JPanel pnlInfo = new JPanel();
         pnlInfo.add(lblTFPieceName.getCanvas());
@@ -216,21 +219,9 @@ public class PieceBuilderSlate extends AbstractSlate {
 
     @Override
     protected void setupRightPanel() {
-//        moveStyles = new DefaultListModel();
-//        movesList = new JList(moveStyles);
-//        movesList.setCellRenderer(new MoveStylesListCellRenderer());
-//        scrollPaneMoveStyles = new JScrollPane(movesList);
-//        scrollPaneMoveStyles.setPreferredSize(
-//        rightPanel.add(scrollPaneMoveStyles);
-//
-//        btnAddMS = Common.buttonFactory("Add Movestyle", "addMS", new AddMSButtonListener());
-//        btnRemoveMS = Common.buttonFactory("Remove Movestyle", "remMS", new RemoveMSButtonListener());
-//        rightPanel.add(btnAddMS);
-//        rightPanel.add(btnRemoveMS);
-
         movesList = new MetroList();
         movesList.setCellRenderer(new MoveStylesListCellRenderer());
-        movesList.setRequiredDimension(new Dimension(AbstractSlate.sideWidth - 3, AbstractSlate.centerWidth / 3));
+        movesList.setRequiredDimension(new Dimension(AbstractSlate.sideWidth - 3, AbstractSlate.centerWidth / 4));
 
         MetroButton btnAddMS = new MetroButton("Add Movestyle");
         btnAddMS.addActionListener(new AddMSButtonListener());
@@ -249,9 +240,10 @@ public class PieceBuilderSlate extends AbstractSlate {
 
         String[] bools = {"true", "false"};
         String[] objectives = {"Move Only", "Kill Only", "Both"};
-        moveStylePanel = new JPanel();
+        MetroPanel moveStyleMPanel = new MetroPanel("Move Style Options Panel");
+        moveStyleMPanel.setRequiredDimension(new Dimension(AbstractSlate.sideWidth, 3 * AbstractSlate.centerWidth / 4));
+        moveStylePanel = moveStyleMPanel.getCanvas();
         moveStylePanel.setLayout(new BoxLayout(moveStylePanel, BoxLayout.Y_AXIS));
-        moveStylePanel.setPreferredSize(new Dimension(AbstractSlate.sideWidth, 3 * AbstractSlate.centerWidth / 4));
         lblDX = Common.labelFactory("Horizontal Motion Eigenvector");
         lblDY = Common.labelFactory("Vertical Motion Eigenvector");
         cbDX = new JComboBox(nums);
@@ -302,13 +294,16 @@ public class PieceBuilderSlate extends AbstractSlate {
         moveStylePanel.add(cbMoveObjective);
         lblMoveObjective.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JPanel testPnl = new JPanel();
+        MetroPanel saveMPanel = new MetroPanel("Save Movestyle Panel");
+        JPanel testPnl = saveMPanel.getCanvas();
         testPnl.setPreferredSize(new Dimension(AbstractSlate.sideWidth, 40));
 
-        btnSaveMSChanges = Common.buttonFactory("Save Movestyle", "saveMS", new SaveMSButtonListener());
-        btnResetMS = Common.buttonFactory("Reset Movestyle", "resetMS", new ResetMSButtonListener());
-        testPnl.add(btnSaveMSChanges);
-        testPnl.add(btnResetMS);
+        mbtnResetMS = new MetroButton("Reset Movestyle");
+        mbtnResetMS.addActionListener(new ResetMSButtonListener());
+        mbtnSaveMSChanges = new MetroButton("Save Movestyle");
+        mbtnSaveMSChanges.addActionListener(new SaveMSButtonListener());
+        testPnl.add(mbtnSaveMSChanges.getCanvas());
+        testPnl.add(mbtnResetMS.getCanvas());
         moveStylePanel.add(testPnl);
 
         rightPanel.add(moveStylePanel);
@@ -365,10 +360,12 @@ public class PieceBuilderSlate extends AbstractSlate {
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            movesList.append("Movestyle " + (jsonMoveStyles.size() + 1));
-            jsonMoveStyles.add(new MoveStyle(0, 0, false, true, MoveStyle.MoveObjective.BOTH,
-                    new boolean[]{false, false}, false).getAsJSONObject());
-            movesList.setSelectedIndex(jsonMoveStyles.size() - 1);
+            if(indexSelectedPiece >= 0) {
+                movesList.append("Movestyle " + (jsonMoveStyles.size() + 1));
+                jsonMoveStyles.add(new MoveStyle(0, 0, false, true, MoveStyle.MoveObjective.BOTH,
+                        new boolean[]{false, false}, false).getAsJSONObject());
+                movesList.setSelectedIndex(jsonMoveStyles.size() - 1);
+            }
         }
     }
 
@@ -376,10 +373,12 @@ public class PieceBuilderSlate extends AbstractSlate {
 
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            jsonMoveStyles.remove(movesList.getSelectedIndex());
-            movesList.removeElementAt(movesList.getSelectedIndex());
-            indexSelectedMovestyle = -1;
-            movesList.setSelectedIndex(0);
+            if(indexSelectedPiece >= 0) {
+                jsonMoveStyles.remove(movesList.getSelectedIndex());
+                movesList.removeElementAt(movesList.getSelectedIndex());
+                indexSelectedMovestyle = -1;
+                movesList.setSelectedIndex(0);
+            }
         }
     }
 

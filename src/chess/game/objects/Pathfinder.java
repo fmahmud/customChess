@@ -120,6 +120,14 @@ public class Pathfinder extends Loggable {
                 if (self.canKill(victim)) { //if target piece can be killed
                     if (!ms.isMoveOnly()) {
                         moveDestinations.addKillLocation(targetSquare);
+                        if(victim.isObjective()) {
+                            //check
+                            Vector<Square> path = new Vector<Square>();
+                            path.add(board.getSquareAt(
+                                    self.getCurrentColumn(),
+                                    self.getCurrentRow()));
+                            moveDestinations.addPathToObjective(path);
+                        }
                     }
                 } else { //if target piece cannot be killed
                     if (ms.isKillOnly()) {

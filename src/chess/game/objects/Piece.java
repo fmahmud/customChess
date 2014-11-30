@@ -189,8 +189,12 @@ public class Piece extends DrawableObject {
         currentColumn = i;
     }
 
-    public boolean canGoTo(Square s) {
-        return moveDestinations.canKillAt(s) || moveDestinations.canMoveTo(s);
+    public boolean canMoveTo(Square s) {
+        return moveDestinations.canMoveTo(s);
+    }
+
+    public boolean canKillAt(Square s) {
+        return moveDestinations.canKillAt(s);
     }
 
     /**

@@ -25,4 +25,10 @@ public class MetroPanel extends Loggable {
     public JPanel getCanvas() {
         return canvas;
     }
+
+    public void setRequiredDimension(Dimension dim) {
+        canvas.setPreferredSize(dim);
+        canvas.setMinimumSize(dim);
+        canvas.setMaximumSize(dim);
+    }
 }

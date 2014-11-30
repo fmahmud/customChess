@@ -1,8 +1,11 @@
 package chess.game.objects;
 
 
-import chess.general.Common;
+import chess.config.ConfigMaster;
 import chess.general.Loggable;
+import chess.gui.metroui.MetroButton;
+import chess.gui.metroui.MetroPanel;
+import chess.gui.objects.AbstractSlate;
 import chess.gui.objects.DrawableBoard;
 import chess.gui.objects.DrawableTimer;
 import chess.master.Runner;
@@ -27,10 +30,10 @@ public class GameMode extends Loggable {
 
     protected int turnCount = 0;
     protected JPanel leftPanel, rightPanel, headerPanel, footerPanel, centerPanel;
+    protected JLabel inCheckLabel;
     protected History history;
     protected Board board;
     protected DrawableBoard drawBoard;
-    protected JButton btnUndo;
     private DrawableTimer gameTimer;
 
     public GameMode(JSONObject o) {
@@ -89,13 +92,9 @@ public class GameMode extends Loggable {
         drawBoard.addMoveListener(new MoveActionCallback());
         for (int i = 0; i < startingLayout.length; ++i) {
             for (int j = 0; j < startingLayout[i].length; ++j) {
-                Piece p = getPieceFromName(startingLayout[i][j]);
+                Piece p = getPieceFromName(startingLayout[i][j], objectives);
                 board.setPieceAt(p, j, i);
-                if(p == null) continue;
-                if(objectives.contains(p.getPieceName()))
-                    p.setObjective(true);
-                else
-                    p.setObjective(false);
+
             }
         }
         history = new History();
@@ -129,24 +128,30 @@ public class GameMode extends Loggable {
 
     private void setupRightPanel() {
         rightPanel.add(history.getList());
-        btnUndo = Common.buttonFactory("Undo", "undo", new ActionListener() {
-
+        final MetroButton mbtnUndo = new MetroButton("Undo");
+        mbtnUndo.setRequiredDimension(new Dimension(AbstractSlate.sideWidth, 50));
+        mbtnUndo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 undo();
-                if (history.getDepth() == 0)
-                    btnUndo.setEnabled(false);
             }
         });
-        btnUndo.setEnabled(false);
-        rightPanel.add(btnUndo);
+        rightPanel.add(mbtnUndo.getCanvas());
+//        rightPanel.add(btnUndo);
     }
 
     private void setupHeaderPanel() {
         headerPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 200, 10));
-        for(DrawableTimer timer : timers) {
-            headerPanel.add(timer.getCanvas());
-        }
+        headerPanel.add(timers[0].getCanvas());
+        MetroPanel inCheckPanel = new MetroPanel("Check Panel");
+        inCheckLabel = new JLabel("");
+        inCheckLabel.setFont(ConfigMaster.titleFont);
+        inCheckLabel.setForeground(Color.white);
+        inCheckPanel.setRequiredDimension(new Dimension(300, AbstractSlate.headFootHeight - 40));
+        inCheckPanel.getCanvas().add(inCheckLabel);
+        headerPanel.add(inCheckPanel.getCanvas());
+        headerPanel.add(timers[1].getCanvas());
+
     }
 
     private void setupLeftPanel() {
@@ -162,11 +167,16 @@ public class GameMode extends Loggable {
      *
      * @param s
      */
-    protected Piece getPieceFromName(String s) {
+    protected Piece getPieceFromName(String s, Vector<String> objectives) {
         if (s.equals(" ")) return null;
         Player owner;
         Piece p = new Piece(Runner.pieceCollection.getJSONObject(s));
-
+        if(p!=null) {
+            if(objectives.contains(p.getPieceName()))
+                p.setObjective(true);
+            else
+                p.setObjective(false);
+        }
         //todo: change this when pieces are in GameMode...
         //idea: "white1_Rook" (team)(playerNo)_(PieceName)
         if (s.contains("white"))
@@ -205,7 +215,6 @@ public class GameMode extends Loggable {
         board.setCurrentPlayer(getNextActivePlayer());
         board.updateAllValidDestinations();
         timers[turnCount % timers.length].click();
-        dealWithCheck();
     }
 
     public void setLeftPanel(JPanel pnl) {
@@ -250,15 +259,15 @@ public class GameMode extends Loggable {
             p.moved();
             to.setPiece(p);
             from.setPiece(null);
+            incrementTurnOrder();
+            int effect = dealWithCheck();
             Event e = new Event(from, to,
                     null, to.getPiece(),
-                    1, 0,//todo: temp (check for check, mate and stale)
-                    turnCount,
+                    1, effect,
+                    turnCount - 1,
                     DrawableTimer.getFormattedTime(gameTimer.getMinutes(), gameTimer.getSeconds())
             );
             history.push(e);
-            btnUndo.setEnabled(true);
-            incrementTurnOrder();
             return true;
         }
     }
@@ -289,15 +298,15 @@ public class GameMode extends Loggable {
             p.moved();
             to.setPiece(p);
             from.setPiece(null);
+            incrementTurnOrder();
+            int effect = dealWithCheck();
             Event e = new Event(from, to,
                     killedPiece, to.getPiece(),
-                    2, 0, //todo: temp (check for check and mate or stale)
-                    turnCount,
+                    2, effect,
+                    turnCount - 1,
                     DrawableTimer.getFormattedTime(gameTimer.getMinutes(), gameTimer.getSeconds())
             );
             history.push(e);
-            btnUndo.setEnabled(true);
-            incrementTurnOrder();
             return true;
         }
     }
@@ -333,22 +342,36 @@ public class GameMode extends Loggable {
         }
     }
 
+    public void setInCheck(Player player) {
+        if(player == null) {
+            inCheckLabel.setText("");
+        } else {
+            inCheckLabel.setText("Check!");
+        }
+    }
+
     /**
      * At the end of every move this function is called to deal with the
      * possibility of a player being under check.
      * <p/>
+     * This is called AFTER turn order is incremented... so current player
+     * will be in check by the player who just moved
      * todo: figure this out.
      */
-    private void dealWithCheck() {
-//        if(board.checkForOffend(whiteKing) != null) {
-//            whiteKing.setBeenAttacked(true);
-//            inCheck = whitePlayer;
-//        } else if(board.checkForOffend(blackKing) != null) {
-//            blackKing.setBeenAttacked(true);
-//            inCheck = blackPlayer;
-//        } else {
-//            inCheck = null;
-//        }
+    private int dealWithCheck() {
+        boolean someCheck = false;
+        Vector<Piece> objectives = board.getCurrentPlayer().getObjectives();
+        for(Piece p : objectives) {
+            if(board.checkForOffend(p) != null) {
+                p.setBeenAttacked(true);
+                setInCheck(board.getCurrentPlayer());
+                someCheck = true;
+                return 1;
+            }
+        }
+        if(!someCheck)
+            setInCheck(null);
+        return 0;
     }
 
     public void setupPanels() {

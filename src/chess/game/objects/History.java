@@ -17,20 +17,18 @@ public class History {
     MouseListener listMouseListener = new MouseAdapter() {
         public void mouseClicked(MouseEvent e) {
             if (e.getClickCount() == 2) {
-                //todo: doublie click logic goes here.
+                //todo: double click logic goes here.
             } else {
                 //?
             }
         }
     };
-    //    Vector<Event> past;
     private Vector<Event> future;
     private JList listHistory;
     private DefaultListModel listData;
     private JScrollPane scrPaneHistory;
 
     public History() {
-//        past = new Stack<Event>();
         future = new Stack<Event>();
         initJList();
     }
@@ -46,10 +44,11 @@ public class History {
     private void initJList() {
         listData = new DefaultListModel();
         listHistory = new JList(listData);
-        listHistory.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listHistory.setEnabled(false);
         listHistory.addMouseListener(listMouseListener);
         listHistory.setLayoutOrientation(JList.VERTICAL);
         listHistory.setCellRenderer(new HistoryListCellRenderer());
+        listHistory.setBackground(Color.black);
         scrPaneHistory = new JScrollPane(listHistory);
         scrPaneHistory.setPreferredSize(new Dimension(AbstractSlate.sideWidth, AbstractSlate.centerWidth - 40));
     }

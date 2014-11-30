@@ -12,6 +12,7 @@ public class Board extends Loggable {
     private int width, height;
     private Square[][] board;
     private Player currentPlayer;
+    private boolean isUnderCheck = false;
 
     public Board(int w, int h) {
         super("Board");
@@ -62,20 +63,22 @@ public class Board extends Loggable {
         Vector<Piece> currentPlayerPieces = currentPlayer.getPieces();
 
         Vector<Square> pathToObjective = new Vector<Square>();
-        Vector<Square> pathAfterObjective = new Vector<Square>();
 
         MoveDestinations amd = attacker.getMoveDestinations();
         pathToObjective.addAll(amd.getPathToObjective());
-        pathAfterObjective.addAll(amd.getPathAfterObjective());
-
+        pathToObjective.add(getSquareAt(attacker.getCurrentColumn(), attacker.getCurrentRow()));
         for(Piece p : currentPlayerPieces) {
-            logLine("Piece is at "+getSquareAt(p.getCurrentColumn(), p.getCurrentRow()).getCoordinatesAsString(), 0);
             MoveDestinations moveDestinations = p.getMoveDestinations();
-            if(p.isObjective()) {
-                moveDestinations.subtractWith(amd.getAllAsOne());
-            } else {
+            if(!p.isObjective()) {
                 moveDestinations.intersectWith(pathToObjective);
             }
+        }
+    }
+
+    private void dealWithObjective(Piece p) {
+        Vector<Piece> objectives = currentPlayer.getObjectives();
+        for(Piece objective : objectives) {
+            objective.getMoveDestinations().subtractWith(p.getMoveDestinations().getAllAsOne());
         }
     }
 
@@ -83,7 +86,6 @@ public class Board extends Loggable {
         HashMap<Piece, Vector<Square>> pieceVectorHashMap = pinner.getMoveDestinations().getPinnedPieces();
         Vector<Piece> pinnedPieces = new Vector<Piece>(pieceVectorHashMap.keySet());
         for(Piece p : pinnedPieces) {
-            logLine(pinner.getPieceName()+" is pinning "+p.getPieceName(), 0);
             Vector<Square> pinnerLocations = pieceVectorHashMap.get(p);
             pinnerLocations.add(getSquareAt(pinner.getCurrentColumn(), pinner.getCurrentRow()));
             p.getMoveDestinations().intersectWith(pinnerLocations);
@@ -104,22 +106,23 @@ public class Board extends Loggable {
             }
         }
 
-        logLine("Dealing with Checks", 0);
         for(Piece p : objectiveAttackers) {
-            logLine("Check by "+p.getPieceName(), 0);
             dealWithChecking(p);
+            isUnderCheck = true;
         }
 
-        logLine("Dealing with Pinning", 0);
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j) {
                 Square s = getSquareAt(j, i);
                 Piece p = s.getPiece();
                 if (p != null && p.getOwner() != currentPlayer) {
                     dealWithPinning(p);
+                    dealWithObjective(p);
                 }
             }
         }
+
+
     }
 
     /**
@@ -136,8 +139,7 @@ public class Board extends Loggable {
             for (int j = 0; j < width; ++j) {
                 Square s = getSquareAt(j, i);
                 Piece p = s.getPiece();
-                if (p == null) continue;
-                if (p.canGoTo(victimLoc))
+                if (p!= null && p.canKill(target) && p.canKillAt(victimLoc))
                     return p;
             }
         }
@@ -152,21 +154,7 @@ public class Board extends Loggable {
         return height;
     }
 
-    /**
-     * Returns the square at the coordinates passed. Format = (x, y) = (col,
-     * row). Does check for boundary conditions.
-     * Rotates the axis so that (0, 0) means the bottom left instead of top right
-     * This is the Chess style of numbering
-     *
-     * @param col the x coordinate of the required square
-     * @param row the y coordinate of the required square
-     * @return the square at (col, row) if valid. Otherwise null.
-     */
-    public Square chessGetSquareAt(int col, int row) {
-        return getSquareAt(col, row);
-    }
-
-    /**
+   /**
      * Returns the square at the provided coordinates based on
      * internal 2D array storage methods. (0, 0) is in the top left
      * corner, and (max, max) is in the bottom right hand corner

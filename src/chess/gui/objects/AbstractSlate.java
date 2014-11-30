@@ -3,6 +3,7 @@ package chess.gui.objects;
 import chess.general.Loggable;
 import chess.gui.GUIMaster;
 import chess.gui.metroui.MetroButton;
+import chess.gui.metroui.MetroPanel;
 import chess.master.Runner;
 
 import javax.swing.*;
@@ -16,29 +17,32 @@ public abstract class AbstractSlate extends Loggable {
     public final static int centerWidth = GUIMaster.SQUARE_WIDTH * 8;
     public final static int headFootHeight = (GUIMaster.WINDOW_HEIGHT - centerWidth) / 2;
     public final static int sideWidth = (GUIMaster.WINDOW_WIDTH - centerWidth) / 2;
-    protected final JPanel headerPanel = new JPanel();
-    protected final JPanel centerPanel = new JPanel();
-    protected final JPanel leftPanel = new JPanel();
-    protected final JPanel rightPanel = new JPanel();
-    protected final JPanel footerPanel = new JPanel();
-    protected final JPanel mainPanel = new JPanel();
+
+    protected final MetroPanel headerMPanel = new MetroPanel("Header Panel");
+    protected final MetroPanel centerMPanel = new MetroPanel("Center Panel");
+    protected final MetroPanel leftMPanel = new MetroPanel("Left Panel");
+    protected final MetroPanel rightMPanel = new MetroPanel("Right Panel");
+    protected final MetroPanel mainMPanel = new MetroPanel("Main Panel");
+    protected final MetroPanel footerMPanel = new MetroPanel("Footer Panel");
+
+    protected final JPanel headerPanel = headerMPanel.getCanvas();
+    protected final JPanel centerPanel = centerMPanel.getCanvas();
+    protected final JPanel leftPanel = leftMPanel.getCanvas();
+    protected final JPanel rightPanel = rightMPanel.getCanvas();
+    protected final JPanel footerPanel = footerMPanel.getCanvas();
+    protected final JPanel mainPanel = mainMPanel.getCanvas();
+
     private AbstractSlate returnTo;
 
     public AbstractSlate(String prefix, AbstractSlate _returnTo) {
         super(prefix);
         returnTo = _returnTo;
-        setPrefSize(headerPanel, new Dimension(GUIMaster.WINDOW_WIDTH, headFootHeight));
-        setPrefSize(centerPanel, new Dimension(centerWidth, centerWidth));
-        setPrefSize(leftPanel, new Dimension(sideWidth, centerWidth));
-        setPrefSize(rightPanel, new Dimension(sideWidth, centerWidth));
-        setPrefSize(footerPanel, new Dimension(GUIMaster.WINDOW_WIDTH, headFootHeight));
-        setPrefSize(mainPanel, new Dimension(GUIMaster.WINDOW_WIDTH, GUIMaster.WINDOW_HEIGHT));
-
-        headerPanel.setBackground(Color.black);
-        centerPanel.setBackground(Color.black);
-        leftPanel.setBackground(Color.black);
-        rightPanel.setBackground(Color.black);
-        footerPanel.setBackground(Color.black);
+        headerMPanel.setRequiredDimension(new Dimension(GUIMaster.WINDOW_WIDTH, headFootHeight));
+        centerMPanel.setRequiredDimension(new Dimension(centerWidth, centerWidth));
+        leftMPanel.setRequiredDimension(new Dimension(sideWidth, centerWidth));
+        rightMPanel.setRequiredDimension(new Dimension(sideWidth, centerWidth));
+        footerMPanel.setRequiredDimension(new Dimension(GUIMaster.WINDOW_WIDTH, headFootHeight));
+        mainMPanel.setRequiredDimension(new Dimension(GUIMaster.WINDOW_WIDTH, GUIMaster.WINDOW_HEIGHT));
     }
 
     protected void panelSetup() {

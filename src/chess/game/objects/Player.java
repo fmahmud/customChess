@@ -9,6 +9,7 @@ public class Player extends Loggable {
     private String name;
     private Team team;
     private Vector<Piece> killedPieces, pieces;
+    private Vector<Piece> objectives;
 
 
     public Player(Team _t, String _n) {
@@ -17,18 +18,25 @@ public class Player extends Loggable {
         name = _n;
         killedPieces = new Vector<Piece>();
         pieces = new Vector<Piece>();
+        objectives = new Vector<Piece>();
     }
 
     public void addPiece(Piece p) {
         if(!pieces.contains(p)) {
             pieces.add(p);
             p.setOwner(this);
+            if(p.isObjective())
+                objectives.add(p);
         }
     }
 
     public void addKilledPiece(Piece p) {
         if (pieces.contains(p))
             killedPieces.add(p);
+    }
+
+    public Vector<Piece> getObjectives() {
+        return objectives;
     }
 
     public Vector<Piece> getKilledPieces() {
