@@ -1,6 +1,5 @@
 package chess.gui.slates;
 
-import chess.config.ConfigMaster;
 import chess.game.objects.MoveStyle;
 import chess.game.objects.Piece;
 import chess.general.Common;
@@ -28,12 +27,9 @@ public class PieceBuilderSlate extends AbstractSlate {
     private MetroList piecesList, movesList;
     private MetroLabelledTextField lblTFPieceName, lblTFImgPath;
     private Vector<JSONObject> jsonPieces, jsonMoveStyles;
-    private JButton btnAccept, btnSavePieceChanges, btnResetPieceChanges;
-    private JButton addPiece, removePiece;
     private MetroButton mbtnSaveMSChanges, mbtnResetMS;
     private JComboBox cbDX, cbDY, cbInfMoveX, cbInfMoveY, cbFirstMove, cbColDur, cbColEnd, cbMoveObjective;
     private JLabel lblDX, lblDY, lblInfMoveX, lblInfMoveY, lblFirstMove, lblColDur, lblColEnd, lblMoveObjective;
-    private JTextField tfPieceName, tfImagePath;
     private HashMap<JSONObject, String> objToKey;
 
     private int indexSelectedPiece = -1, indexSelectedMovestyle = -1;
@@ -121,23 +117,32 @@ public class PieceBuilderSlate extends AbstractSlate {
                         someDim);
         lblTFImgPath.setEditable(false);
 
-        JPanel pnlInfo = new JPanel();
+        MetroPanel mPnlInfo = new MetroPanel("Info Panel");
+        mPnlInfo.setRequiredDimension(new Dimension(AbstractSlate.centerWidth, 120));
+
+        JPanel pnlInfo = mPnlInfo.getCanvas();
         pnlInfo.add(lblTFPieceName.getCanvas());
         pnlInfo.add(lblTFImgPath.getCanvas());
-        setPrefSize(pnlInfo, new Dimension(AbstractSlate.centerWidth, 120));
 
-        JPanel pnlMiddle = new JPanel();
-        setPrefSize(pnlMiddle, new Dimension(AbstractSlate.centerWidth,
-                AbstractSlate.centerWidth - 160));
 
-        JPanel pnlLower = new JPanel();
-        pnlLower.add(btnSavePieceChanges = Common.buttonFactory("Accept Piece", "acceptPiece", new AcceptPieceBtnListener()));
-        pnlLower.add(btnResetPieceChanges = Common.buttonFactory("Reset Piece", "resetPiece", new ResetPieceBtnListener()));
-        setPrefSize(pnlLower, new Dimension(AbstractSlate.centerWidth, 40));
+        MetroPanel mPnlMiddle = new MetroPanel("Middle Panel");
+        mPnlMiddle.setRequiredDimension(new Dimension(
+                AbstractSlate.centerWidth,
+                AbstractSlate.centerWidth - 160)
+        );
+        JPanel pnlMiddle = mPnlMiddle.getCanvas();
 
-        pnlInfo.setBackground(Color.black);
-        pnlMiddle.setBackground(Color.black);
-        pnlLower.setBackground(Color.black);
+        MetroPanel mPnlLower = new MetroPanel("Lower Panel");
+        mPnlLower.setRequiredDimension(new Dimension(AbstractSlate.centerWidth, 40));
+        JPanel pnlLower = mPnlLower.getCanvas();
+
+        MetroButton mbtnAcceptPiece = new MetroButton("Accept Piece");
+        mbtnAcceptPiece.addActionListener(new AcceptPieceBtnListener());
+        pnlLower.add(mbtnAcceptPiece.getCanvas());
+        MetroButton mbtnResetPiece = new MetroButton("Reset Piece");
+        mbtnResetPiece.addActionListener(new ResetPieceBtnListener());
+        pnlLower.add(mbtnResetPiece.getCanvas());
+
         centerPanel.add(pnlInfo);
         centerPanel.add(pnlMiddle);
         centerPanel.add(pnlLower);
@@ -311,10 +316,9 @@ public class PieceBuilderSlate extends AbstractSlate {
 
     @Override
     protected void setupFooterPanel() {
-        btnAccept = Common.buttonFactory("Accept", "accept", ConfigMaster.defaultFont, new AcceptBtnListener());
-        footerPanel.add(btnAccept);
-
-
+        MetroButton mbtnAccept = new MetroButton("Accept All Changes");
+        mbtnAccept.addActionListener(new AcceptBtnListener());
+        footerPanel.add(mbtnAccept.getCanvas());
     }
 
     class ComboBoxesChangeListener implements ActionListener {
@@ -445,7 +449,7 @@ public class PieceBuilderSlate extends AbstractSlate {
     private class AcceptPieceBtnListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            Piece p = new Piece(tfPieceName.getText(), tfImagePath.getText(), new JSONArray());
+            Piece p = new Piece(lblTFPieceName.getText(), lblTFImgPath.getText(), new JSONArray());
             for (JSONObject ms : jsonMoveStyles) {
                 p.addMoveStyle(ms);
             }

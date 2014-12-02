@@ -12,9 +12,8 @@ public class Player extends Loggable {
     private Vector<Piece> objectives;
 
 
-    public Player(Team _t, String _n) {
+    public Player(String _n) {
         super(_n);
-        team = _t;
         name = _n;
         killedPieces = new Vector<Piece>();
         pieces = new Vector<Piece>();
@@ -35,6 +34,10 @@ public class Player extends Loggable {
             killedPieces.add(p);
             pieces.remove(p);
         }
+    }
+
+    public void setTeam(Team t) {
+        team = t;
     }
 
     public Vector<Piece> getObjectives() {

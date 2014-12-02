@@ -83,6 +83,8 @@ public class Common extends Loggable {
             }
             ++i;
         }
+        fs.close();
+        br.close();
         return toRet;
     }
 
@@ -156,7 +158,8 @@ public class Common extends Loggable {
 
     public static String readWholeFile(File file) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(file));
+            FileReader fr = new FileReader(file);
+            BufferedReader reader = new BufferedReader(fr);
             String line;
             StringBuilder stringBuilder = new StringBuilder();
             String ls = System.getProperty("line.separator");
@@ -165,6 +168,7 @@ public class Common extends Loggable {
                 stringBuilder.append(line);
                 stringBuilder.append(ls);
             }
+            fr.close();
             reader.close();
             return stringBuilder.toString();
         } catch (Exception e) {
@@ -182,7 +186,8 @@ public class Common extends Loggable {
     }
 
     public static int countLines(File f) throws IOException {
-        InputStream is = new BufferedInputStream(new FileInputStream(f));
+        FileInputStream fs = new FileInputStream(f);
+        InputStream is = new BufferedInputStream(fs);
         try {
             byte[] c = new byte[1024];
             int count = 0;
@@ -198,6 +203,7 @@ public class Common extends Loggable {
             }
             return (count == 0 && !empty) ? 1 : count;
         } finally {
+            fs.close();
             is.close();
         }
     }

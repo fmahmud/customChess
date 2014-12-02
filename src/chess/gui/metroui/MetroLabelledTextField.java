@@ -34,6 +34,7 @@ public class MetroLabelledTextField extends MetroPanel {
         textField.addFocusListener(new TextFieldFocusListener());
 
         canvas.setPreferredSize(pnlDim);
+        canvas.add(Box.createHorizontalStrut(5));
         canvas.add(label);
         canvas.add(textField);
     }

@@ -84,7 +84,6 @@ public class MetroButton extends MetroPanel {
     private class MetroButtonListener implements MouseListener {
         @Override
         public void mouseClicked(MouseEvent mouseEvent) {
-            System.out.println("Was pressed");
             for(ActionListener al : listeners) {
                 al.actionPerformed(new ActionEvent(mouseEvent.getSource(), mouseEvent.getID(), ""));
             }

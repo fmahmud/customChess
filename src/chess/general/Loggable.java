@@ -10,7 +10,7 @@ import java.util.HashSet;
  */
 public abstract class Loggable {
     private final static int DEBUG_LEVEL = 0;
-    private final static int NUM_LOGGERS = 1000;
+    private final static int NUM_NAMES = 1000;
     private static HashSet<String> availableNames;
 
     private String debugPrefix;
@@ -31,7 +31,7 @@ public abstract class Loggable {
     private void defineLogger() {
         if (availableNames == null) {
             try {
-                availableNames = Common.getNRandomUniqueLinesInFile(NUM_LOGGERS, ConfigMaster.namesFileLocation);
+                availableNames = Common.getNRandomUniqueLinesInFile(NUM_NAMES, ConfigMaster.namesFileLocation);
             } catch (IOException e) {
                 e.printStackTrace();
             }

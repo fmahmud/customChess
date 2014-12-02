@@ -18,12 +18,12 @@ public abstract class AbstractSlate extends Loggable {
     public final static int headFootHeight = (GUIMaster.WINDOW_HEIGHT - centerWidth) / 2;
     public final static int sideWidth = (GUIMaster.WINDOW_WIDTH - centerWidth) / 2;
 
-    protected final MetroPanel headerMPanel = new MetroPanel("Header Panel");
-    protected final MetroPanel centerMPanel = new MetroPanel("Center Panel");
-    protected final MetroPanel leftMPanel = new MetroPanel("Left Panel");
-    protected final MetroPanel rightMPanel = new MetroPanel("Right Panel");
-    protected final MetroPanel mainMPanel = new MetroPanel("Main Panel");
-    protected final MetroPanel footerMPanel = new MetroPanel("Footer Panel");
+    private final MetroPanel headerMPanel = new MetroPanel("Header Panel");
+    private final MetroPanel centerMPanel = new MetroPanel("Center Panel");
+    private final MetroPanel leftMPanel = new MetroPanel("Left Panel");
+    private final MetroPanel rightMPanel = new MetroPanel("Right Panel");
+    private final MetroPanel mainMPanel = new MetroPanel("Main Panel");
+    private final MetroPanel footerMPanel = new MetroPanel("Footer Panel");
 
     protected final JPanel headerPanel = headerMPanel.getCanvas();
     protected final JPanel centerPanel = centerMPanel.getCanvas();

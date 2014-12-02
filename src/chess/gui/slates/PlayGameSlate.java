@@ -1,11 +1,9 @@
 package chess.gui.slates;
 
 import chess.game.objects.GameMode;
-import chess.general.Common;
 import chess.gui.objects.AbstractSlate;
 
 import javax.swing.*;
-import java.io.File;
 
 
 /**
@@ -14,14 +12,12 @@ import java.io.File;
 public class PlayGameSlate extends AbstractSlate {
     private GameMode game;
 
-    public PlayGameSlate(AbstractSlate _returnTo) {
+    public PlayGameSlate(AbstractSlate _returnTo, GameMode _game) {
         super("PlayGameSlate", _returnTo);
         //usually would invoke a choice of game style
         //then with the game style create a new game
         //and then the game would create a new board.
-        //todo new game menu fixing.
-        File classicChess = new File("/Users/Fez/Documents/workspace/ChessProject/src/chess/gamemodes/classicchess.json");
-        game = new GameMode(Common.getJSONObjFromFile(classicChess));
+        game = _game;
         panelSetup();
         game.setHeaderPanel(headerPanel);
         game.setLeftPanel(leftPanel);
@@ -29,6 +25,7 @@ public class PlayGameSlate extends AbstractSlate {
         game.setRightPanel(rightPanel);
         game.setFooterPanel(footerPanel);
         game.setupPanels();
+        game.startGame();
     }
 
     public JPanel getPnlUpper() {

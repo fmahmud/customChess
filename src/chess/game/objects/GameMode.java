@@ -9,8 +9,6 @@ import chess.gui.objects.AbstractSlate;
 import chess.gui.objects.DrawableBoard;
 import chess.gui.objects.DrawableTimer;
 import chess.master.Runner;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,38 +34,20 @@ public class GameMode extends Loggable {
     protected DrawableBoard drawBoard;
     private DrawableTimer gameTimer;
 
-    public GameMode(JSONObject o) {
-        super(o.getString("name"));
+    public GameMode(
+            String _modeName,
+            Team[] _teams,
+            String[][] _startingLayout,
+            Player[] _playerOrder,
+            int maxTime,
+            Vector<String> objectives
+    ) {
+        super(_modeName);
 
-        // name of game type
-        modeName = o.getString("name");
-
-        // layout
-        setStartingLayout(o.getJSONObject("layout"));
-
-        // team structure
-        JSONArray jsonTeams = o.getJSONArray("teams");
-        teams = new Team[jsonTeams.length()];
-        for(int i = 0; i < jsonTeams.length(); ++i) {
-            teams[i] = new Team(jsonTeams.getJSONObject(i));
-        }
-
-        //////////////////////////////////////////////////////////
-        // Turn order will be stored as tuples:
-        // "0,0","1,0" means team 0's player 0 will go first
-        // then team 1's player 0 will go next.
-        // Stored as array of Strings.
-        //////////////////////////////////////////////////////////
-        JSONArray tuples = o.getJSONArray("turnOrder");
-        playerOrder = new Player[tuples.length()];
-        for(int i = 0; i < tuples.length(); ++i) {
-            String[] tuple = tuples.getString(i).split(",");
-            playerOrder[i] = teams[Integer.parseInt(tuple[0])].getPlayer(Integer.parseInt(tuple[1]));
-        }
-
-        int maxTime;
-        // timers and max time
-        maxTime = o.getInt("maxTime"); //max time per player
+        modeName = _modeName;
+        startingLayout = _startingLayout;
+        teams = _teams;
+        playerOrder = _playerOrder;
         timers = new DrawableTimer[playerOrder.length];
         for(int i = 0; i < timers.length; ++i ) {
             timers[i] = new DrawableTimer(playerOrder[i].getPlayerName(), maxTime);
@@ -75,14 +55,7 @@ public class GameMode extends Loggable {
         }
         gameTimer = new DrawableTimer("Game Time");
         gameTimer.start();
-        JSONArray objs = o.getJSONArray("objectives");
-        Vector<String> objectives = new Vector<String>();
-        for(int i = 0; i < objs.length(); ++i) {
-            objectives.add(objs.getString(i));
-            logLine("Objective["+i+"] = "+objs.getString(i), 0);
-        }
         this.define(objectives);
-        this.startGame();
     }
 
     private void define(Vector<String> objectives) {
@@ -100,7 +73,7 @@ public class GameMode extends Loggable {
         history = new History();
     }
 
-    private void startGame() {
+    public void startGame() {
         gameTimer.click();
         timers[0].click();
         ++turnCount;
@@ -192,17 +165,6 @@ public class GameMode extends Loggable {
         return p;
     }
 
-    private void setStartingLayout(JSONObject layout) {
-        startingLayout = new String[8][8];
-        JSONArray rows = layout.getJSONArray("rows");
-        for(int i = 0; i < rows.length(); ++i) {
-            JSONArray row = rows.getJSONArray(i);
-            for(int j = 0; j < row.length(); ++j) {
-                startingLayout[i][j] = row.getString(j);
-            }
-        }
-    }
-
     /**
      * When a move is completed the turn order is incremented.
      * Also, the possibility of a player being under check is
@@ -273,7 +235,6 @@ public class GameMode extends Loggable {
     }
 
     private class KillActionCallBack implements ActionCallBack {
-
         /**
          * After user input has provided a starting <code>Square</code>
          * and a destination <code>Square</code> from and to which a their
@@ -348,7 +309,6 @@ public class GameMode extends Loggable {
      * <p/>
      * This is called AFTER turn order is incremented... so current player
      * will be in check by the player who just moved
-     * todo: figure this out.
      */
     private int dealWithCheck() {
         //attacked player's objectives
@@ -367,6 +327,7 @@ public class GameMode extends Loggable {
                 }
             }
         }
+
         if(totalNumMoves == 0) {
             if(player == null)
                 effect = 2; //stalemate

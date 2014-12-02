@@ -4,13 +4,22 @@
     <option name="ANALYZE_TEST_SOURCES" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="72dfaf43-3c51-42e6-badb-5858d6a291b6" name="Default" comment="GUI responds to Check. Fixed a few slates to use metro feel">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/game/objects/Board.java" afterPath="$PROJECT_DIR$/src/chess/game/objects/Board.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/game/objects/Event.java" afterPath="$PROJECT_DIR$/src/chess/game/objects/Event.java" />
+    <list default="true" id="72dfaf43-3c51-42e6-badb-5858d6a291b6" name="Default" comment="Done with Checkmate, and Stalemate!">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/objects/AbstractSlate.java" afterPath="$PROJECT_DIR$/src/chess/gui/objects/AbstractSlate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/general/Common.java" afterPath="$PROJECT_DIR$/src/chess/general/Common.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/game/objects/GameMode.java" afterPath="$PROJECT_DIR$/src/chess/game/objects/GameMode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/game/objects/MoveDestinations.java" afterPath="$PROJECT_DIR$/src/chess/game/objects/MoveDestinations.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/general/Loggable.java" afterPath="$PROJECT_DIR$/src/chess/general/Loggable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/slates/MainMenuSlate.java" afterPath="$PROJECT_DIR$/src/chess/gui/slates/MainMenuSlate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/metroui/MetroButton.java" afterPath="$PROJECT_DIR$/src/chess/gui/metroui/MetroButton.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/metroui/MetroLabelledTextField.java" afterPath="$PROJECT_DIR$/src/chess/gui/metroui/MetroLabelledTextField.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/metroui/MetroList.java" afterPath="$PROJECT_DIR$/src/chess/gui/metroui/MetroList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/game/objects/Pathfinder.java" afterPath="$PROJECT_DIR$/src/chess/game/objects/Pathfinder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java" afterPath="$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/slates/PlayGameSlate.java" afterPath="$PROJECT_DIR$/src/chess/gui/slates/PlayGameSlate.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/game/objects/Player.java" afterPath="$PROJECT_DIR$/src/chess/game/objects/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gamemodes/classicchess.json" afterPath="$PROJECT_DIR$/src/chess/gamemodes/classicchess.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/gui/slates/PreGameSlate.java" afterPath="$PROJECT_DIR$/src/chess/gui/slates/PreGameSlate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/master/Runner.java" afterPath="$PROJECT_DIR$/src/chess/master/Runner.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/game/objects/Team.java" afterPath="$PROJECT_DIR$/src/chess/game/objects/Team.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ChessProject.iws" />
@@ -33,49 +42,76 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="GameMode.java" pinned="false" current="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/src/chess/game/objects/GameMode.java">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state vertical-scroll-proportion="0.8077325" vertical-offset="142" max-vertical-offset="4965">
+                    <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="ChessProject" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.48490566">
+    <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
           <file leaf-file-name="PreGameSlate.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/PreGameSlate.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
-                  <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="546" max-vertical-offset="3000">
+                  <caret line="92" column="33" selection-start-line="92" selection-start-column="33" selection-end-line="92" selection-end-column="33" />
+                  <folding>
+                    <element signature="e#2151#2152#0" expanded="true" />
+                    <element signature="e#2234#2235#0" expanded="true" />
+                    <element signature="e#7502#7510#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="MetroLabelledTextField.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/chess/gui/metroui/MetroLabelledTextField.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="188" max-vertical-offset="1245">
+                  <caret line="50" column="18" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
+                  <folding>
+                    <element signature="e#1472#1473#0" expanded="true" />
+                    <element signature="e#1514#1515#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Common.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/chess/general/Common.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="485" max-vertical-offset="3525">
+                  <caret line="87" column="8" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="GameMode.java" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/chess/game/objects/GameMode.java">
+          <file leaf-file-name="Runner.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/chess/master/Runner.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.61290324" vertical-offset="4730" max-vertical-offset="5520">
-                  <caret line="379" column="9" selection-start-line="379" selection-start-column="9" selection-end-line="379" selection-end-column="9" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="MetroButton.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chess/gui/metroui/MetroButton.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="1485">
-                  <caret line="81" column="5" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Loggable.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chess/general/Loggable.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="360" max-vertical-offset="885">
-                  <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
+                  <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
                   <folding />
                 </state>
               </provider>
@@ -84,7 +120,7 @@
           <file leaf-file-name="DrawableBoard.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chess/gui/objects/DrawableBoard.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="1830" max-vertical-offset="3555">
+                <state vertical-scroll-proportion="0.0" vertical-offset="2430" max-vertical-offset="3270">
                   <caret line="122" column="23" selection-start-line="122" selection-start-column="23" selection-end-line="122" selection-end-column="23" />
                   <folding />
                 </state>
@@ -104,11 +140,23 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="classicchess.json" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chess/gamemodes/classicchess.json">
+          <file leaf-file-name="Pathfinder.java" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/chess/game/objects/Pathfinder.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="892" max-vertical-offset="1680">
-                  <caret line="84" column="26" selection-start-line="84" selection-start-column="26" selection-end-line="84" selection-end-column="26" />
+                <state vertical-scroll-proportion="0.59354836" vertical-offset="1070" max-vertical-offset="2670">
+                  <caret line="104" column="25" selection-start-line="104" selection-start-column="25" selection-end-line="104" selection-end-column="25" />
+                  <folding>
+                    <element signature="e#2560#2568#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="PieceBuilderSlate.java" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0" vertical-offset="6000" max-vertical-offset="6780">
+                  <caret line="430" column="75" selection-start-line="430" selection-start-column="75" selection-end-line="430" selection-end-column="75" />
                   <folding />
                 </state>
               </provider>
@@ -118,107 +166,37 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="DrawableTimer.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chess/gui/objects/DrawableTimer.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="810" max-vertical-offset="1980">
-                  <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Team.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chess/game/objects/Team.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="645">
-                  <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Common.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chess/general/Common.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="3465" max-vertical-offset="3600">
-                  <caret line="231" column="32" selection-start-line="231" selection-start-column="32" selection-end-line="231" selection-end-column="32" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="MetroList.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chess/gui/metroui/MetroList.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="330" max-vertical-offset="2070">
-                  <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="MetroLabelledTextField.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chess/gui/metroui/MetroLabelledTextField.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="1200">
-                  <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="PieceBuilderSlate.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="3904" max-vertical-offset="6705">
-                  <caret line="316" column="0" selection-start-line="316" selection-start-column="0" selection-end-line="316" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="AbstractSlate.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chess/gui/objects/AbstractSlate.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1860">
-                  <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="MoveDestinations.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chess/game/objects/MoveDestinations.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="1381" max-vertical-offset="2385">
-                  <caret line="169" column="29" selection-start-line="169" selection-start-column="29" selection-end-line="169" selection-end-column="29" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="959" max-vertical-offset="1800">
+                  <caret line="111" column="26" selection-start-line="111" selection-start-column="26" selection-end-line="111" selection-end-column="26" />
                   <folding>
-                    <element signature="e#3646#3647#0" expanded="true" />
-                    <element signature="e#3695#3696#0" expanded="true" />
-                    <element signature="e#4790#4791#0" expanded="true" />
-                    <element signature="e#4826#4827#0" expanded="true" />
+                    <element signature="e#3308#3309#0" expanded="true" />
+                    <element signature="e#3341#3342#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Pathfinder.java" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chess/game/objects/Pathfinder.java">
+          <file leaf-file-name="classicchess.json" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/chess/gamemodes/classicchess.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="1935" max-vertical-offset="2475">
-                  <caret line="129" column="25" selection-start-line="129" selection-start-column="25" selection-end-line="129" selection-end-column="25" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="653" max-vertical-offset="1680">
+                  <caret line="51" column="20" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="20" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Event.java" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/chess/game/objects/Event.java">
+          <file leaf-file-name="Pathfinder.java" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/chess/game/objects/Pathfinder.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.48857868" vertical-offset="560" max-vertical-offset="1980">
-                  <caret line="68" column="51" selection-start-line="68" selection-start-column="51" selection-end-line="68" selection-end-column="51" />
-                  <folding />
+                <state vertical-scroll-proportion="0.5513784" vertical-offset="235" max-vertical-offset="2670">
+                  <caret line="47" column="32" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
+                  <folding>
+                    <element signature="e#2560#2568#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -243,7 +221,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/chess/baseObjects/Square.java" />
         <option value="$PROJECT_DIR$/src/chess/gui/GUIMaster.java" />
         <option value="$PROJECT_DIR$/src/chess/curator/Curator.java" />
         <option value="$PROJECT_DIR$/src/chess/objects/Move.java" />
@@ -257,43 +234,44 @@
         <option value="$PROJECT_DIR$/src/chess/objects/Event.java" />
         <option value="$PROJECT_DIR$/src/chess/objects/Board.java" />
         <option value="$PROJECT_DIR$/src/chess/objects/Game.java" />
-        <option value="$PROJECT_DIR$/src/chess/gui/slates/PlayGameSlate.java" />
         <option value="$PROJECT_DIR$/src/chess/gui/slates/SettingsSlate.java" />
         <option value="$PROJECT_DIR$/src/chess/game/game/GameMode.java" />
         <option value="$PROJECT_DIR$/src/chess/objects/objects/GameMode.java" />
         <option value="$PROJECT_DIR$/src/chess/objects/GameMode.java" />
         <option value="$PROJECT_DIR$/src/chess/gui/objects/CustomButton.java" />
         <option value="$PROJECT_DIR$/src/chess/config/names.txt" />
-        <option value="$PROJECT_DIR$/src/chess/master/Runner.java" />
         <option value="$PROJECT_DIR$/src/chess/game/objects/Square.java" />
-        <option value="$PROJECT_DIR$/src/chess/gui/slates/MainMenuSlate.java" />
         <option value="$PROJECT_DIR$/src/chess/config/ConfigMaster.java" />
         <option value="$PROJECT_DIR$/src/chess/gui/objects/MetroButton.java" />
         <option value="$PROJECT_DIR$/src/chess/gui/objects/DrawableTimer.java" />
         <option value="$PROJECT_DIR$/src/chess/gui/objects/MetroList.java" />
         <option value="$PROJECT_DIR$/src/chess/gui/objects/LabelledTextField.java" />
-        <option value="$PROJECT_DIR$/src/chess/gui/metroui/MetroList.java" />
         <option value="$PROJECT_DIR$/src/chess/gui/metroui/LabelledTextField.java" />
         <option value="$PROJECT_DIR$/src/chess/general/Curator.java" />
-        <option value="$PROJECT_DIR$/src/chess/gui/metroui/MetroLabelledTextField.java" />
-        <option value="$PROJECT_DIR$/src/chess/general/Loggable.java" />
-        <option value="$PROJECT_DIR$/src/chess/general/Common.java" />
-        <option value="$PROJECT_DIR$/src/chess/gui/slates/PreGameSlate.java" />
         <option value="$PROJECT_DIR$/src/chess/game/objects/History.java" />
-        <option value="$PROJECT_DIR$/src/chess/game/objects/Pathfinder.java" />
         <option value="$PROJECT_DIR$/src/chess/gui/objects/DrawableBoard.java" />
         <option value="$PROJECT_DIR$/src/chess/game/objects/ActionCallBack.java" />
         <option value="$PROJECT_DIR$/src/chess/game/objects/Piece.java" />
-        <option value="$PROJECT_DIR$/src/chess/gui/metroui/MetroButton.java" />
         <option value="$PROJECT_DIR$/src/chess/gui/metroui/MetroPanel.java" />
-        <option value="$PROJECT_DIR$/src/chess/gui/objects/AbstractSlate.java" />
-        <option value="$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java" />
         <option value="$PROJECT_DIR$/src/chess/game/objects/Board.java" />
         <option value="$PROJECT_DIR$/src/chess/game/objects/MoveDestinations.java" />
         <option value="$PROJECT_DIR$/src/chess/gamemodes/classicchess.json" />
-        <option value="$PROJECT_DIR$/src/chess/game/objects/Player.java" />
-        <option value="$PROJECT_DIR$/src/chess/game/objects/GameMode.java" />
         <option value="$PROJECT_DIR$/src/chess/game/objects/Event.java" />
+        <option value="$PROJECT_DIR$/src/chess/gui/objects/AbstractSlate.java" />
+        <option value="$PROJECT_DIR$/src/chess/gui/slates/MainMenuSlate.java" />
+        <option value="$PROJECT_DIR$/src/chess/gui/metroui/MetroButton.java" />
+        <option value="$PROJECT_DIR$/src/chess/gui/metroui/MetroList.java" />
+        <option value="$PROJECT_DIR$/src/chess/master/Runner.java" />
+        <option value="$PROJECT_DIR$/src/chess/general/Loggable.java" />
+        <option value="$PROJECT_DIR$/src/chess/gui/metroui/MetroLabelledTextField.java" />
+        <option value="$PROJECT_DIR$/src/chess/game/objects/Player.java" />
+        <option value="$PROJECT_DIR$/src/chess/game/objects/Team.java" />
+        <option value="$PROJECT_DIR$/src/chess/gui/slates/PlayGameSlate.java" />
+        <option value="$PROJECT_DIR$/src/chess/game/objects/GameMode.java" />
+        <option value="$PROJECT_DIR$/src/chess/gui/slates/PreGameSlate.java" />
+        <option value="$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java" />
+        <option value="$PROJECT_DIR$/src/chess/general/Common.java" />
+        <option value="$PROJECT_DIR$/src/chess/game/objects/Pathfinder.java" />
       </list>
     </option>
   </component>
@@ -1058,7 +1036,11 @@
       <created>1417311604473</created>
       <updated>1417311604473</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Done with Checkmate, and Stalemate!">
+      <created>1417381707117</created>
+      <updated>1417381707117</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -1094,7 +1076,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40379146" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20473933" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20473933" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890996" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1156,7 +1138,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Added Timer" />
     <MESSAGE value="Fixed empty overwriting issue. Now can save editted pieces and load them properly." />
     <MESSAGE value="Fixed: Changing name of piece resulted in incorrect file output." />
     <MESSAGE value="Naming Convention change" />
@@ -1181,7 +1162,8 @@
     <MESSAGE value="Added MUI elements: MetroPanel, MetroList" />
     <MESSAGE value="Cleaned up Pathfinder. Check, Pin implemented in pathfinder." />
     <MESSAGE value="GUI responds to Check. Fixed a few slates to use metro feel" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI responds to Check. Fixed a few slates to use metro feel" />
+    <MESSAGE value="Done with Checkmate, and Stalemate!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Done with Checkmate, and Stalemate!" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1198,7 +1180,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1935" max-vertical-offset="2475">
           <caret line="129" column="25" selection-start-line="129" selection-start-column="25" selection-end-line="129" selection-end-column="25" />
-          <folding />
+          <folding>
+            <element signature="e#2560#2568#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1343,13 +1327,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/master/Runner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="750">
-          <caret line="35" column="16" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/chess/images/blackKnight.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1370,30 +1347,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/MainMenuSlate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54040897" vertical-offset="0" max-vertical-offset="1830">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/game/objects/Team.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
-          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/general/Loggable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="246" max-vertical-offset="840">
-          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/chess/config/names.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.26649746" vertical-offset="30885" max-vertical-offset="67830">
@@ -1401,41 +1354,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/general/Common.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2647" max-vertical-offset="3435">
-          <caret line="231" column="32" selection-start-line="231" selection-start-column="32" selection-end-line="231" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/PlayGameSlate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8096447" vertical-offset="37" max-vertical-offset="825">
-          <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/chess/general/Curator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4833837" vertical-offset="0" max-vertical-offset="1350">
           <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/gui/objects/DrawableTimer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="569" max-vertical-offset="1635">
-          <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/game/objects/Pathfinder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1182" max-vertical-offset="2445">
-          <caret line="129" column="25" selection-start-line="129" selection-start-column="25" selection-end-line="129" selection-end-column="25" />
           <folding />
         </state>
       </provider>
@@ -1460,57 +1382,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/gui/metroui/MetroPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/chess/game/objects/History.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5139594" vertical-offset="0" max-vertical-offset="788">
-          <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/gui/metroui/MetroList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2070">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/gui/metroui/MetroLabelledTextField.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="1200">
-          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.38064516" vertical-offset="185" max-vertical-offset="1170">
+          <caret line="46" column="38" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chess/gui/objects/AbstractSlate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="1860">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.30967742" vertical-offset="15" max-vertical-offset="1860">
+          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java">
+    <entry file="file://$PROJECT_DIR$/src/chess/gui/objects/DrawableTimer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3904" max-vertical-offset="6705">
-          <caret line="316" column="0" selection-start-line="316" selection-start-column="0" selection-end-line="316" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/gui/objects/DrawableBoard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1110" max-vertical-offset="3270">
-          <caret line="122" column="23" selection-start-line="122" selection-start-column="23" selection-end-line="122" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="569" max-vertical-offset="1635">
+          <caret line="54" column="5" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chess/game/objects/MoveDestinations.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1381" max-vertical-offset="2385">
+        <state vertical-scroll-proportion="1.053021" vertical-offset="1381" max-vertical-offset="2385">
           <caret line="169" column="29" selection-start-line="169" selection-start-column="29" selection-end-line="169" selection-end-column="29" />
           <folding>
             <element signature="e#3646#3647#0" expanded="true" />
@@ -1521,34 +1419,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/gamemodes/classicchess.json">
+    <entry file="file://$PROJECT_DIR$/src/chess/game/objects/Event.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="892" max-vertical-offset="1680">
-          <caret line="84" column="26" selection-start-line="84" selection-start-column="26" selection-end-line="84" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/game/objects/History.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38064516" vertical-offset="185" max-vertical-offset="1170">
-          <caret line="46" column="38" selection-start-line="46" selection-start-column="38" selection-end-line="46" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/gui/metroui/MetroButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="1485">
-          <caret line="81" column="5" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/PreGameSlate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.47472256" vertical-offset="560" max-vertical-offset="1980">
+          <caret line="68" column="51" selection-start-line="68" selection-start-column="51" selection-end-line="68" selection-end-column="51" />
           <folding />
         </state>
       </provider>
@@ -1564,34 +1438,156 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/game/objects/Player.java">
+    <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/MainMenuSlate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8286802" vertical-offset="82" max-vertical-offset="870">
-          <caret line="53" column="5" selection-start-line="53" selection-start-column="5" selection-end-line="53" selection-end-column="5" />
+        <state vertical-scroll-proportion="1.5139594" vertical-offset="67" max-vertical-offset="1830">
+          <caret line="91" column="9" selection-start-line="91" selection-start-column="9" selection-end-line="91" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/gui/metroui/MetroList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="959" max-vertical-offset="1800">
+          <caret line="111" column="26" selection-start-line="111" selection-start-column="26" selection-end-line="111" selection-end-column="26" />
           <folding>
-            <element signature="e#899#900#0" expanded="true" />
-            <element signature="e#932#933#0" expanded="true" />
-            <element signature="e#978#979#0" expanded="true" />
-            <element signature="e#1013#1014#0" expanded="true" />
-            <element signature="e#1053#1054#0" expanded="true" />
-            <element signature="e#1082#1083#0" expanded="true" />
+            <element signature="e#3308#3309#0" expanded="true" />
+            <element signature="e#3341#3342#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chess/game/objects/Event.java">
+    <entry file="file://$PROJECT_DIR$/src/chess/gui/metroui/MetroPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48857868" vertical-offset="560" max-vertical-offset="1980">
-          <caret line="68" column="51" selection-start-line="68" selection-start-column="51" selection-end-line="68" selection-end-column="51" />
+        <state vertical-scroll-proportion="0.5139594" vertical-offset="0" max-vertical-offset="788">
+          <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/master/Runner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
+          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/general/Loggable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28387097" vertical-offset="65" max-vertical-offset="840">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/gui/objects/DrawableBoard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1110" max-vertical-offset="3270">
+          <caret line="122" column="23" selection-start-line="122" selection-start-column="23" selection-end-line="122" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/gui/metroui/MetroButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5156408" vertical-offset="479" max-vertical-offset="1470">
+          <caret line="88" column="13" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/game/objects/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.56772906" vertical-offset="0" max-vertical-offset="1004">
+          <caret line="40" column="5" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+          <folding>
+            <element signature="e#862#863#0" expanded="true" />
+            <element signature="e#886#887#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/game/objects/Team.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4183267" vertical-offset="0" max-vertical-offset="1004">
+          <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/gui/metroui/MetroLabelledTextField.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="188" max-vertical-offset="1245">
+          <caret line="50" column="18" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
+          <folding>
+            <element signature="e#1472#1473#0" expanded="true" />
+            <element signature="e#1514#1515#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chess/game/objects/GameMode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61290324" vertical-offset="4730" max-vertical-offset="5520">
-          <caret line="379" column="9" selection-start-line="379" selection-start-column="9" selection-end-line="379" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.8077325" vertical-offset="142" max-vertical-offset="4965">
+          <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/PlayGameSlate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36326942" vertical-offset="0" max-vertical-offset="991">
+          <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/PreGameSlate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="546" max-vertical-offset="3000">
+          <caret line="92" column="33" selection-start-line="92" selection-start-column="33" selection-end-line="92" selection-end-column="33" />
+          <folding>
+            <element signature="e#2151#2152#0" expanded="true" />
+            <element signature="e#2234#2235#0" expanded="true" />
+            <element signature="e#7502#7510#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/gui/slates/PieceBuilderSlate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6000" max-vertical-offset="6780">
+          <caret line="430" column="75" selection-start-line="430" selection-start-column="75" selection-end-line="430" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/gamemodes/classicchess.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="653" max-vertical-offset="1680">
+          <caret line="51" column="20" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/general/Common.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="485" max-vertical-offset="3525">
+          <caret line="87" column="8" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chess/game/objects/Pathfinder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.59354836" vertical-offset="1070" max-vertical-offset="2670">
+          <caret line="104" column="25" selection-start-line="104" selection-start-column="25" selection-end-line="104" selection-end-column="25" />
+          <folding>
+            <element signature="e#2560#2568#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

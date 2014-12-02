@@ -94,12 +94,10 @@ public class MetroList extends MetroPanel {
         gbc.weightx = 1;
         gbc.weighty = 1;
         if(components.length == 1) {
-            logLine("Refreshing panel, 1 component", 0);
             panel.removeAll();
             components[0].setPreferredSize(singleButtonDim);
             panel.add(components[0], gbc);
         } else if(components.length == 2) {
-            logLine("Refreshing panel, 2 components", 0);
             panel.removeAll();
             gbc.gridx = 0;
             components[0].setPreferredSize(twoButtonDim);
@@ -119,7 +117,8 @@ public class MetroList extends MetroPanel {
     }
 
     public void setSelectedIndex(int i) {
-        jlist.setSelectedIndex(i);
+        if(listModel.size() > 0 && i < listModel.size())
+            jlist.setSelectedIndex(i);
     }
 
     public void removeElementAt(int i) {

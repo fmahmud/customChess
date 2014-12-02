@@ -17,8 +17,10 @@ public class Pathfinder extends Loggable {
 
     private void getInfPaths(Piece self, MoveStyle ms,
                              MoveDestinations moveDestinations) {
-        int tx = self.getCurrentColumn() + ms.getDx();
-        int ty = self.getCurrentRow() + ms.getDy();
+        int eigX = ms.getDx();
+        int eigY = ms.getDy();
+        int tx = self.getCurrentColumn() + eigX;
+        int ty = self.getCurrentRow() + eigY;
         Square target;
 
         Piece firstPiece = null;
@@ -26,7 +28,7 @@ public class Pathfinder extends Loggable {
         Piece victim;
         Vector<Square> currentPath = new Vector<Square>();
         while ((target = board.getSquareAt(tx, ty)) != null) {
-            if ((victim = target.getPiece()) != null) {
+            if ((victim = target.getPiece()) != null && (ms.isBoth() || ms.isKillOnly())) {
                 if(firstPiece == null) {
                     firstPiece = victim;
                 } else if(secondPiece == null) {
@@ -39,19 +41,17 @@ public class Pathfinder extends Loggable {
                     moveDestinations.addMoveLocation(target);
             }
             currentPath.add(target);
-            tx += ms.getDx();
-            ty += ms.getDy();
+            tx += eigX;
+            ty += eigY;
         }
 
         if(firstPiece != null) {
             if(self.canKill(firstPiece)) {
                 if(firstPiece.isObjective()) {
                     //check
-                    logLine("Check!", 0);
                     moveDestinations.addPathToObjective(currentPath);
                 } else if(secondPiece != null && self.canKill(secondPiece) && secondPiece.isObjective()) {
                     //pin
-                    logLine("Pin!", 0);
                     moveDestinations.addPinnedPiece(firstPiece, currentPath);
                 }
                 moveDestinations.addKillLocation(
@@ -64,45 +64,60 @@ public class Pathfinder extends Loggable {
     }
 
     private void getFinitePaths(Piece self, MoveStyle ms, MoveDestinations moveDestinations) {
-        int col = self.getCurrentColumn();
-        int row = self.getCurrentRow();
-        int tx = col + ms.getDx();
-        int ty = row + ms.getDy();
+        int tx = self.getCurrentColumn() + ms.getDx();
+        int ty = self.getCurrentRow() + ms.getDy();
         Square targetSquare = board.getSquareAt(tx, ty);
 
-        if (targetSquare == null)
+        if (targetSquare == null) //out of bounds check
             return;
-
         Piece victim = targetSquare.getPiece();
+
         if (ms.doesCollideDuring()) {
             //pawn/king
-            int eigX = ms.getDx() > 0 ? 1 : ms.getDx() == 0 ? 0 : -1;
-            int eigY = ms.getDy() > 0 ? 1 : ms.getDy() == 0 ? 0 : -1;
+            Vector<Square> currentPath = new Vector<Square>();
+            Piece firstPiece = null;
+            Piece secondPiece = null;
 
-            int interX = col + eigX;
-            int interY = row + eigY;
+            double denominator = Math.pow((double)((ms.getDx() * ms.getDx()) +
+                    (ms.getDy() * ms.getDy())), 0.5d);
 
-            Square tempSquare = board.getSquareAt(interX, interY);
 
-            while (tempSquare != null) {
-                tempSquare = board.getSquareAt(interX, interY);
-                if (tempSquare == null)
-                    break;
-                if (tempSquare.hasPiece()) {
-                    if (self.canKill(tempSquare.getPiece())) {
-                        if (ms.isKillOnly() || ms.isBoth())
-                            moveDestinations.addKillLocation(tempSquare);
+            double eigX = ms.getDx() / denominator;
+            double eigY = ms.getDy() / denominator;
+
+            double ftx = self.getCurrentColumn() + eigX;
+            double fty = self.getCurrentRow() + eigY;
+            Square target;
+            while ((target = board.getSquareAt((int)ftx, (int)fty)) != null) {
+                if((victim = target.getPiece()) != null && (ms.isBoth() || ms.isKillOnly())) {
+                    if(firstPiece == null) {
+                        firstPiece = victim;
+                    } else if(secondPiece == null) {
+                        secondPiece = victim;
                     }
-                    break;
                 } else {
-                    if (ms.isMoveOnly() || ms.isBoth())
-                        moveDestinations.addMoveLocation(tempSquare);
-                    interX += eigX;
-                    interY += eigY;
+                    if(firstPiece == null)
+                        moveDestinations.addMoveLocation(target);
                 }
-
-                if (tempSquare == targetSquare) {
-                    break;
+                currentPath.add(target);
+                ftx += eigX;
+                fty += eigY;
+                if(target == targetSquare) break;
+            }
+            if(firstPiece != null) {
+                if(self.canKill(firstPiece)) {
+                    if(firstPiece.isObjective()) {
+                        //check
+                        moveDestinations.addPathToObjective(currentPath);
+                    } else if(secondPiece != null && self.canKill(secondPiece) && secondPiece.isObjective()) {
+                        //pin
+                        moveDestinations.addPinnedPiece(firstPiece, currentPath);
+                    }
+                    moveDestinations.addKillLocation(
+                            board.getSquareAt(
+                                    firstPiece.getCurrentColumn(),
+                                    firstPiece.getCurrentRow())
+                    );
                 }
             }
         } else { //does not collide during
@@ -143,7 +158,7 @@ public class Pathfinder extends Loggable {
 
     public void generatePath(Piece self, MoveStyle ms,
                              MoveDestinations moveDestinations) {
-        logLine("Finding path for: " + self.getPieceName(), 3);
+//        logLine("Finding path for: " + self.getPieceName(), 3);
         if (self.hasMoved() && ms.getFirstMoveOnly()) {
             return;
         }

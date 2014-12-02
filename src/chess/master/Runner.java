@@ -14,10 +14,12 @@ public class Runner extends Loggable {
 
     public Runner() {
         super("Runner");
+        log("Defining Curators!", 0);
         pieceCollection = new Curator("Pieces", "name");
         pieceCollection.addDirectory(ConfigMaster.piecesLocation);
         gameCollection = new Curator("GameModes", "key");
         gameCollection.addDirectory(ConfigMaster.gameModesLocation);
+        logLine("...Done!", 0);
     }
 
     public static void main(String[] args) {
