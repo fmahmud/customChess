@@ -112,10 +112,12 @@ public class Pathfinder extends Loggable {
                         break;
                     }
                 } else {
-                    if(firstPiece == null && (ms.isMoveOnly() || ms.isBoth()))
-                        moveDestinations.addMoveLocation(target);
-                    else
-                        moveDestinations.addIndirectKillLocation(target);
+                    if(firstPiece == null) {
+                        if(ms.isMoveOnly() || ms.isBoth())
+                            moveDestinations.addMoveLocation(target);
+                        if(ms.isKillOnly() || ms.isBoth())
+                            moveDestinations.addIndirectKillLocation(target);
+                    }
                 }
                 currentPath.add(target);
                 ftx += eigX;
@@ -152,6 +154,7 @@ public class Pathfinder extends Loggable {
             if (victim == null) {
                 //if there is no piece in the resulting square
                 if (ms.isKillOnly()) {
+                    moveDestinations.addIndirectKillLocation(targetSquare);
                     //if the move is kill only
                 } else {
                     //the move is not kill only

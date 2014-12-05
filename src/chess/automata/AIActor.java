@@ -13,11 +13,12 @@ public class AIActor extends Player {
     }
 
     public Move getMove() {
-        Piece randomPiece;
+        if(pieces.size() == 0) return null;
+        Piece randomPiece = pieces.get((int)(Math.random() * pieces.size()));
         MoveDestinations moveDestinations;
         Square dest = null;
-        while(true) {
-            randomPiece = pieces.get((int)(Math.random() * pieces.size()));
+        int depth = 1000;
+        while(depth-- > 0) {
             moveDestinations = randomPiece.getMoveDestinations();
             if(moveDestinations.getTotalNumMoves() > 0) {
                 if(Math.random() > 0.9) {
@@ -29,8 +30,9 @@ public class AIActor extends Player {
             if(dest != null) {
                 break;
             }
+            randomPiece = pieces.get((int)(Math.random() * pieces.size()));
         }
-
+        if(dest == null) return null;
         return new Move(randomPiece, dest, dest.hasPiece());
     }
 }

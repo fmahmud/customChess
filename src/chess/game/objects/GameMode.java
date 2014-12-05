@@ -10,6 +10,7 @@ import chess.gui.objects.AbstractSlate;
 import chess.gui.objects.DrawableBoard;
 import chess.gui.objects.DrawableTimer;
 import chess.master.Runner;
+import org.json.JSONObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -80,17 +81,6 @@ public class GameMode extends Loggable {
         dealWithComputer();
     }
 
-    private void dealWithComputer() {
-        Player p = getCurrentPlayer();
-        if(p.isComputer()) {
-            Move m = ((AIActor)p).getMove();
-            if(m.isKill()) {
-                tryKill(m.getActor(), m.getTo());
-            } else {
-                tryMove(m.getActor(), m.getTo());
-            }
-        }
-    }
 
 
     /**
@@ -154,7 +144,10 @@ public class GameMode extends Loggable {
     protected Piece getPieceFromName(String s, Vector<String> objectives) {
         if (s.equals(" ")) return null;
         Player owner;
-        Piece p = new Piece(Runner.pieceCollection.getJSONObject(s));
+        JSONObject pieceDefinition = Runner.pieceCollection.getJSONObject(s);
+        Piece p = null;
+        if(pieceDefinition!= null)
+           p = new Piece(pieceDefinition);
         if(p!=null) {
             if(objectives.contains(p.getPieceName()))
                 p.setObjective(true);
@@ -186,11 +179,30 @@ public class GameMode extends Loggable {
         timers[turnCount % timers.length].click();
         ++turnCount;
         Player p = getCurrentPlayer();
+//        logLine("TC = "+turnCount+", player = "+p.getPlayerName(), 0);
         board.setCurrentPlayer(p);
         board.updateAllValidDestinations();
         timers[turnCount % timers.length].click();
         drawBoard.tryRepaint();
-        dealWithComputer();
+    }
+
+    private void dealWithComputer() {
+        try {
+            Thread.sleep(10l);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Player p = getCurrentPlayer();
+        if(p.isComputer()) {
+            Move m = ((AIActor)p).getMove();
+            if(m == null || turnCount > 200) return;
+//            logLine(m.toString(), 0);
+            if(m.isKill()) {
+                tryKill(m.getActor(), m.getTo());
+            } else {
+                tryMove(m.getActor(), m.getTo());
+            }
+        }
     }
 
     public void setLeftPanel(JPanel pnl) {
@@ -228,6 +240,7 @@ public class GameMode extends Loggable {
      * @return - true.
      */
     private boolean tryMove(Piece actor, Square to) {
+        if(actor == null) logLine("ACTOR WAS NULL!", 0);
         Square from = board.getSquareAt(actor.getCurrentColumn(), actor.getCurrentRow());
         actor.moved();
         to.setPiece(actor);
@@ -241,6 +254,7 @@ public class GameMode extends Loggable {
                 DrawableTimer.getFormattedTime(gameTimer.getMinutes(), gameTimer.getSeconds())
         );
         history.push(e);
+        dealWithComputer();
         return true;
     }
 
@@ -268,6 +282,7 @@ public class GameMode extends Loggable {
      * @return - true.
      */
     private boolean tryKill(Piece actor, Square to) {
+        if(actor == null) logLine("ACTOR WAS NULL!", 0);
         Square from = board.getSquareAt(actor.getCurrentColumn(), actor.getCurrentRow());
         Piece killedPiece = to.getPiece();
         killedPiece.getOwner().addKilledPiece(killedPiece);
@@ -284,6 +299,7 @@ public class GameMode extends Loggable {
                 DrawableTimer.getFormattedTime(gameTimer.getMinutes(), gameTimer.getSeconds())
         );
         history.push(e);
+        dealWithComputer();
         return true;
     }
 

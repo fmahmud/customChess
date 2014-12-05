@@ -24,7 +24,7 @@ public class Event extends DrawableObject {
     private static Color evenEvent = new Color(255, 255, 255, 0);
 
     public Event(Square _or, Square _d,
-                 Piece _v, Piece _of,
+                 Piece _v, Piece _o,
                  int _mt, int _et,
                  int _tc,
                  String _gt) {
@@ -32,7 +32,7 @@ public class Event extends DrawableObject {
         origin = _or;
         destination = _d;
         victim = _v;
-        offender = _of;
+        offender = destination.getPiece();
         tCount = _tc;
         moveType = _mt;
         effectType = _et;
@@ -101,8 +101,16 @@ public class Event extends DrawableObject {
      */
     @Override
     public String toString() {
-        return "[" + gameTime + "][" + tCount + "]: " + offender.getOwner().getPlayerName() + "<br>"
-                + getActionEffect() + "";
+        StringBuilder b = new StringBuilder();
+        b.append("[");
+        b.append(gameTime);
+        b.append("][");
+        b.append(tCount);
+        b.append("]: ");
+        b.append(offender.getOwner().getPlayerName());
+        b.append("<br>");
+        b.append(getActionEffect());
+        return b.toString();
     }
 
     public Square getOrigin() {

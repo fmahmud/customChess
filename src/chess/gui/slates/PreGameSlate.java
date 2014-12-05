@@ -170,10 +170,10 @@ public class PreGameSlate extends AbstractSlate {
                 if(!mcb.isChecked()) allComputer = false;
             }
 
-            if(allComputer) {
-                JOptionPane.showMessageDialog(null, "You cannot have all players being computers!");
-                return;
-            }
+//            if(allComputer) {
+//                JOptionPane.showMessageDialog(null, "You cannot have all players being computers!");
+//                return;
+//            }
 
             for(int i = 0; i < teams.length; ++i) {
                 teams[i] = new Team( teamNames.get(i).getText());

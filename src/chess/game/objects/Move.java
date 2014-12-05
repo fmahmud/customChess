@@ -25,4 +25,8 @@ public class Move {
         return to;
     }
 
+    public String toString() {
+        return actor.getPieceName()+", "+to.getCoordinatesAsString() + ", "+isKill;
+    }
+
 }
