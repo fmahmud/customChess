@@ -129,18 +129,21 @@ public class PieceBuilderSlate extends AbstractSlate {
         MetroPanel mPnlMiddle = new MetroPanel("Middle Panel");
         mPnlMiddle.setRequiredDimension(new Dimension(
                 AbstractSlate.centerWidth,
-                AbstractSlate.centerWidth - 160)
+                AbstractSlate.centerWidth - 180)
         );
         JPanel pnlMiddle = mPnlMiddle.getCanvas();
 
         MetroPanel mPnlLower = new MetroPanel("Lower Panel");
-        mPnlLower.setRequiredDimension(new Dimension(AbstractSlate.centerWidth, 40));
+        mPnlLower.setRequiredDimension(new Dimension(AbstractSlate.centerWidth, 60));
         JPanel pnlLower = mPnlLower.getCanvas();
 
+        Dimension dim = new Dimension(140, 50);
         MetroButton mbtnAcceptPiece = new MetroButton("Accept Piece");
+        mbtnAcceptPiece.setRequiredDimension(dim);
         mbtnAcceptPiece.addActionListener(new AcceptPieceBtnListener());
         pnlLower.add(mbtnAcceptPiece.getCanvas());
         MetroButton mbtnResetPiece = new MetroButton("Reset Piece");
+        mbtnResetPiece.setRequiredDimension(dim);
         mbtnResetPiece.addActionListener(new ResetPieceBtnListener());
         pnlLower.add(mbtnResetPiece.getCanvas());
 
@@ -299,7 +302,8 @@ public class PieceBuilderSlate extends AbstractSlate {
 
     @Override
     protected void setupFooterPanel() {
-        MetroButton mbtnAccept = new MetroButton("Accept All Changes");
+        MetroButton mbtnAccept = new MetroButton("Done");
+        mbtnAccept.setRequiredDimension(new Dimension(290, 70));
         mbtnAccept.addActionListener(new AcceptBtnListener());
         footerPanel.add(mbtnAccept.getCanvas());
     }
@@ -418,17 +422,18 @@ public class PieceBuilderSlate extends AbstractSlate {
     private class AcceptPieceBtnListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
-            Piece p = new Piece(lblTFPieceName.getText(), lblTFImgPath.getText(), new JSONArray());
-            for (JSONObject ms : jsonMoveStyles) {
-                p.addMoveStyle(ms);
+            if(indexSelectedPiece >= 0) {
+                Piece p = new Piece(lblTFPieceName.getText(), lblTFImgPath.getText(), new JSONArray());
+                for (JSONObject ms : jsonMoveStyles) {
+                    p.addMoveStyle(ms);
+                }
+                String key = objToKey.remove(jsonPieces.remove(indexSelectedPiece));
+                JSONObject temp = p.getPieceAsJSON();
+                jsonPieces.add(indexSelectedPiece, temp);
+                objToKey.put(temp, key);
+                JOptionPane.showMessageDialog(null, "Saved piece " + p.getPieceName() + "!");
             }
-            String key = objToKey.remove(jsonPieces.remove(indexSelectedPiece));
-            JSONObject temp = p.getPieceAsJSON();
-            jsonPieces.add(indexSelectedPiece, temp);
-            objToKey.put(temp, key);
-            JOptionPane.showMessageDialog(null, "Saved piece " + p.getPieceName() + "!");
         }
-
     }
 
     private class ResetPieceBtnListener implements ActionListener {
