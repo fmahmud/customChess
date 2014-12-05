@@ -83,8 +83,17 @@ public class DrawableTimer extends Loggable {
         lblTime.setText(getFormattedTime(minutes, seconds));
     }
 
+    private void setBold(boolean b) {
+        if(b) {
+            lblTime.setFont(ConfigMaster.headerOneBoldFont);
+        } else {
+            lblTime.setFont(ConfigMaster.headerOneFont);
+        }
+    }
+
     public void click() {
         this.paused = !this.paused;
+        setBold(!paused);
     }
 
     public void start() {

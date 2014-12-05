@@ -5,6 +5,6 @@ package chess.game.objects;
  */
 public interface ActionCallBack {
 
-    boolean registerAction(Square from, Square to);
+    boolean registerAction(Piece actor, Square to);
 
 }

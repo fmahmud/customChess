@@ -15,7 +15,7 @@ public class Piece extends DrawableObject {
     protected Image img;
     private Vector<MoveStyle> moveStyles;
     private MoveDestinations moveDestinations;
-    private int currentRow, currentColumn;
+    private int currentRow = -1, currentColumn = -1;
     private String pieceName;
     private String imagePath;
     private boolean isObjective = false;
@@ -202,7 +202,7 @@ public class Piece extends DrawableObject {
      * @return
      */
     public boolean canKill(Piece other) {
-        if (other == null) return true;
+        if (other == null) return false;
         return other.getTeam() != this.getTeam();
     }
 

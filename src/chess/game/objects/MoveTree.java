@@ -26,10 +26,10 @@ public class MoveTree {
         }
 
         void addNode(Node n) {
-            if (bestNextMove == null || n.move.getIndirectValue() > bestNextMove.getIndirectValue()) {
-                bestNextMove = n.move;
-            }
-            nextMoves.add(n);
+//            if (bestNextMove == null || n.move.getIndirectValue() > bestNextMove.getIndirectValue()) {
+//                bestNextMove = n.move;
+//            }
+//            nextMoves.add(n);
         }
     }
 }

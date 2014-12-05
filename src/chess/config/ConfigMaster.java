@@ -18,6 +18,8 @@ public class ConfigMaster {
     public static Font headerThreeFont = new Font("Calibri", Font.PLAIN, 36);
     public static Font headerTwoFont = new Font("Calibri", Font.PLAIN, 45);
     public static Font headerOneFont = new Font("Calibri", Font.PLAIN, 54);
+    public static Font headerOneBoldFont = new Font("Calibri", Font.BOLD, 56);
+
     public static Font titleFont = new Font("Calibri", Font.BOLD, 81);
 
     public static Color selectedItemColor = new Color(95, 192, 144);

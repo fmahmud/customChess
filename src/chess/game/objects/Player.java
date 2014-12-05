@@ -8,9 +8,9 @@ public class Player extends Loggable {
 
     private String name;
     private Team team;
-    private Vector<Piece> killedPieces, pieces;
-    private Vector<Piece> objectives;
-
+    protected Vector<Piece> killedPieces, pieces;
+    protected Vector<Piece> objectives;
+    private boolean isComputer = false;
 
     public Player(String _n) {
         super(_n);
@@ -27,6 +27,14 @@ public class Player extends Loggable {
             if(p.isObjective())
                 objectives.add(p);
         }
+    }
+
+    public void setIsComputer(boolean b) {
+        isComputer = b;
+    }
+
+    public boolean isComputer() {
+        return isComputer;
     }
 
     public void addKilledPiece(Piece p) {
@@ -58,5 +66,12 @@ public class Player extends Loggable {
 
     public String getPlayerName() {
         return name;
+    }
+
+    public void resurrectPiece(Piece piece) {
+        if(killedPieces.contains(piece)) {
+            killedPieces.remove(piece);
+            pieces.add(piece);
+        }
     }
 }

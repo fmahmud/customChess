@@ -112,7 +112,7 @@ public class DrawableBoard extends Loggable {
 
     private void tryMoveFromTo(Square from, Square to) {
         for(ActionCallBack acb : onMoveListeners)
-            acb.registerAction(from, to);
+            acb.registerAction(from.getPiece(), to);
 
         clearTempVars();
         table.repaint();
@@ -120,13 +120,18 @@ public class DrawableBoard extends Loggable {
 
     private void tryKillAt(Square from, Square to) {
         for(ActionCallBack acb : onKillListeners)
-            acb.registerAction(from, to);
+            acb.registerAction(from.getPiece(), to);
 
         clearTempVars();
         table.repaint();
     }
 
     public void tryRepaint() {
+        for(int i = 0 ; i < board.getHeight(); ++i ) {
+            for(int j = 0; j < board.getWidth(); ++j) {
+                board.getSquareAt(j, i).repaint();
+            }
+        }
         table.repaint();
     }
 

@@ -1,6 +1,7 @@
 package chess.game.objects;
 
 
+import chess.automata.AIActor;
 import chess.config.ConfigMaster;
 import chess.general.Loggable;
 import chess.gui.metroui.MetroButton;
@@ -21,7 +22,6 @@ import java.util.Vector;
  */
 public class GameMode extends Loggable {
     private String modeName;
-    private Team[] teams;
     private String[][] startingLayout;
     private Player[] playerOrder;
     private DrawableTimer[] timers;
@@ -36,7 +36,6 @@ public class GameMode extends Loggable {
 
     public GameMode(
             String _modeName,
-            Team[] _teams,
             String[][] _startingLayout,
             Player[] _playerOrder,
             int maxTime,
@@ -46,7 +45,6 @@ public class GameMode extends Loggable {
 
         modeName = _modeName;
         startingLayout = _startingLayout;
-        teams = _teams;
         playerOrder = _playerOrder;
         timers = new DrawableTimer[playerOrder.length];
         for(int i = 0; i < timers.length; ++i ) {
@@ -67,7 +65,6 @@ public class GameMode extends Loggable {
             for (int j = 0; j < startingLayout[i].length; ++j) {
                 Piece p = getPieceFromName(startingLayout[i][j], objectives);
                 board.setPieceAt(p, j, i);
-
             }
         }
         history = new History();
@@ -79,6 +76,20 @@ public class GameMode extends Loggable {
         ++turnCount;
         board.setCurrentPlayer(getCurrentPlayer());
         board.updateAllValidDestinations();
+        drawBoard.tryRepaint();
+        dealWithComputer();
+    }
+
+    private void dealWithComputer() {
+        Player p = getCurrentPlayer();
+        if(p.isComputer()) {
+            Move m = ((AIActor)p).getMove();
+            if(m.isKill()) {
+                tryKill(m.getActor(), m.getTo());
+            } else {
+                tryMove(m.getActor(), m.getTo());
+            }
+        }
     }
 
 
@@ -174,9 +185,12 @@ public class GameMode extends Loggable {
     private void incrementTurnOrder() {
         timers[turnCount % timers.length].click();
         ++turnCount;
-        board.setCurrentPlayer(getCurrentPlayer());
+        Player p = getCurrentPlayer();
+        board.setCurrentPlayer(p);
         board.updateAllValidDestinations();
         timers[turnCount % timers.length].click();
+        drawBoard.tryRepaint();
+        dealWithComputer();
     }
 
     public void setLeftPanel(JPanel pnl) {
@@ -199,76 +213,85 @@ public class GameMode extends Loggable {
         centerPanel = pnl;
     }
 
+    /**
+     * After user input has provided a starting <code>Square</code>
+     * and a destination <code>Square</code> from and to which a their
+     * <code>Piece</code> is moving, this function is called.
+     * <p/>
+     * why is this boolean? it always returns true.
+     * why is this not so clean?
+     *
+     * @param from - <code>Square</code> from which the <code>Piece</code> is
+     *             moving
+     * @param to   - <code>Square</code> to which the <code>Piece</code> is
+     *             moving
+     * @return - true.
+     */
+    private boolean tryMove(Piece actor, Square to) {
+        Square from = board.getSquareAt(actor.getCurrentColumn(), actor.getCurrentRow());
+        actor.moved();
+        to.setPiece(actor);
+        from.setPiece(null);
+        incrementTurnOrder();
+        int effect = dealWithCheck();
+        Event e = new Event(from, to,
+                null, to.getPiece(),
+                1, effect,
+                turnCount - 1,
+                DrawableTimer.getFormattedTime(gameTimer.getMinutes(), gameTimer.getSeconds())
+        );
+        history.push(e);
+        return true;
+    }
+
     private class MoveActionCallback implements ActionCallBack {
 
-        /**
-         * After user input has provided a starting <code>Square</code>
-         * and a destination <code>Square</code> from and to which a their
-         * <code>Piece</code> is moving, this function is called.
-         * <p/>
-         * why is this boolean? it always returns true.
-         * why is this not so clean?
-         *
-         * @param from - <code>Square</code> from which the <code>Piece</code> is
-         *             moving
-         * @param to   - <code>Square</code> to which the <code>Piece</code> is
-         *             moving
-         * @return - true.
-         */
         @Override
-        public boolean registerAction(Square from, Square to) {
-            Piece p = from.getPiece();
-            p.moved();
-            to.setPiece(p);
-            from.setPiece(null);
-            incrementTurnOrder();
-            int effect = dealWithCheck();
-            Event e = new Event(from, to,
-                    null, to.getPiece(),
-                    1, effect,
-                    turnCount - 1,
-                    DrawableTimer.getFormattedTime(gameTimer.getMinutes(), gameTimer.getSeconds())
-            );
-            history.push(e);
-            return true;
+        public boolean registerAction(Piece actor, Square to) {
+            return tryMove(actor, to);
         }
     }
 
+    /**
+     * After user input has provided a starting <code>Square</code>
+     * and a destination <code>Square</code> from and to which a their
+     * <code>Piece</code> is moving, this function is called if and only
+     * if there is an enemy piece in the destination.
+     * <p/>
+     * why is this boolean? it always returns true.
+     * why is this not so clean?
+     *
+     * @param from - <code>Square</code> from which the <code>Piece</code> is
+     *             moving
+     * @param to   - <code>Square</code> to which the <code>Piece</code> is
+     *             moving
+     * @return - true.
+     */
+    private boolean tryKill(Piece actor, Square to) {
+        Square from = board.getSquareAt(actor.getCurrentColumn(), actor.getCurrentRow());
+        Piece killedPiece = to.getPiece();
+        killedPiece.getOwner().addKilledPiece(killedPiece);
+        to.setPiece(null);
+        actor.moved();
+        to.setPiece(actor);
+        from.setPiece(null);
+        incrementTurnOrder();
+        int effect = dealWithCheck();
+        Event e = new Event(from, to,
+                killedPiece, to.getPiece(),
+                2, effect,
+                turnCount - 1,
+                DrawableTimer.getFormattedTime(gameTimer.getMinutes(), gameTimer.getSeconds())
+        );
+        history.push(e);
+        return true;
+    }
+
     private class KillActionCallBack implements ActionCallBack {
-        /**
-         * After user input has provided a starting <code>Square</code>
-         * and a destination <code>Square</code> from and to which a their
-         * <code>Piece</code> is moving, this function is called if and only
-         * if there is an enemy piece in the destination.
-         * <p/>
-         * why is this boolean? it always returns true.
-         * why is this not so clean?
-         *
-         * @param from - <code>Square</code> from which the <code>Piece</code> is
-         *             moving
-         * @param to   - <code>Square</code> to which the <code>Piece</code> is
-         *             moving
-         * @return - true.
-         */
+
         @Override
-        public boolean registerAction(Square from, Square to) {
-            Piece killedPiece = to.getPiece();
-            killedPiece.getOwner().addKilledPiece(killedPiece);
-            to.setPiece(null);
-            Piece p = from.getPiece();
-            p.moved();
-            to.setPiece(p);
-            from.setPiece(null);
-            incrementTurnOrder();
-            int effect = dealWithCheck();
-            Event e = new Event(from, to,
-                    killedPiece, to.getPiece(),
-                    2, effect,
-                    turnCount - 1,
-                    DrawableTimer.getFormattedTime(gameTimer.getMinutes(), gameTimer.getSeconds())
-            );
-            history.push(e);
-            return true;
+        public boolean registerAction(Piece actor, Square to) {
+            return tryKill(actor, to);
         }
     }
 
@@ -281,7 +304,9 @@ public class GameMode extends Loggable {
         Square destination = e.getDestination();
         Piece victim = e.getVictim();
         Piece offender = e.getOffender();
-
+        if(victim != null) {
+            victim.getOwner().resurrectPiece(victim);
+        }
         // modify affected pieces/squares
         origin.setPiece(null);
         destination.setPiece(null);
@@ -341,7 +366,8 @@ public class GameMode extends Loggable {
         }
 
         inCheckLabel.setText(Event.getStringFromEffect(effect));
-
+        if(effect == 2 || effect == 3)
+            endGame();
         return effect;
     }
 

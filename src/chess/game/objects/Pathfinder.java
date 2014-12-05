@@ -37,8 +37,12 @@ public class Pathfinder extends Loggable {
                     break;
                 }
             } else {
-                if(firstPiece == null && (ms.isMoveOnly() || ms.isBoth()))
-                    moveDestinations.addMoveLocation(target);
+                if(firstPiece == null) {
+                    if(ms.isMoveOnly() || ms.isBoth())
+                        moveDestinations.addMoveLocation(target);
+                    if(ms.isKillOnly() || ms.isBoth())
+                        moveDestinations.addIndirectKillLocation(target);
+                }
             }
             currentPath.add(target);
             tx += eigX;
@@ -46,19 +50,30 @@ public class Pathfinder extends Loggable {
         }
 
         if(firstPiece != null) {
-            if(self.canKill(firstPiece) && (ms.isBoth() || ms.isKillOnly())) {
-                if(firstPiece.isObjective()) {
-                    //check
-                    moveDestinations.addPathToObjective(currentPath);
-                } else if(secondPiece != null && self.canKill(secondPiece) && secondPiece.isObjective()) {
-                    //pin
-                    moveDestinations.addPinnedPiece(firstPiece, currentPath);
+            if(self.canKill(firstPiece)) {
+                if(ms.isBoth() || ms.isKillOnly()) {
+                    if(firstPiece.isObjective()) {
+                        //check
+                        moveDestinations.addPathToObjective(currentPath);
+                    } else if(secondPiece != null && self.canKill(secondPiece) && secondPiece.isObjective()) {
+                        //pin
+                        moveDestinations.addPinnedPiece(firstPiece, currentPath);
+                    }
+                    moveDestinations.addKillLocation(
+                            board.getSquareAt(
+                                    firstPiece.getCurrentColumn(),
+                                    firstPiece.getCurrentRow())
+                    );
                 }
-                moveDestinations.addKillLocation(
+            } else {
+                if (ms.isBoth() || ms.isKillOnly()) {
+                    moveDestinations.addIndirectKillLocation(
                         board.getSquareAt(
-                        firstPiece.getCurrentColumn(),
-                        firstPiece.getCurrentRow())
-                );
+                            firstPiece.getCurrentColumn(),
+                            firstPiece.getCurrentRow()
+                        )
+                    );
+                }
             }
         }
     }
@@ -99,6 +114,8 @@ public class Pathfinder extends Loggable {
                 } else {
                     if(firstPiece == null && (ms.isMoveOnly() || ms.isBoth()))
                         moveDestinations.addMoveLocation(target);
+                    else
+                        moveDestinations.addIndirectKillLocation(target);
                 }
                 currentPath.add(target);
                 ftx += eigX;
@@ -106,18 +123,27 @@ public class Pathfinder extends Loggable {
                 distanceLeft -= (Math.abs(eigX) + Math.abs(eigY));
             }
             if(firstPiece != null) {
-                if(self.canKill(firstPiece) && (ms.isBoth() || ms.isKillOnly())) {
-                    if(firstPiece.isObjective()) {
-                        //check
-                        moveDestinations.addPathToObjective(currentPath);
-                    } else if(secondPiece != null && self.canKill(secondPiece) && secondPiece.isObjective()) {
-                        //pin
-                        moveDestinations.addPinnedPiece(firstPiece, currentPath);
+                if(self.canKill(firstPiece)) {
+                    if(ms.isBoth() || ms.isKillOnly()) {
+                        if (firstPiece.isObjective()) {
+                            //check
+                            moveDestinations.addPathToObjective(currentPath);
+                        } else if (secondPiece != null && self.canKill(secondPiece) && secondPiece.isObjective()) {
+                            //pin
+                            moveDestinations.addPinnedPiece(firstPiece, currentPath);
+                        }
+                        moveDestinations.addKillLocation(
+                                board.getSquareAt(
+                                        firstPiece.getCurrentColumn(),
+                                        firstPiece.getCurrentRow())
+                        );
                     }
-                    moveDestinations.addKillLocation(
+                } else if (ms.isBoth() || ms.isKillOnly()) {
+                    moveDestinations.addIndirectKillLocation(
                             board.getSquareAt(
                                     firstPiece.getCurrentColumn(),
-                                    firstPiece.getCurrentRow())
+                                    firstPiece.getCurrentRow()
+                            )
                     );
                 }
             }
@@ -146,8 +172,9 @@ public class Pathfinder extends Loggable {
                         }
                     }
                 } else { //if target piece cannot be killed
-                    if (ms.isKillOnly()) {
-                        //do nothing - something for later?
+                    if (ms.isKillOnly() || ms.isBoth()) {
+                        moveDestinations.addIndirectKillLocation(targetSquare);
+                        //defending
                     } else {
                         //do nothing - something for later?
                     }

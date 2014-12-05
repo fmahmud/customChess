@@ -27,6 +27,10 @@ public class MetroCheckBox extends MetroPanel {
         setRequiredDimension(dimension);
     }
 
+    public boolean isChecked() {
+        return isChecked;
+    }
+
     class CheckedActionListener implements MouseListener {
 
         @Override

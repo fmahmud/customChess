@@ -77,7 +77,7 @@ public class Board extends Loggable {
     private void dealWithObjective(Piece p) {
         Vector<Piece> objectives = currentPlayer.getObjectives();
         for(Piece objective : objectives) {
-            objective.getMoveDestinations().subtractWith(p.getMoveDestinations().getAllAsOne());
+            objective.getMoveDestinations().subtractWith(p.getMoveDestinations().getNotMoveOnlyLocations());
         }
     }
 

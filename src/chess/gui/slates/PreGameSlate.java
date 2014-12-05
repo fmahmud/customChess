@@ -1,9 +1,11 @@
 package chess.gui.slates;
 
+import chess.automata.AIActor;
 import chess.config.ConfigMaster;
 import chess.game.objects.GameMode;
 import chess.game.objects.Player;
 import chess.game.objects.Team;
+import chess.general.Common;
 import chess.gui.metroui.*;
 import chess.gui.objects.AbstractSlate;
 import chess.master.Runner;
@@ -126,10 +128,15 @@ public class PreGameSlate extends AbstractSlate {
             teamName.setPreferredSize(new Dimension(AbstractSlate.centerWidth, 40));
             MetroCheckBox isComputer = new MetroCheckBox("IsAI"+team.getString("teamName"));
             computerCheckBoxes.add(isComputer);
+            MetroPanel checkBoxPanel = new MetroPanel("CheckBoxPanel"+i);
+            JPanel somePanel = checkBoxPanel.getCanvas();
+            JLabel lblIsAI = Common.labelFactory("Is Computer?");
+            somePanel.add(lblIsAI);
+            somePanel.add(isComputer.getCanvas());
             teamNames.add(teamName);
-            centerPanel.add(isComputer.getCanvas());
             centerPanel.add(teamName);
             centerPanel.add(teamPanel[i].getCanvas());
+            centerPanel.add(somePanel);
             centerPanel.add(Box.createVerticalGlue());
         }
         centerPanel.updateUI();
@@ -158,10 +165,24 @@ public class PreGameSlate extends AbstractSlate {
         public void actionPerformed(ActionEvent actionEvent) {
             Team[] teams = new Team[playerNames.size()];
             JSONObject chosenGameMode = gameModes.get(indexSelectedGame);
+            boolean allComputer = true;
+            for(MetroCheckBox mcb : computerCheckBoxes) {
+                if(!mcb.isChecked()) allComputer = false;
+            }
+
+            if(allComputer) {
+                JOptionPane.showMessageDialog(null, "You cannot have all players being computers!");
+                return;
+            }
+
             for(int i = 0; i < teams.length; ++i) {
                 teams[i] = new Team( teamNames.get(i).getText());
                 for(MetroLabelledTextField textField : playerNames.get(i)) {
-                    teams[i].addPlayer(new Player(textField.getText().replace("e.g. ", "")));
+                    if(computerCheckBoxes.get(i).isChecked()) {
+                        teams[i].addPlayer(new AIActor(textField.getText().replace("e.g. ", "")));
+                    } else {
+                        teams[i].addPlayer(new Player(textField.getText().replace("e.g. ", "")));
+                    }
                 }
             }
             // finished creating teams.
@@ -201,7 +222,6 @@ public class PreGameSlate extends AbstractSlate {
 
             GameMode gameMode = new GameMode(
                     chosenGameMode.getString("name"),
-                    teams,
                     startingLayout,
                     playerOrder,
                     maxTime,
