@@ -19,7 +19,7 @@ public class Runner extends Loggable {
         pieceCollection.addDirectory(ConfigMaster.piecesLocation);
         gameCollection = new Curator("GameModes", "key");
         gameCollection.addDirectory(ConfigMaster.gameModesLocation);
-        logLine("...Done!", 0);
+        log("...Done!\n", 0);
     }
 
     public static void main(String[] args) {

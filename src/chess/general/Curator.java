@@ -73,7 +73,7 @@ public class Curator extends Loggable {
     }
 
     public void saveAllItems() {
-        prune();
+//        prune();
         if(!hasChanged) return;
         Vector<String> keys = getKeys();
         for (String s : keys) {
@@ -92,6 +92,6 @@ public class Curator extends Loggable {
     }
 
     public void updateJSONObject(String key, JSONObject newObj) {
-        hasChanged = jsonObjectHashMap.put(key, newObj) != null;
+        hasChanged = jsonObjectHashMap.put(key, newObj) != null || hasChanged;
     }
 }

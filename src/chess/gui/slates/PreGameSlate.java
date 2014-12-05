@@ -4,10 +4,7 @@ import chess.config.ConfigMaster;
 import chess.game.objects.GameMode;
 import chess.game.objects.Player;
 import chess.game.objects.Team;
-import chess.gui.metroui.MetroButton;
-import chess.gui.metroui.MetroLabelledTextField;
-import chess.gui.metroui.MetroList;
-import chess.gui.metroui.MetroPanel;
+import chess.gui.metroui.*;
 import chess.gui.objects.AbstractSlate;
 import chess.master.Runner;
 import org.json.JSONArray;
@@ -29,6 +26,7 @@ public class PreGameSlate extends AbstractSlate {
 
     private MetroButton buttonStartGame, buttonBack;
     Vector<MetroLabelledTextField[]> playerNames;
+    Vector<MetroCheckBox> computerCheckBoxes;
     Vector<JLabel> teamNames;
     MetroList gameModeList;
     Vector<JSONObject> gameModes;
@@ -40,6 +38,7 @@ public class PreGameSlate extends AbstractSlate {
         gameModes = Runner.gameCollection.getAllJSONObjects();
         playerNames = new Vector<MetroLabelledTextField[]>();
         teamNames = new Vector<JLabel>();
+        computerCheckBoxes = new Vector<MetroCheckBox>();
         panelSetup();
     }
 
@@ -111,6 +110,7 @@ public class PreGameSlate extends AbstractSlate {
         logLine("Selected index = " + index, 0);
         playerNames.clear();
         teamNames.clear();
+        computerCheckBoxes.clear();
         centerPanel.removeAll();
         JSONObject gameMode = gameModes.get(index);
         JSONArray teamsArray = gameMode.getJSONArray("teams");
@@ -124,7 +124,10 @@ public class PreGameSlate extends AbstractSlate {
             teamName.setForeground(Color.white);
             teamName.setAlignmentX(0.5f);
             teamName.setPreferredSize(new Dimension(AbstractSlate.centerWidth, 40));
+            MetroCheckBox isComputer = new MetroCheckBox("IsAI"+team.getString("teamName"));
+            computerCheckBoxes.add(isComputer);
             teamNames.add(teamName);
+            centerPanel.add(isComputer.getCanvas());
             centerPanel.add(teamName);
             centerPanel.add(teamPanel[i].getCanvas());
             centerPanel.add(Box.createVerticalGlue());

@@ -1,6 +1,5 @@
 package chess.game.objects;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -13,16 +12,16 @@ import org.json.JSONObject;
 public class MoveStyle {
 
     private int dx, dy;
+    private int distance;
     private boolean collidesDuring;
     private boolean collidesAtEnd;
     private MoveObjective mvObj;
-    private boolean[] infiniteMove = {false, false}; //{ x, y }
     private String specialMove; //castling
     private boolean firstMoveOnly = false;
     public MoveStyle(int _dx, int _dy,
                      boolean _collidesDuring, boolean _collidesAtEnd, MoveObjective _mvObj,
-                     boolean[] _infiniteMove, boolean _fOnly) {
-        define(_dx, _dy, _collidesDuring, _collidesAtEnd, _mvObj, _infiniteMove, _fOnly);
+                     boolean _firstOnly, int _distance) {
+        define(_dx, _dy, _collidesDuring, _collidesAtEnd, _mvObj, _firstOnly, _distance);
     }
 
     public MoveStyle(JSONObject _ms) {
@@ -32,38 +31,21 @@ public class MoveStyle {
                 _ms.getBoolean("collidesDuring"),
                 _ms.getBoolean("collidesAtEnd"),
                 getMoveObjFromString(_ms.getString("moveObjective")),
-                getInfiniteMoveFromJSON(_ms.getJSONArray("infiniteMove")),
-                _ms.getBoolean("firstMoveOnly")
+                _ms.getBoolean("firstMoveOnly"),
+                _ms.getInt("distance")
         );
     }
 
     private void define(int _dx, int _dy,
                         boolean _collidesDuring, boolean _collidesAtEnd, MoveObjective _mvObj,
-                        boolean[] _infiniteMove, boolean _fOnly) {
+                        boolean _fOnly, int _distance) {
         this.setDx(_dx);
         this.setDy(_dy);
         this.setCollidesDuring(_collidesDuring);
         this.setCollidesAtEnd(_collidesAtEnd);
         this.setMoveObjective(_mvObj);
-        this.infiniteMove[0] = _infiniteMove[0];
-        this.infiniteMove[1] = _infiniteMove[1];
         this.firstMoveOnly = _fOnly;
-    }
-
-    private boolean[] getInfiniteMoveFromJSON(JSONArray vals) {
-        boolean[] toRet = new boolean[vals.length()];
-        for (int i = 0; i < toRet.length; ++i) {
-            toRet[i] = vals.getBoolean(i);
-        }
-        return toRet;
-    }
-
-    private JSONArray getJSONFromInfiniteMove() {
-        JSONArray toRet = new JSONArray();
-        for (boolean b : infiniteMove) {
-            toRet.put(b);
-        }
-        return toRet;
+        this.distance = _distance;
     }
 
     private MoveObjective getMoveObjFromString(String s) {
@@ -93,8 +75,8 @@ public class MoveStyle {
         toRet.put("collidesDuring", collidesDuring);
         toRet.put("collidesAtEnd", collidesAtEnd);
         toRet.put("moveObjective", getStringFromMoveObj(mvObj));
-        toRet.put("infiniteMove", getJSONFromInfiniteMove());
         toRet.put("firstMoveOnly", firstMoveOnly);
+        toRet.put("distance", distance);
         return toRet;
     }
 
@@ -104,14 +86,6 @@ public class MoveStyle {
 
     public void setMoveObjective(MoveObjective moveObjective) {
         this.mvObj = moveObjective;
-    }
-
-    public boolean canMoveInfHor() {
-        return infiniteMove[0];
-    }
-
-    public boolean canMoveInfVer() {
-        return infiniteMove[1];
     }
 
     public int getDx() {
@@ -161,6 +135,10 @@ public class MoveStyle {
     @Override
     public String toString() {
         return getAsJSONObject().toString();
+    }
+
+    public int getDistance() {
+        return distance;
     }
 
     public enum MoveObjective {

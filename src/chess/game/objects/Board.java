@@ -54,7 +54,7 @@ public class Board extends Loggable {
         moveDestinations.clearAll();
         Vector<MoveStyle> moveStyles = p.getMoveStyles();
         for (MoveStyle ms : moveStyles) {
-            pathfinder.generatePath(p, ms, moveDestinations);
+            pathfinder.generatePath(p, ms);
         }
     }
 

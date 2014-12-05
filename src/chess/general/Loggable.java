@@ -48,6 +48,6 @@ public abstract class Loggable {
 
     protected void log(String s, int level) {
         if (level <= DEBUG_LEVEL)
-            System.out.print(debugPrefix + s);
+            System.out.print(s);
     }
 }

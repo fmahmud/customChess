@@ -166,6 +166,13 @@ public class MoveDestinations extends Loggable {
         );
     }
 
+    public Vector<Square> getNotMoveOnlyLocations() {
+        return Common.union(
+                Common.union(pathAfterObjective, pathToObjective),
+                killOnlyLocations
+        );
+    }
+
     public int getTotalNumMoves() {
         return totalNumMoves;
     }

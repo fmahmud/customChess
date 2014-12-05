@@ -28,13 +28,15 @@ public class PieceBuilderSlate extends AbstractSlate {
     private MetroLabelledTextField lblTFPieceName, lblTFImgPath;
     private Vector<JSONObject> jsonPieces, jsonMoveStyles;
     private MetroButton mbtnSaveMSChanges, mbtnResetMS;
-    private JComboBox cbDX, cbDY, cbInfMoveX, cbInfMoveY, cbFirstMove, cbColDur, cbColEnd, cbMoveObjective;
-    private JLabel lblDX, lblDY, lblInfMoveX, lblInfMoveY, lblFirstMove, lblColDur, lblColEnd, lblMoveObjective;
+    private JComboBox cbDX, cbDY, cbFirstMove, cbColDur, cbColEnd, cbMoveObjective;
+    private JLabel lblDX, lblDY, lblFirstMove, lblColDur, lblColEnd, lblMoveObjective;
     private HashMap<JSONObject, String> objToKey;
 
     private int indexSelectedPiece = -1, indexSelectedMovestyle = -1;
     //starting off at -1 because if zero no difference will be noticed and nothing will be rendered
     private JPanel moveStylePanel;
+    private JComboBox cbDistance;
+    private JLabel lblDistance;
 
     public PieceBuilderSlate(AbstractSlate _returnTo) {
         super("PieceBuilderSlate", _returnTo);
@@ -46,7 +48,6 @@ public class PieceBuilderSlate extends AbstractSlate {
         }
 
         panelSetup();
-        addComboBoxListeners();
     }
 
     @Override
@@ -97,12 +98,12 @@ public class PieceBuilderSlate extends AbstractSlate {
         }
     }
 
-    private void setSelectedPieceIndex(int index) {
-        setSelectedPiece(getJSONFromList(piecesList.getElementAt(index)));
-        movesList.setSelectedIndex(0);
-        setSelectedMoveStyleFromIndex(0);
+   private void setSelectedPieceIndex(int index) {
+       setSelectedPiece(getJSONFromList(piecesList.getElementAt(index)));
+       movesList.setSelectedIndex(0);
+       setSelectedMoveStyleFromIndex(0);
 
-    }
+   }
 
     @Override
     protected void setupCenterPanel() {
@@ -148,20 +149,6 @@ public class PieceBuilderSlate extends AbstractSlate {
         centerPanel.add(pnlLower);
     }
 
-    private void addComboBoxListeners() {
-        ActionListener cbListener = new ComboBoxesChangeListener();
-        cbDX.addActionListener(cbListener);
-        cbDY.addActionListener(cbListener);
-        cbColDur.addActionListener(cbListener);
-        cbColEnd.addActionListener(cbListener);
-        cbColEnd.addActionListener(cbListener);
-        cbInfMoveX.addActionListener(cbListener);
-        cbInfMoveY.addActionListener(cbListener);
-        cbFirstMove.addActionListener(cbListener);
-        cbMoveObjective.addActionListener(cbListener);
-
-    }
-
     private String getMoveStyleAsStringUgly(String s) {
         if (s.equals("Move Only"))
             return "MOVE_ONLY";
@@ -188,27 +175,25 @@ public class PieceBuilderSlate extends AbstractSlate {
         cbDY.setSelectedItem("" + ms.getInt("dy"));
         cbColDur.setSelectedItem("" + ms.getBoolean("collidesDuring"));
         cbColEnd.setSelectedItem("" + ms.getBoolean("collidesAtEnd"));
-        cbInfMoveX.setSelectedItem("" + ms.getJSONArray("infiniteMove").getBoolean(0));
-        cbInfMoveY.setSelectedItem("" + ms.getJSONArray("infiniteMove").getBoolean(1));
         cbFirstMove.setSelectedItem("" + ms.getBoolean("firstMoveOnly"));
         cbMoveObjective.setSelectedItem(getMoveStyleAsStringPretty(ms.getString("moveObjective")));
+        cbDistance.setSelectedItem("" + ms.getInt("distance"));
     }
 
-    private JSONObject getMoveStyleAsJSON() {
+    private JSONObject getSelectedMoveStyleAsJSON() {
         int dx = Integer.parseInt((String) cbDX.getSelectedItem());
         int dy = Integer.parseInt((String) cbDY.getSelectedItem());
+        int moveDistance = Integer.parseInt((String) cbDistance.getSelectedItem());
         boolean collidesDuring = Boolean.parseBoolean((String) cbColDur.getSelectedItem());
         boolean collidesAtEnd = Boolean.parseBoolean((String) cbColEnd.getSelectedItem());
-        boolean infMoveX = Boolean.parseBoolean((String) cbInfMoveX.getSelectedItem());
-        boolean infMoveY = Boolean.parseBoolean((String) cbInfMoveY.getSelectedItem());
         boolean firstMove = Boolean.parseBoolean((String) cbFirstMove.getSelectedItem());
         MoveStyle.MoveObjective moveObjective = MoveStyle.MoveObjective.getFromName(
                 getMoveStyleAsStringUgly((String) cbMoveObjective.getSelectedItem())
         );
         MoveStyle msTemp = new MoveStyle(
                 dx, dy, collidesDuring, collidesAtEnd,
-                moveObjective, new boolean[]{infMoveX, infMoveY},
-                firstMove
+                moveObjective,
+                firstMove, moveDistance
         );
         return msTemp.getAsJSONObject();
     }
@@ -243,6 +228,11 @@ public class PieceBuilderSlate extends AbstractSlate {
             nums[i + 7] = "" + i;
         }
 
+        String[] distanceNums = new String[9];
+        for(int i = -1; i < 8; ++i) {
+            distanceNums[i + 1] = ""+i;
+        }
+
         String[] bools = {"true", "false"};
         String[] objectives = {"Move Only", "Kill Only", "Both"};
         MetroPanel moveStyleMPanel = new MetroPanel("Move Style Options Panel");
@@ -260,6 +250,11 @@ public class PieceBuilderSlate extends AbstractSlate {
         lblDX.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblDY.setAlignmentX(Component.CENTER_ALIGNMENT);
 
+        lblDistance = Common.labelFactory("Max Movement Distance (Manhattan)");
+        cbDistance = new JComboBox(distanceNums);
+        moveStylePanel.add(lblDistance);
+        moveStylePanel.add(cbDistance);
+        lblDistance.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         lblColDur = Common.labelFactory("Collides During Motion");
         lblColEnd = Common.labelFactory("Collides at End of Motion");
@@ -273,18 +268,6 @@ public class PieceBuilderSlate extends AbstractSlate {
         lblColDur.setAlignmentX(Component.CENTER_ALIGNMENT);
         lblColEnd.setAlignmentX(Component.CENTER_ALIGNMENT);
         cbColEnd.setEnabled(false);
-
-        lblInfMoveX = Common.labelFactory("Infinite Horizontal Motion");
-        lblInfMoveY = Common.labelFactory("Infinite Vertical Motion");
-        cbInfMoveX = new JComboBox(bools);
-        cbInfMoveY = new JComboBox(bools);
-
-        moveStylePanel.add(lblInfMoveX);
-        moveStylePanel.add(cbInfMoveX);
-        moveStylePanel.add(lblInfMoveY);
-        moveStylePanel.add(cbInfMoveY);
-        lblInfMoveX.setAlignmentX(Component.CENTER_ALIGNMENT);
-        lblInfMoveY.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         lblFirstMove = Common.labelFactory("First Move Only");
         cbFirstMove = new JComboBox(bools);
@@ -321,17 +304,7 @@ public class PieceBuilderSlate extends AbstractSlate {
         footerPanel.add(mbtnAccept.getCanvas());
     }
 
-    class ComboBoxesChangeListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent actionEvent) {
-            logLine("Something happened.", 0);
-        }
-    }
-
-
     class AcceptBtnListener implements ActionListener {
-
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             for (JSONObject o : jsonPieces) {
@@ -342,7 +315,6 @@ public class PieceBuilderSlate extends AbstractSlate {
     }
 
     class AddPieceButtonListener implements ActionListener {
-
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             piecesList.append("NewPiece" + jsonPieces.size());
@@ -353,7 +325,6 @@ public class PieceBuilderSlate extends AbstractSlate {
     }
 
     class RemovePieceButtonListener implements ActionListener {
-
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
 
@@ -361,20 +332,18 @@ public class PieceBuilderSlate extends AbstractSlate {
     }
 
     class AddMSButtonListener implements ActionListener {
-
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             if(indexSelectedPiece >= 0) {
                 movesList.append("Movestyle " + (jsonMoveStyles.size() + 1));
                 jsonMoveStyles.add(new MoveStyle(0, 0, false, true, MoveStyle.MoveObjective.BOTH,
-                        new boolean[]{false, false}, false).getAsJSONObject());
+                        false, -1).getAsJSONObject());
                 movesList.setSelectedIndex(jsonMoveStyles.size() - 1);
             }
         }
     }
 
     private class RemoveMSButtonListener implements ActionListener {
-
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             if(indexSelectedPiece >= 0) {
@@ -390,7 +359,7 @@ public class PieceBuilderSlate extends AbstractSlate {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             logLine("Saving MoveStyle", 0);
-            JSONObject temp = getMoveStyleAsJSON();
+            JSONObject temp = getSelectedMoveStyleAsJSON();
             jsonMoveStyles.remove(indexSelectedMovestyle);
             jsonMoveStyles.insertElementAt(temp, indexSelectedMovestyle);
             JOptionPane.showMessageDialog(null,
@@ -430,8 +399,8 @@ public class PieceBuilderSlate extends AbstractSlate {
             super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             if (isSelected) {
                 if (indexSelectedMovestyle != index) {
-                    indexSelectedMovestyle = index; //todo might need to not always change the last sel index.
-                    logLine("Selected index = " + index, 0);
+                    //todo might need to not always change the last sel index.
+                    indexSelectedMovestyle = index;
                     setSelectedMoveStyleFromIndex(index);
                 }
             }
